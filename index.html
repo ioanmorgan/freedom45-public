@@ -617,7 +617,7 @@
         p.y = p.oy+Math.cos(time*p.speed*1.2+p.phase)*15+Math.sin(time*p.speed*0.8+p.phase*0.9)*10;
         p.z = heightPoly(p.x, p.y, time);
       }
-      renderTris(sw, ld, 135, 15, 30, 35, 35, 50, 'rgba(0,60,30,0.08)');
+      renderTris(sw, ld, 225, 15, 30, 35, 35, 50, 'rgba(20,20,60,0.06)');
       animFrameId = requestAnimationFrame(drawPoly);
     }
 
@@ -632,7 +632,7 @@
         p.y = p.oy+Math.sin(time*1.5+p.phase)*6*amp;
         p.z = heightFlag(p.x, p.y, time);
       }
-      renderTris(sw, ld, 135, 15, 25, 25, 50, 38, 'rgba(0,60,30,0.08)');
+      renderTris(sw, ld, 230, 20, 25, 25, 50, 38, 'rgba(20,20,60,0.06)');
       animFrameId = requestAnimationFrame(drawFlag);
     }
 
@@ -665,7 +665,7 @@
       } else {
         meshWrap.style.opacity = '0';
         canvas.style.opacity = '1';
-        bgLayer.style.background = '#f0f7f0';
+        bgLayer.style.background = '#f0f2f8';
         resizeCanvas();
         if (mode === 1) drawPoly();
         else drawFlag();
