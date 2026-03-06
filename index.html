@@ -601,7 +601,7 @@
 
     function heightFlag(x, y, t) {
       const amp = 0.4 + (x / window.innerWidth) * 0.6;
-      return Math.sin(x*0.015-t*3)*50*amp + Math.sin(x*0.025+y*0.004-t*4)*30*amp + Math.sin(y*0.018+x*0.005-t*2)*25*amp + Math.sin(x*0.035-t*5)*15*amp + Math.cos(x*0.006+y*0.003+t*0.8)*30*amp;
+      return Math.sin(x*0.008-t*1.8)*40*amp + Math.sin(x*0.014+y*0.003-t*2.4)*24*amp + Math.cos(x*0.005+y*0.006+t*0.6)*20*amp;
     }
 
     function drawPoly() {
@@ -617,22 +617,22 @@
         p.y = p.oy+Math.cos(time*p.speed*1.2+p.phase)*15+Math.sin(time*p.speed*0.8+p.phase*0.9)*10;
         p.z = heightPoly(p.x, p.y, time);
       }
-      renderTris(sw, ld, 225, 15, 30, 35, 35, 50, 'rgba(20,20,60,0.06)');
+      renderTris(sw, ld, 225, 20, 45, 30, 65, 25, 'rgba(40,40,100,0.06)');
       animFrameId = requestAnimationFrame(drawPoly);
     }
 
     function drawFlag() {
-      time += 0.006;
+      time += 0.011;
       const sw = window.innerWidth;
       ctx.clearRect(0, 0, sw, window.innerHeight);
       const ld = {x:-0.4, y:-0.3, z:0.86};
       for (const p of points) {
         const amp = 0.4+(p.ox/sw)*0.6;
-        p.x = p.ox+Math.sin(time*2.5-p.ox*0.01)*10*amp;
-        p.y = p.oy+Math.sin(time*1.5+p.phase)*6*amp;
+        p.x = p.ox+Math.sin(time*1.6-p.ox*0.006)*12*amp;
+        p.y = p.oy+Math.sin(time*1.0+p.phase)*5*amp;
         p.z = heightFlag(p.x, p.y, time);
       }
-      renderTris(sw, ld, 230, 20, 25, 25, 50, 38, 'rgba(20,20,60,0.06)');
+      renderTris(sw, ld, 225, 20, 45, 30, 65, 25, 'rgba(40,40,100,0.06)');
       animFrameId = requestAnimationFrame(drawFlag);
     }
 
@@ -665,7 +665,7 @@
       } else {
         meshWrap.style.opacity = '0';
         canvas.style.opacity = '1';
-        bgLayer.style.background = '#f0f2f8';
+        bgLayer.style.background = '#f0f2f5';
         resizeCanvas();
         if (mode === 1) drawPoly();
         else drawFlag();
