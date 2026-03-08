@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Freedom45 — A technology studio</title>
-  <meta name="description" content="Freedom45 is a technology studio — from ideas to products. Software consultancy, health apps, and experimental AI development.">
+  <meta name="description" content="Freedom45 is a technology studio offering technical leadership, software delivery, and product development for startups and growth companies.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%232563eb'/%3E%3Cstop offset='100%25' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='800' font-size='18' fill='white'%3E45%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -236,9 +236,13 @@
     /* Cards */
     .cards {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 1rem;
       margin-top: 2rem;
+    }
+
+    .card--consulting {
+      grid-column: 1 / -1;
     }
 
     .card {
@@ -261,8 +265,8 @@
     }
 
     .card--consulting .card-accent { background: var(--accent); }
-    .card--buddy .card-accent { background: #16a34a; }
-    .card--nothirx .card-accent { background: #7c3aed; }
+    .card--advisory .card-accent { background: #0d9488; }
+    .card--nothrix .card-accent { background: #7c3aed; }
 
     .card h3 {
       font-size: 1rem;
@@ -449,7 +453,7 @@
       <div class="slide-content visible">
         <h1>Freedom<span>45</span></h1>
         <p class="tagline">A technology studio — from ideas to products</p>
-        <p class="summary">Technical leadership, software delivery, and products — from strategy through to support. Three directions, one studio.</p>
+        <p class="summary">Technical leadership, software delivery, and products — from strategy through to support.</p>
       </div>
     </div>
 
@@ -457,26 +461,26 @@
     <div class="slide" data-index="1">
       <div class="slide-content glass">
         <p class="section-label">What we do</p>
-        <h2 class="section-title">Three directions, one studio</h2>
-        <p class="section-desc">We consult, we build our own products, and we push into new territory — each arm sharpens the others.</p>
+        <h2 class="section-title">Delivery, advisory, and product</h2>
+        <p class="section-desc">We build for clients, guide their teams, and ship products of our own — each side sharpens the others.</p>
         <div class="cards">
           <div class="card card--consulting">
             <div class="card-accent"></div>
             <h3>Consulting</h3>
-            <p>End-to-end software delivery — from fractional leadership and technical strategy through to development, QA, and support. We partner with startups and growth companies across the full product lifecycle.</p>
-            <div class="card-type">Services</div>
+            <p>Software delivery — development, QA, and support across mobile, desktop, and web. We embed with startups and growth companies across the full product lifecycle.</p>
+            <div class="card-type">Delivery</div>
           </div>
-          <div class="card card--buddy">
+          <div class="card card--advisory">
             <div class="card-accent"></div>
-            <h3>BuddyApps</h3>
-            <p>Health and wellness apps designed to help people understand themselves better. No paywalls, no premium tiers — free forever. Our way of giving something back.</p>
+            <h3>Advisory</h3>
+            <p>Fractional technical leadership and mentorship for early-stage teams. From validating ideas and scoping prototypes through to scaling delivery.</p>
+            <div class="card-type">Strategy</div>
+          </div>
+          <div class="card card--nothrix">
+            <div class="card-accent"></div>
+            <h3>Nothrix Labs</h3>
+            <p>In-house products built with AI-first workflows — from BuddyApps, a privacy-first health and wellness line, to mobile games.</p>
             <div class="card-type">Products</div>
-          </div>
-          <div class="card card--nothirx">
-            <div class="card-accent"></div>
-            <h3>Nothirx Labs</h3>
-            <p>Our learning lab — using teams of AI agents to build mobile games. A space to experiment, stay sharp, and push the boundaries of what's possible with AI.</p>
-            <div class="card-type">R&D</div>
           </div>
         </div>
       </div>
