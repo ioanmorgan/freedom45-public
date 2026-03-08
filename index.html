@@ -15,8 +15,6 @@
       --text-secondary: #475569;
       --accent: #2563eb;
       --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --glass: rgba(255, 255, 255, 0.72);
-      --glass-border: rgba(255, 255, 255, 0.3);
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -137,7 +135,6 @@
       scroll-behavior: smooth;
     }
 
-    /* ---- EACH SLIDE ---- */
     .slide {
       height: 100vh;
       scroll-snap-align: start;
@@ -198,11 +195,7 @@
       line-height: 1.7;
     }
 
-    /* ---- SECTION SLIDES (no glass) ---- */
-    .slide--section .slide-content {
-      text-align: center;
-    }
-
+    /* ---- SHARED TEXT STYLES ---- */
     .section-label {
       font-size: 0.8125rem;
       font-weight: 500;
@@ -226,97 +219,9 @@
       margin: 0 auto;
     }
 
-    /* ---- TRIANGLE DIAGRAM ---- */
-    .tri {
-      position: relative;
-      width: 280px;
-      margin: 2.5rem auto 0;
-    }
-
-    .tri-svg {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .tri-label {
-      position: absolute;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      color: var(--text-secondary);
-      white-space: nowrap;
-      transition: color 0.4s, opacity 0.4s, font-weight 0.4s;
-      opacity: 0.65;
-    }
-
-    .tri-label--foundry {
-      top: 7%;
-      left: 20%;
-      transform: translate(-50%, -180%);
-    }
-
-    .tri-label--studio {
-      top: 7%;
-      left: 80%;
-      transform: translate(-50%, -180%);
-    }
-
-    .tri-label--lab {
-      top: 85%;
-      left: 50%;
-      transform: translate(-50%, 80%);
-    }
-
-    .tri-c {
-      transform-box: fill-box;
-      transform-origin: center;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
-      opacity: 0.5;
-    }
-
-    /* Active highlights */
-    .tri[data-active="foundry"] .tri-label--foundry,
-    .tri[data-active="studio"] .tri-label--studio,
-    .tri[data-active="lab"] .tri-label--lab {
-      color: var(--text-primary);
-      opacity: 1;
-      font-weight: 700;
-    }
-
-    .tri[data-active="foundry"] .tri-c--foundry,
-    .tri[data-active="studio"] .tri-c--studio,
-    .tri[data-active="lab"] .tri-c--lab {
-      transform: scale(1.8);
-      opacity: 1;
-    }
-
-    /* When no active state, all nodes are equally visible */
-    .tri:not([data-active]) .tri-c,
-    .tri[data-active=""] .tri-c {
-      opacity: 0.7;
-    }
-
-    .tri:not([data-active]) .tri-label,
-    .tri[data-active=""] .tri-label {
-      opacity: 0.85;
-    }
-
-    /* ---- DETAIL BLOCK (below triangle) ---- */
-    .detail {
-      margin-top: 2rem;
-    }
-
-    .detail-accent {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      margin: 0 auto 1rem;
-    }
-
     .detail-type {
       display: inline-block;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
       font-size: 0.6875rem;
       color: var(--text-secondary);
       opacity: 0.5;
@@ -324,13 +229,194 @@
       text-transform: uppercase;
     }
 
-    /* Triangle shifts up on Studio and Lab slides to make room */
-    .slide--detail-lower .tri {
-      margin-top: 0;
+    /* ---- FIXED TRIANGLE OVERLAY ---- */
+    .tri-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3.5rem;
+      opacity: 0;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(0);
     }
 
-    .slide--detail-lower .slide-content {
-      padding-top: 0;
+    .tri-overlay.visible {
+      opacity: 1;
+    }
+
+    .tri-overlay.exit-top {
+      transform: translateY(-50vh);
+      opacity: 0;
+    }
+
+    /* ---- ABOVE-TRIANGLE CONTENT ---- */
+    .tri-overlay__above {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      min-height: 7rem;
+      flex-shrink: 0;
+    }
+
+    /* ---- BELOW-TRIANGLE CONTENT ---- */
+    .tri-overlay__below {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      min-height: 7rem;
+      flex-shrink: 0;
+    }
+
+    /* ---- OVERLAY TEXT BLOCKS (overview, foundry, studio, lab) ---- */
+    .tri-overlay__text {
+      position: absolute;
+      inset: 0;
+      text-align: center;
+      opacity: 0;
+      transform: translateX(0);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tri-overlay__text.no-transition {
+      transition: none;
+    }
+
+    .tri-overlay__text.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .tri-overlay__text.pos-left {
+      transform: translateX(-140px);
+      opacity: 0;
+    }
+
+    .tri-overlay__text.pos-right {
+      transform: translateX(140px);
+      opacity: 0;
+    }
+
+    .tri-overlay__text.pos-top {
+      transform: translateY(-80px);
+      opacity: 0;
+    }
+
+    /* Sequenced child animations: name appears, then desc follows */
+    .tri-overlay__text .section-title,
+    .tri-overlay__text .section-label {
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tri-overlay__text .ov-desc {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+    }
+
+    .tri-overlay__text.visible .ov-desc {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---- TRIANGLE DIAGRAM ---- */
+    .tri-overlay__diagram {
+      position: relative;
+      width: 260px;
+      flex-shrink: 0;
+    }
+
+    .tri-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      overflow: visible;
+    }
+
+    .tri-label {
+      position: absolute;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      transition: color 0.4s, opacity 0.4s, font-weight 0.4s;
+      opacity: 0.5;
+    }
+
+    /* Foundry = top point, Studio = bottom-left, Lab = bottom-right */
+    .tri-label--foundry {
+      top: 5%;
+      left: 50%;
+      transform: translate(-50%, -120%);
+    }
+
+    .tri-label--studio {
+      top: 88%;
+      left: 14%;
+      transform: translate(-50%, 60%);
+    }
+
+    .tri-label--lab {
+      top: 88%;
+      left: 86%;
+      transform: translate(-50%, 60%);
+    }
+
+    .tri-c {
+      transform-box: fill-box;
+      transform-origin: center;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.5s,
+                  filter 0.5s;
+      opacity: 0.6;
+      filter: drop-shadow(0 0 0px transparent);
+    }
+
+    /* Active highlights */
+    .tri-overlay__diagram[data-active="foundry"] .tri-label--foundry,
+    .tri-overlay__diagram[data-active="studio"] .tri-label--studio,
+    .tri-overlay__diagram[data-active="lab"] .tri-label--lab {
+      /* Hide vertex label when section title is showing */
+      opacity: 0;
+    }
+
+    .tri-overlay__diagram[data-active="foundry"] .tri-c--foundry,
+    .tri-overlay__diagram[data-active="studio"] .tri-c--studio,
+    .tri-overlay__diagram[data-active="lab"] .tri-c--lab {
+      transform: scale(1.5);
+      opacity: 1;
+    }
+
+    .tri-overlay__diagram[data-active="foundry"] .tri-c--foundry {
+      filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.35));
+    }
+    .tri-overlay__diagram[data-active="studio"] .tri-c--studio {
+      filter: drop-shadow(0 0 6px rgba(13, 148, 136, 0.35));
+    }
+    .tri-overlay__diagram[data-active="lab"] .tri-c--lab {
+      filter: drop-shadow(0 0 6px rgba(124, 58, 237, 0.35));
+    }
+
+    .tri-overlay__diagram:not([data-active]) .tri-c,
+    .tri-overlay__diagram[data-active=""] .tri-c {
+      opacity: 0.8;
+    }
+
+    .tri-overlay__diagram:not([data-active]) .tri-label,
+    .tri-overlay__diagram[data-active=""] .tri-label {
+      opacity: 0.7;
     }
 
     /* ---- CONTACT ---- */
@@ -364,7 +450,6 @@
       color: var(--text-secondary);
     }
 
-    /* Footer inside last slide */
     .slide-footer {
       position: absolute;
       bottom: 2rem;
@@ -449,15 +534,17 @@
       .wordmark-nav { top: 1rem; left: 1rem; font-size: 1rem; }
       .section-title { font-size: clamp(1.25rem, 5vw, 1.75rem); }
       .section-desc { font-size: 0.875rem; }
-      .tri { width: 220px; margin-top: 2rem; }
+      .tri-overlay__diagram { width: 200px; }
+      .tri-overlay { gap: 1rem; }
       .tri-label { font-size: 0.6875rem; }
-      .detail { margin-top: 1.5rem; }
-      .slide--detail-lower .tri { margin-top: 0; }
+      .tri-overlay__text.pos-left { transform: translateX(-100px); }
+      .tri-overlay__text.pos-right { transform: translateX(100px); }
     }
 
     @media (max-width: 480px) {
-      .tri { width: 180px; margin-top: 1.5rem; }
-      .detail { margin-top: 1.25rem; }
+      .tri-overlay__diagram { width: 160px; }
+      .tri-overlay__text.pos-left { transform: translateX(-70px); }
+      .tri-overlay__text.pos-right { transform: translateX(70px); }
     }
   </style>
 </head>
@@ -486,11 +573,90 @@
     <button class="dot" data-slide="3"></button>
     <button class="dot" data-slide="4"></button>
     <button class="dot" data-slide="5"></button>
+    <button class="dot" data-slide="6"></button>
   </div>
 
-  <!-- Scrollable slides -->
-  <div class="slides" id="slides">
+  <!-- Fixed triangle overlay -->
+  <div class="tri-overlay" id="triOverlay">
 
+    <!-- ABOVE triangle -->
+    <div class="tri-overlay__above">
+      <!-- Overview text -->
+      <div class="tri-overlay__text" id="text-overview">
+        <p class="section-label">What we do</p>
+        <h2 class="section-title">Three spaces, one studio</h2>
+        <div class="ov-desc">
+          <p class="section-desc">We build for clients, ship our own products, and push into new territory.</p>
+        </div>
+      </div>
+      <!-- Foundry text (above triangle) -->
+      <div class="tri-overlay__text" id="text-foundry">
+        <h2 class="section-title" style="color: #2563eb">The Foundry</h2>
+        <div class="ov-desc">
+          <p class="section-desc">We partner with startups and growth companies — from technical strategy and mentorship through to development, QA, and support across mobile, desktop, and web.</p>
+          <span class="detail-type">Clients</span>
+        </div>
+      </div>
+      <!-- Closing text (above triangle) -->
+      <div class="tri-overlay__text" id="text-closing">
+        <h2 class="section-title">Built different, together</h2>
+        <div class="ov-desc">
+          <p class="section-desc">Three disciplines, one team. Whether we're building for you, shipping our own products, or exploring what's next — the work feeds the work.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Triangle: Foundry=top, Studio=bottom-left, Lab=bottom-right -->
+    <div class="tri-overlay__diagram" id="triDiagram" data-active="">
+      <svg class="tri-svg" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="grad-foundry" cx="42%" cy="38%" r="58%">
+            <stop offset="0%" stop-color="#5b93f5"/>
+            <stop offset="100%" stop-color="#2563eb"/>
+          </radialGradient>
+          <radialGradient id="grad-studio" cx="42%" cy="38%" r="58%">
+            <stop offset="0%" stop-color="#3abfb4"/>
+            <stop offset="100%" stop-color="#0d9488"/>
+          </radialGradient>
+          <radialGradient id="grad-lab" cx="42%" cy="38%" r="58%">
+            <stop offset="0%" stop-color="#a78bfa"/>
+            <stop offset="100%" stop-color="#7c3aed"/>
+          </radialGradient>
+        </defs>
+        <path d="M 100 25 L 35 155 L 165 155 Z" stroke="rgba(0,0,0,0.03)" stroke-width="1.5" fill="none"/>
+        <circle class="tri-c tri-c--foundry" cx="100" cy="25" r="9" fill="url(#grad-foundry)"/>
+        <circle class="tri-c tri-c--studio" cx="35" cy="155" r="9" fill="url(#grad-studio)"/>
+        <circle class="tri-c tri-c--lab" cx="165" cy="155" r="9" fill="url(#grad-lab)"/>
+      </svg>
+      <span class="tri-label tri-label--foundry">The Foundry</span>
+      <span class="tri-label tri-label--studio">The Studio</span>
+      <span class="tri-label tri-label--lab">The Lab</span>
+    </div>
+
+    <!-- BELOW triangle -->
+    <div class="tri-overlay__below">
+      <!-- Studio text (below triangle) -->
+      <div class="tri-overlay__text" id="text-studio">
+        <h2 class="section-title" style="color: #0d9488">The Studio</h2>
+        <div class="ov-desc">
+          <p class="section-desc">In-house apps built to our own standards — crafted with the same care we bring to client work.</p>
+          <span class="detail-type">Products</span>
+        </div>
+      </div>
+      <!-- Lab text (below triangle) -->
+      <div class="tri-overlay__text" id="text-lab">
+        <h2 class="section-title" style="color: #7c3aed">The Lab</h2>
+        <div class="ov-desc">
+          <p class="section-desc">Where we push into new territory — AI-first workflows, multi-agent systems, and emerging tech.</p>
+          <span class="detail-type">R&amp;D</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scrollable slides (spacers drive overlay state) -->
+  <div class="slides" id="slides">
     <!-- 1: Hero -->
     <div class="slide slide--hero" data-index="0">
       <div class="slide-content visible">
@@ -499,98 +665,18 @@
         <p class="summary">Technical leadership and software delivery — from strategy through to support.</p>
       </div>
     </div>
-
-    <!-- 2: What we do + Triangle overview -->
-    <div class="slide slide--section" data-index="1">
-      <div class="slide-content">
-        <p class="section-label">What we do</p>
-        <h2 class="section-title">Three spaces, one studio</h2>
-        <p class="section-desc">We build for clients, ship our own products, and push into new territory.</p>
-        <div class="tri" data-active="">
-          <svg class="tri-svg" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 40 30 L 160 30 L 100 150 Z" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" fill="none"/>
-            <circle class="tri-c tri-c--foundry" cx="40" cy="30" r="5" fill="#2563eb"/>
-            <circle class="tri-c tri-c--studio" cx="160" cy="30" r="5" fill="#0d9488"/>
-            <circle class="tri-c tri-c--lab" cx="100" cy="150" r="5" fill="#7c3aed"/>
-          </svg>
-          <span class="tri-label tri-label--foundry">The Foundry</span>
-          <span class="tri-label tri-label--studio">The Studio</span>
-          <span class="tri-label tri-label--lab">The Lab</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3: The Foundry -->
-    <div class="slide slide--section" data-index="2">
-      <div class="slide-content">
-        <div class="tri" data-active="foundry">
-          <svg class="tri-svg" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 40 30 L 160 30 L 100 150 Z" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" fill="none"/>
-            <circle class="tri-c tri-c--foundry" cx="40" cy="30" r="5" fill="#2563eb"/>
-            <circle class="tri-c tri-c--studio" cx="160" cy="30" r="5" fill="#0d9488"/>
-            <circle class="tri-c tri-c--lab" cx="100" cy="150" r="5" fill="#7c3aed"/>
-          </svg>
-          <span class="tri-label tri-label--foundry">The Foundry</span>
-          <span class="tri-label tri-label--studio">The Studio</span>
-          <span class="tri-label tri-label--lab">The Lab</span>
-        </div>
-        <div class="detail">
-          <div class="detail-accent" style="background: #2563eb"></div>
-          <h2 class="section-title">The Foundry</h2>
-          <p class="section-desc">We partner with startups and growth companies — from technical strategy and mentorship through to development, QA, and support across mobile, desktop, and web.</p>
-          <span class="detail-type">Clients</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4: The Studio (triangle shifts up) -->
-    <div class="slide slide--section slide--detail-lower" data-index="3">
-      <div class="slide-content">
-        <div class="tri" data-active="studio">
-          <svg class="tri-svg" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 40 30 L 160 30 L 100 150 Z" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" fill="none"/>
-            <circle class="tri-c tri-c--foundry" cx="40" cy="30" r="5" fill="#2563eb"/>
-            <circle class="tri-c tri-c--studio" cx="160" cy="30" r="5" fill="#0d9488"/>
-            <circle class="tri-c tri-c--lab" cx="100" cy="150" r="5" fill="#7c3aed"/>
-          </svg>
-          <span class="tri-label tri-label--foundry">The Foundry</span>
-          <span class="tri-label tri-label--studio">The Studio</span>
-          <span class="tri-label tri-label--lab">The Lab</span>
-        </div>
-        <div class="detail">
-          <div class="detail-accent" style="background: #0d9488"></div>
-          <h2 class="section-title">The Studio</h2>
-          <p class="section-desc">In-house apps built to our own standards — crafted with the same care we bring to client work.</p>
-          <span class="detail-type">Products</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5: The Lab -->
-    <div class="slide slide--section slide--detail-lower" data-index="4">
-      <div class="slide-content">
-        <div class="tri" data-active="lab">
-          <svg class="tri-svg" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 40 30 L 160 30 L 100 150 Z" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" fill="none"/>
-            <circle class="tri-c tri-c--foundry" cx="40" cy="30" r="5" fill="#2563eb"/>
-            <circle class="tri-c tri-c--studio" cx="160" cy="30" r="5" fill="#0d9488"/>
-            <circle class="tri-c tri-c--lab" cx="100" cy="150" r="5" fill="#7c3aed"/>
-          </svg>
-          <span class="tri-label tri-label--foundry">The Foundry</span>
-          <span class="tri-label tri-label--studio">The Studio</span>
-          <span class="tri-label tri-label--lab">The Lab</span>
-        </div>
-        <div class="detail">
-          <div class="detail-accent" style="background: #7c3aed"></div>
-          <h2 class="section-title">The Lab</h2>
-          <p class="section-desc">Where we push into new territory — AI-first workflows, multi-agent systems, and emerging tech.</p>
-          <span class="detail-type">R&amp;D</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 6: Contact -->
-    <div class="slide slide--contact" data-index="5">
+    <!-- 2: Overview -->
+    <div class="slide" data-index="1"></div>
+    <!-- 3: Foundry -->
+    <div class="slide" data-index="2"></div>
+    <!-- 4: Studio -->
+    <div class="slide" data-index="3"></div>
+    <!-- 5: Lab -->
+    <div class="slide" data-index="4"></div>
+    <!-- 6: Closing -->
+    <div class="slide" data-index="5"></div>
+    <!-- 7: Contact -->
+    <div class="slide slide--contact" data-index="6">
       <div class="slide-content">
         <p class="section-label">Contact</p>
         <h2 class="section-title">Let's talk</h2>
@@ -602,15 +688,140 @@
       </div>
       <div class="slide-footer">&copy; 2026 Freedom45</div>
     </div>
-
   </div>
 
   <script>
-    // ---- Slide visibility & dots ----
+    // ---- Elements ----
     const slidesEl = document.getElementById('slides');
     const allSlides = document.querySelectorAll('.slide');
     const allDots = document.querySelectorAll('.dot');
+    const triOverlay = document.getElementById('triOverlay');
+    const triDiagram = document.getElementById('triDiagram');
 
+    const textEls = {
+      overview: document.getElementById('text-overview'),
+      foundry: document.getElementById('text-foundry'),
+      studio: document.getElementById('text-studio'),
+      lab: document.getElementById('text-lab'),
+      closing: document.getElementById('text-closing')
+    };
+
+    // ---- State ----
+    let currentSlideIdx = 0;
+    let currentSection = null;
+    let pendingTimeouts = [];
+
+    function getActiveSlide() {
+      return Math.round(slidesEl.scrollTop / window.innerHeight);
+    }
+
+    function sectionForSlide(idx) {
+      if (idx === 1) return 'overview';
+      if (idx === 2) return 'foundry';
+      if (idx === 3) return 'studio';
+      if (idx === 4) return 'lab';
+      if (idx === 5) return 'closing';
+      return null;
+    }
+
+    // ---- Animation helpers ----
+    // Direction each section text enters/exits from:
+    //   overview: fade only
+    //   foundry: fade only (it's above triangle, first detail section)
+    //   studio: from left, exits left
+    //   lab: from right, exits right
+    function dirFor(section) {
+      if (section === 'overview') return 'pos-top';
+      if (section === 'studio') return 'pos-left';
+      if (section === 'lab') return 'pos-right';
+      return null; // fade
+    }
+
+    function clearPending() {
+      pendingTimeouts.forEach(t => clearTimeout(t));
+      pendingTimeouts = [];
+    }
+
+    function hideAllContent() {
+      Object.values(textEls).forEach(el => {
+        el.classList.remove('visible', 'pos-left', 'pos-right', 'pos-top', 'no-transition');
+        el.style.opacity = '0';
+      });
+    }
+
+    function showText(section) {
+      if (!section) return;
+      const el = textEls[section];
+      if (!el) return;
+      const dir = dirFor(section);
+
+      // Position at start (no transition)
+      el.classList.add('no-transition');
+      el.classList.remove('visible', 'pos-left', 'pos-right', 'pos-top');
+      el.style.opacity = '';
+      if (dir) el.classList.add(dir);
+
+      // Force reflow
+      el.offsetHeight;
+
+      // Animate in
+      el.classList.remove('no-transition', 'pos-left', 'pos-right', 'pos-top');
+      el.classList.add('visible');
+    }
+
+    function hideText(section) {
+      if (!section) return;
+      const el = textEls[section];
+      if (!el) return;
+      const dir = dirFor(section);
+
+      el.style.opacity = '';
+      el.classList.remove('visible');
+      if (dir) el.classList.add(dir);
+    }
+
+    // ---- Main scroll update ----
+    function updateOverlay() {
+      const newIdx = getActiveSlide();
+      if (newIdx === currentSlideIdx) return;
+
+      clearPending();
+
+      const oldSection = currentSection;
+      const newSection = sectionForSlide(newIdx);
+      currentSlideIdx = newIdx;
+      currentSection = newSection;
+
+      // Triangle visibility
+      if (newIdx >= 1 && newIdx <= 5) {
+        triOverlay.classList.add('visible');
+        triOverlay.classList.remove('exit-top');
+      } else if (newIdx === 0) {
+        triOverlay.classList.remove('visible', 'exit-top');
+      } else if (newIdx === 6) {
+        triOverlay.classList.add('exit-top');
+        triOverlay.classList.remove('visible');
+      }
+
+      // Triangle active vertex
+      if (newSection === 'overview' || newSection === 'closing') {
+        triDiagram.setAttribute('data-active', '');
+      } else if (newSection) {
+        triDiagram.setAttribute('data-active', newSection);
+      }
+
+      // Sequenced text transitions
+      if (oldSection !== newSection) {
+        // Hide old immediately
+        hideText(oldSection);
+
+        // Show new after a beat (let the old one clear)
+        const t = setTimeout(() => showText(newSection), 250);
+        pendingTimeouts.push(t);
+      }
+    }
+
+    // ---- Slide visibility & dots ----
     function updateVisibility() {
       const scrollTop = slidesEl.scrollTop;
       const vh = window.innerHeight;
@@ -620,22 +831,22 @@
         const offset = Math.abs(scrollTop - i * vh);
         const ratio = Math.min(offset / vh, 1);
 
-        if (ratio < 0.4) {
-          content.classList.add('visible');
-        } else {
-          content.classList.remove('visible');
+        if (content) {
+          if (ratio < 0.4) content.classList.add('visible');
+          else content.classList.remove('visible');
         }
 
         if (allDots[i]) {
           allDots[i].classList.toggle('active', ratio < 0.4);
         }
       });
+
+      updateOverlay();
     }
 
     slidesEl.addEventListener('scroll', updateVisibility);
     window.addEventListener('resize', updateVisibility);
 
-    // Dot click navigation
     allDots.forEach(dot => {
       dot.addEventListener('click', () => {
         const idx = parseInt(dot.dataset.slide);
@@ -788,6 +999,8 @@
       updateVisibility();
     });
 
+    // ---- Init ----
+    hideAllContent();
     setMode(0);
     updateVisibility();
   </script>
