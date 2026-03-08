@@ -241,6 +241,10 @@
       margin-top: 2rem;
     }
 
+    .card--consulting {
+      grid-column: 1 / -1;
+    }
+
     .card {
       padding: 1.5rem;
       border-radius: 12px;
@@ -261,6 +265,7 @@
     }
 
     .card--consulting .card-accent { background: var(--accent); }
+    .card--advisory .card-accent { background: #0d9488; }
     .card--nothrix .card-accent { background: #7c3aed; }
 
     .card h3 {
@@ -456,20 +461,26 @@
     <div class="slide" data-index="1">
       <div class="slide-content glass">
         <p class="section-label">What we do</p>
-        <h2 class="section-title">Consulting meets product</h2>
-        <p class="section-desc">We deliver for clients and we build our own — each side sharpens the other.</p>
+        <h2 class="section-title">Delivery, advisory, and product</h2>
+        <p class="section-desc">We build for clients, guide their teams, and ship products of our own — each side sharpens the others.</p>
         <div class="cards">
           <div class="card card--consulting">
             <div class="card-accent"></div>
             <h3>Consulting</h3>
-            <p>End-to-end software delivery — from fractional leadership and technical strategy through to development, QA, and support. Mobile, desktop, and web across the full product lifecycle.</p>
-            <div class="card-type">Services</div>
+            <p>Software delivery — development, QA, and support across mobile, desktop, and web. We embed with startups and growth companies across the full product lifecycle.</p>
+            <div class="card-type">Delivery</div>
+          </div>
+          <div class="card card--advisory">
+            <div class="card-accent"></div>
+            <h3>Advisory</h3>
+            <p>Fractional technical leadership and mentorship for early-stage teams. From validating ideas and scoping prototypes through to scaling delivery.</p>
+            <div class="card-type">Strategy</div>
           </div>
           <div class="card card--nothrix">
             <div class="card-accent"></div>
             <h3>Nothrix Labs</h3>
-            <p>Our product and R&D arm — from BuddyApps, a privacy-first health and wellness line, to AI-driven mobile games built with multi-agent systems.</p>
-            <div class="card-type">Products &amp; R&amp;D</div>
+            <p>In-house products built with AI-first workflows — from BuddyApps, a privacy-first health and wellness line, to mobile games.</p>
+            <div class="card-type">Products</div>
           </div>
         </div>
       </div>
