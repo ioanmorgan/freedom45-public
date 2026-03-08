@@ -335,6 +335,7 @@
       position: relative;
       width: 260px;
       flex-shrink: 0;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .tri-svg {
@@ -342,6 +343,7 @@
       height: auto;
       display: block;
       overflow: visible;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
     }
 
     .tri-label {
@@ -355,68 +357,108 @@
       opacity: 0.5;
     }
 
-    /* Foundry = top point, Studio = bottom-left, Lab = bottom-right */
+    /* Foundry = top, Studio = bottom-left, Lab = bottom-right */
     .tri-label--foundry {
-      top: 5%;
+      top: 6%;
       left: 50%;
       transform: translate(-50%, -120%);
     }
 
     .tri-label--studio {
-      top: 88%;
+      top: 82%;
       left: 14%;
       transform: translate(-50%, 60%);
     }
 
     .tri-label--lab {
-      top: 88%;
+      top: 82%;
       left: 86%;
       transform: translate(-50%, 60%);
     }
 
-    .tri-c {
-      transform-box: fill-box;
-      transform-origin: center;
+    .fw-body, .fw-head {
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                  opacity 0.5s,
                   filter 0.5s;
-      opacity: 0.6;
-      filter: drop-shadow(0 0 0px transparent);
+    }
+    .fw-body path, .fw-head path {
+      transition: fill 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      stroke: #475569;
+      stroke-width: 0.7;
+      stroke-linejoin: round;
     }
 
-    /* Active highlights */
+    /* Default (dimmed): lighter pastel fills */
+    .fw--foundry path { fill: #93b8f7; }
+    .fw--studio path { fill: #6ec5be; }
+    .fw--lab path { fill: #c4b0f4; }
+
+    /* Active highlights — hide vertex label, pull arrow outward, full color */
     .tri-overlay__diagram[data-active="foundry"] .tri-label--foundry,
     .tri-overlay__diagram[data-active="studio"] .tri-label--studio,
     .tri-overlay__diagram[data-active="lab"] .tri-label--lab {
-      /* Hide vertex label when section title is showing */
       opacity: 0;
     }
 
-    .tri-overlay__diagram[data-active="foundry"] .tri-c--foundry,
-    .tri-overlay__diagram[data-active="studio"] .tri-c--studio,
-    .tri-overlay__diagram[data-active="lab"] .tri-c--lab {
-      transform: scale(1.5);
-      opacity: 1;
+    .tri-overlay__diagram[data-active="foundry"] .fw--foundry {
+      transform: translate(0, -12px);
+      filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.3));
     }
+    .tri-overlay__diagram[data-active="foundry"] .fw--foundry path { fill: #2563eb; }
 
-    .tri-overlay__diagram[data-active="foundry"] .tri-c--foundry {
-      filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.35));
+    .tri-overlay__diagram[data-active="studio"] .fw--studio {
+      transform: translate(-10px, 6px);
+      filter: drop-shadow(0 0 8px rgba(13, 148, 136, 0.3));
     }
-    .tri-overlay__diagram[data-active="studio"] .tri-c--studio {
-      filter: drop-shadow(0 0 6px rgba(13, 148, 136, 0.35));
-    }
-    .tri-overlay__diagram[data-active="lab"] .tri-c--lab {
-      filter: drop-shadow(0 0 6px rgba(124, 58, 237, 0.35));
-    }
+    .tri-overlay__diagram[data-active="studio"] .fw--studio path { fill: #0d9488; }
 
-    .tri-overlay__diagram:not([data-active]) .tri-c,
-    .tri-overlay__diagram[data-active=""] .tri-c {
-      opacity: 0.8;
+    .tri-overlay__diagram[data-active="lab"] .fw--lab {
+      transform: translate(10px, 6px);
+      filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.3));
     }
+    .tri-overlay__diagram[data-active="lab"] .fw--lab path { fill: #7c3aed; }
+
+    /* Overview: slightly stronger fills */
+    .tri-overlay__diagram:not([data-active]) .fw--foundry path,
+    .tri-overlay__diagram[data-active=""] .fw--foundry path { fill: #7aa8f5; }
+    .tri-overlay__diagram:not([data-active]) .fw--studio path,
+    .tri-overlay__diagram[data-active=""] .fw--studio path { fill: #4db8af; }
+    .tri-overlay__diagram:not([data-active]) .fw--lab path,
+    .tri-overlay__diagram[data-active=""] .fw--lab path { fill: #a78bfa; }
 
     .tri-overlay__diagram:not([data-active]) .tri-label,
     .tri-overlay__diagram[data-active=""] .tri-label {
       opacity: 0.7;
+    }
+
+    /* Closing state: scale up the diagram, soften fills */
+    .tri-overlay__diagram[data-active="closing"] {
+      transform: scale(1.5);
+    }
+    .tri-overlay__diagram[data-active="closing"] .fw--foundry path { fill: #93b8f7; }
+    .tri-overlay__diagram[data-active="closing"] .fw--studio path { fill: #6ec5be; }
+    .tri-overlay__diagram[data-active="closing"] .fw--lab path { fill: #c4b0f4; }
+    .tri-overlay__diagram[data-active="closing"] .tri-label {
+      opacity: 0;
+    }
+
+    /* Closing text centered inside the ring */
+    .fw-center-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 160px;
+      opacity: 0;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    .tri-overlay__diagram[data-active="closing"] .fw-center-text {
+      opacity: 1;
+    }
+    .fw-center-text .section-desc {
+      font-size: 0.7rem;
+      line-height: 1.4;
     }
 
     /* ---- CONTACT ---- */
@@ -601,36 +643,43 @@
       <div class="tri-overlay__text" id="text-closing">
         <h2 class="section-title">Built different, together</h2>
         <div class="ov-desc">
-          <p class="section-desc">Three disciplines, one team. Whether we're building for you, shipping our own products, or exploring what's next — the work feeds the work.</p>
+          <p class="section-desc">Three disciplines, one team. Whether we're building for you, shipping our own products, or exploring what's next.</p>
         </div>
       </div>
     </div>
 
-    <!-- Triangle: Foundry=top, Studio=bottom-left, Lab=bottom-right -->
+    <!-- Flywheel: Foundry=top, Studio=bottom-left, Lab=bottom-right -->
+    <!-- Each arrow is a ~120° ring segment with arrowhead tip at the leading edge -->
+    <!-- Flow: Foundry → Studio → Lab → Foundry (counterclockwise) -->
     <div class="tri-overlay__diagram" id="triDiagram" data-active="">
-      <svg class="tri-svg" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="grad-foundry" cx="42%" cy="38%" r="58%">
-            <stop offset="0%" stop-color="#5b93f5"/>
-            <stop offset="100%" stop-color="#2563eb"/>
-          </radialGradient>
-          <radialGradient id="grad-studio" cx="42%" cy="38%" r="58%">
-            <stop offset="0%" stop-color="#3abfb4"/>
-            <stop offset="100%" stop-color="#0d9488"/>
-          </radialGradient>
-          <radialGradient id="grad-lab" cx="42%" cy="38%" r="58%">
-            <stop offset="0%" stop-color="#a78bfa"/>
-            <stop offset="100%" stop-color="#7c3aed"/>
-          </radialGradient>
-        </defs>
-        <path d="M 100 25 L 35 155 L 165 155 Z" stroke="rgba(0,0,0,0.03)" stroke-width="1.5" fill="none"/>
-        <circle class="tri-c tri-c--foundry" cx="100" cy="25" r="9" fill="url(#grad-foundry)"/>
-        <circle class="tri-c tri-c--studio" cx="35" cy="155" r="9" fill="url(#grad-studio)"/>
-        <circle class="tri-c tri-c--lab" cx="165" cy="155" r="9" fill="url(#grad-lab)"/>
+      <svg class="tri-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Layer 1: Arc bodies — exact 120° each, perfect circle -->
+        <g class="fw-body fw--foundry">
+          <path d="M 165.0 62.5 A 75 75 0 0 0 35.1 62.5 L 56.7 75.0 A 50 50 0 0 1 143.3 75.0 Z"/>
+        </g>
+        <g class="fw-body fw--studio">
+          <path d="M 35.1 62.5 A 75 75 0 0 0 100 175 L 100 150 A 50 50 0 0 1 56.7 75.0 Z"/>
+        </g>
+        <g class="fw-body fw--lab">
+          <path d="M 100 175 A 75 75 0 0 0 165.0 62.5 L 143.3 75.0 A 50 50 0 0 1 100 150 Z"/>
+        </g>
+        <!-- Layer 2: Arrowheads — isoceles, barbs 5° back from leading edge, tip 20° forward -->
+        <g class="fw-head fw--foundry">
+          <path d="M 32.5 56.5 L 39.6 83.8 L 65.1 71.7 Z"/>
+        </g>
+        <g class="fw-head fw--studio">
+          <path d="M 96.2 180.2 L 116.2 160.4 L 93.0 144.4 Z"/>
+        </g>
+        <g class="fw-head fw--lab">
+          <path d="M 171.4 63.3 L 144.2 55.8 L 141.8 83.9 Z"/>
+        </g>
       </svg>
       <span class="tri-label tri-label--foundry">The Foundry</span>
       <span class="tri-label tri-label--studio">The Studio</span>
       <span class="tri-label tri-label--lab">The Lab</span>
+      <div class="fw-center-text">
+        <p class="section-desc">The Innovation Flywheel</p>
+      </div>
     </div>
 
     <!-- BELOW triangle -->
@@ -804,8 +853,10 @@
       }
 
       // Triangle active vertex
-      if (newSection === 'overview' || newSection === 'closing') {
+      if (newSection === 'overview') {
         triDiagram.setAttribute('data-active', '');
+      } else if (newSection === 'closing') {
+        triDiagram.setAttribute('data-active', 'closing');
       } else if (newSection) {
         triDiagram.setAttribute('data-active', newSection);
       }
