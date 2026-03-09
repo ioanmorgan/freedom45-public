@@ -1,0 +1,64 @@
+---
+interface Props {
+  activePage?: string;
+}
+
+const { activePage = '' } = Astro.props;
+---
+
+<header class="site-header">
+  <a href="/" class="wordmark">Freedom<span>45</span></a>
+  <nav class="top-nav">
+    <a href="/services" class:list={[{ active: activePage === 'services' }]}>Services</a>
+    <a href="/#contact" onclick="window.location.href='/'">Contact</a>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .wordmark {
+    font-size: 1.125rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .wordmark span { color: var(--accent); }
+
+  .top-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .top-nav a {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+
+  .top-nav a:hover { opacity: 1; }
+  .top-nav a.active { opacity: 1; font-weight: 600; }
+
+  @media (max-width: 768px) {
+    .site-header { padding: 1rem; }
+    .wordmark { font-size: 1rem; }
+    .top-nav { gap: 1rem; }
+    .top-nav a { font-size: 0.75rem; }
+  }
+</style>

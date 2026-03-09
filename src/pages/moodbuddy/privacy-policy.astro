@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="MoodBuddy — Privacy Policy" googleFonts={false}>
+  <div class="container">
+    <p class="app-name">MoodBuddy</p>
+    <h1>Privacy Policy</h1>
+    <p class="effective-date">Effective date: 20 February 2026</p>
+
+    <p>MoodBuddy ("the App") is developed by Nothrix Labs ("we", "us", "our"). We take your privacy seriously. This policy explains what data the App handles and how it is stored.</p>
+
+    <h2>1. Data Storage — Local Only</h2>
+    <p>All data you enter into MoodBuddy — including mood entries, tags, notes, and settings — is stored <strong>exclusively on your device</strong> using the browser's IndexedDB storage. We do not operate servers that receive, store, or process your personal data.</p>
+    <p>Because your data never leaves your device, we cannot access, recover, or view it.</p>
+
+    <h2>2. Data We Do Not Collect</h2>
+    <p>We do not collect, transmit, or share:</p>
+    <ul>
+      <li>Personal information (name, email, account details)</li>
+      <li>Health or mood data</li>
+      <li>Location data</li>
+      <li>Device identifiers or fingerprints</li>
+      <li>Usage analytics or telemetry</li>
+    </ul>
+
+    <h2>3. Advertising</h2>
+    <p>The App may display advertisements provided by Google AdMob. AdMob may collect certain device and interaction data in accordance with <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. We do not share any of your mood or health data with ad providers.</p>
+    <p>You can opt out of personalised ads through your device's advertising settings.</p>
+
+    <h2>4. Notifications</h2>
+    <p>If you enable daily reminders, the App schedules local notifications on your device. No notification data is sent to external servers.</p>
+
+    <h2>5. Data Export</h2>
+    <p>The App allows you to export your data as a file. This export is generated entirely on your device. We have no access to exported files.</p>
+
+    <h2>6. Third-Party Services</h2>
+    <p>The App uses the following third-party services:</p>
+    <ul>
+      <li><strong>Google AdMob</strong> — for displaying advertisements. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</li>
+    </ul>
+    <p>No other third-party SDKs or analytics services are integrated.</p>
+
+    <h2>7. Children's Privacy</h2>
+    <p>The App is not directed at children under 13. We do not knowingly collect data from children.</p>
+
+    <h2>8. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with a revised effective date.</p>
+
+    <h2>9. Contact</h2>
+    <p>If you have questions about this Privacy Policy, you can reach us via the contact form within the App.</p>
+  </div>
+</BaseLayout>
+
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    line-height: 1.7;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .app-name {
+    color: #64748b;
+    margin-bottom: 0.5rem;
+  }
+
+  .effective-date {
+    color: #94a3b8;
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    color: #0f172a;
+  }
+
+  p, li {
+    color: #475569;
+    margin-bottom: 0.75rem;
+  }
+
+  ul {
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  a { color: #3b82f6; }
+</style>
