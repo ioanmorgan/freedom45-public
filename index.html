@@ -134,6 +134,7 @@
       scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
     }
 
     .slide {
@@ -335,7 +336,7 @@
     /* ---- TRIANGLE DIAGRAM ---- */
     .tri-overlay__diagram {
       position: relative;
-      width: 260px;
+      width: 280px;
       flex-shrink: 0;
       transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -382,11 +383,18 @@
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
                   filter 0.5s;
     }
-    .fw-body path, .fw-head path {
+    .fw-body path {
       transition: fill 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       stroke: #475569;
       stroke-width: 0.7;
       stroke-linejoin: round;
+    }
+    .fw-head path {
+      transition: fill 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      stroke: #475569;
+      stroke-width: 3;
+      stroke-linejoin: round;
+      paint-order: stroke fill;
     }
 
     /* Default (dimmed): lighter pastel fills */
@@ -434,7 +442,7 @@
 
     /* Closing state: scale up the diagram, soften fills */
     .tri-overlay__diagram[data-active="closing"] {
-      transform: scale(1.5);
+      transform: scale(1.8);
     }
     .tri-overlay__diagram[data-active="closing"] .fw--foundry path { fill: #93b8f7; }
     .tri-overlay__diagram[data-active="closing"] .fw--studio path { fill: #6ec5be; }
@@ -572,13 +580,13 @@
 
     /* ---- RESPONSIVE ---- */
     @media (max-width: 768px) {
-      .slide { padding: 1.25rem; }
+      .slide { padding: 1.25rem 10%; }
       .dots { display: none; }
       .bg-toggle { right: 1rem; top: 1rem; }
       .wordmark-nav { top: 1rem; left: 1rem; font-size: 1rem; }
       .section-title { font-size: clamp(1.25rem, 5vw, 1.75rem); }
       .section-desc { font-size: 0.875rem; }
-      .tri-overlay__diagram { width: 200px; }
+      .tri-overlay__diagram { width: 220px; }
       .tri-overlay { gap: 1rem; }
       .tri-label { font-size: 0.6875rem; }
       .tri-overlay__text.pos-left { transform: translateX(-100px); }
@@ -586,7 +594,7 @@
     }
 
     @media (max-width: 480px) {
-      .tri-overlay__diagram { width: 160px; }
+      .tri-overlay__diagram { width: 180px; }
       .tri-overlay__text.pos-left { transform: translateX(-70px); }
       .tri-overlay__text.pos-right { transform: translateX(70px); }
     }
