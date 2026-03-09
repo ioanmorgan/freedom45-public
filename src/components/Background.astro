@@ -1,0 +1,310 @@
+<div class="bg-layer" id="bgLayer">
+  <div class="mesh-wrap" id="bgA">
+    <div class="blob blob--1"></div>
+    <div class="blob blob--2"></div>
+    <div class="blob blob--3"></div>
+    <div class="blob blob--4"></div>
+    <div class="blob blob--5"></div>
+  </div>
+  <canvas id="bgCanvas" style="opacity: 0;"></canvas>
+</div>
+
+<button class="bg-toggle" id="bgToggle" title="Change background">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6"/><path d="M2.5 22v-6h6"/><path d="M2.5 16A10 10 0 0 1 21.5 8"/><path d="M21.5 8A10 10 0 0 1 2.5 16"/></svg>
+</button>
+
+<style>
+  .bg-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: var(--bg);
+  }
+
+  .mesh-wrap {
+    position: absolute;
+    inset: -20%;
+    overflow: hidden;
+    filter: blur(60px);
+    transition: opacity 0.6s ease;
+  }
+
+  .blob { position: absolute; border-radius: 50%; }
+
+  .blob--1 {
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.55) 0%, rgba(37, 99, 235, 0.1) 50%, transparent 70%);
+    top: -5%; left: 10%;
+    animation: drift1 6s ease-in-out infinite;
+  }
+  .blob--2 {
+    width: 650px; height: 650px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.5) 0%, rgba(124, 58, 237, 0.08) 50%, transparent 70%);
+    top: 10%; right: -10%;
+    animation: drift2 8s ease-in-out infinite;
+  }
+  .blob--3 {
+    width: 550px; height: 550px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.45) 0%, rgba(6, 182, 212, 0.08) 50%, transparent 70%);
+    bottom: -10%; left: 30%;
+    animation: drift3 7s ease-in-out infinite;
+  }
+  .blob--4 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 70%);
+    bottom: 20%; left: -10%;
+    animation: drift4 9s ease-in-out infinite;
+  }
+  .blob--5 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.35) 0%, transparent 65%);
+    top: 40%; right: 20%;
+    animation: drift5 7.5s ease-in-out infinite;
+  }
+
+  @keyframes drift1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(100px, 50px) scale(1.15); }
+    50% { transform: translate(40px, 80px) scale(0.9); }
+    75% { transform: translate(-60px, 30px) scale(1.1); }
+  }
+  @keyframes drift2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-80px, 60px) scale(1.1); }
+    50% { transform: translate(-40px, -50px) scale(1.2); }
+    75% { transform: translate(50px, 30px) scale(0.95); }
+  }
+  @keyframes drift3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(70px, -40px) scale(1.12); }
+    50% { transform: translate(-50px, -60px) scale(0.9); }
+    75% { transform: translate(-80px, 20px) scale(1.08); }
+  }
+  @keyframes drift4 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(90px, -60px) scale(1.15); }
+    66% { transform: translate(30px, 50px) scale(0.95); }
+  }
+  @keyframes drift5 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-50px, -40px) scale(1.2); }
+    66% { transform: translate(60px, 30px) scale(0.9); }
+  }
+
+  #bgCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.6s ease;
+  }
+
+  .bg-layer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.025) 1px, transparent 0);
+    background-size: 28px 28px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .bg-toggle {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.5rem;
+    z-index: 200;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: opacity 0.2s;
+    opacity: 0.4;
+    padding: 0;
+  }
+
+  .bg-toggle:hover { opacity: 0.75; }
+
+  @media (max-width: 768px) {
+    .bg-toggle { right: 1rem; bottom: 1rem; }
+  }
+
+  @media (max-width: 480px) {
+    .blob--1 { width: 300px; height: 300px; }
+    .blob--2 { width: 280px; height: 280px; }
+    .blob--3 { width: 240px; height: 240px; }
+    .blob--4 { width: 220px; height: 220px; }
+    .blob--5 { width: 180px; height: 180px; }
+    .mesh-wrap { filter: blur(50px); }
+  }
+
+  @media (max-width: 768px) and (min-width: 481px) {
+    .blob--1 { width: 450px; height: 450px; }
+    .blob--2 { width: 400px; height: 400px; }
+    .blob--3 { width: 350px; height: 350px; }
+    .blob--4 { width: 320px; height: 320px; }
+    .blob--5 { width: 260px; height: 260px; }
+    .mesh-wrap { filter: blur(55px); }
+  }
+</style>
+
+<script is:inline>
+  // ---- Background state ----
+  var bgModes = ['gradient', 'poly', 'flag'];
+  var currentMode = 0;
+  var animFrameId = null;
+  var bgTime = 0;
+
+  var meshWrap = document.getElementById('bgA');
+  var bgCanvas = document.getElementById('bgCanvas');
+  var bgCtx = bgCanvas.getContext('2d');
+  var bgLayer = document.getElementById('bgLayer');
+
+  var bgPoints, bgTriangles, bgCols, bgRows;
+
+  function resizeCanvas() {
+    var dpr = devicePixelRatio;
+    bgCanvas.width = window.innerWidth * dpr;
+    bgCanvas.height = window.innerHeight * dpr;
+    bgCanvas.style.width = window.innerWidth + 'px';
+    bgCanvas.style.height = window.innerHeight + 'px';
+    bgCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (currentMode > 0) initBgPoints();
+  }
+
+  function initBgPoints() {
+    bgPoints = [];
+    var sw = window.innerWidth;
+    var sh = window.innerHeight;
+    bgCols = Math.ceil(sw / 90) + 3;
+    bgRows = Math.ceil(sh / 78) + 3;
+    var spacingX = sw / (bgCols - 3);
+    var spacingY = sh / (bgRows - 3);
+
+    for (var row = 0; row < bgRows; row++) {
+      for (var col = 0; col < bgCols; col++) {
+        var offsetX = row % 2 === 1 ? spacingX * 0.5 : 0;
+        var jitterX = (Math.random() - 0.5) * spacingX * 0.35;
+        var jitterY = (Math.random() - 0.5) * spacingY * 0.35;
+        var ox = col * spacingX - spacingX + offsetX + jitterX;
+        var oy = row * spacingY - spacingY + jitterY;
+        bgPoints.push({ x: ox, y: oy, z: 0, ox: ox, oy: oy, phase: Math.random() * Math.PI * 2, speed: 0.3 + Math.random() * 0.4 });
+      }
+    }
+
+    bgTriangles = [];
+    for (var row = 0; row < bgRows - 1; row++) {
+      for (var col = 0; col < bgCols - 1; col++) {
+        var i = row * bgCols + col;
+        if (row % 2 === 0) {
+          bgTriangles.push([i, i+1, i+bgCols]);
+          bgTriangles.push([i+1, i+bgCols+1, i+bgCols]);
+        } else {
+          bgTriangles.push([i, i+1, i+bgCols+1]);
+          bgTriangles.push([i, i+bgCols+1, i+bgCols]);
+        }
+      }
+    }
+  }
+
+  function heightPoly(x, y, t) {
+    return Math.sin(x*0.006+t)*40 + Math.sin(y*0.008+t*0.7)*35 + Math.sin((x+y)*0.005+t*1.3)*25 + Math.sin(x*0.012-y*0.006+t*0.9)*20 + Math.cos(x*0.004+y*0.01+t*0.5)*30;
+  }
+
+  function heightFlag(x, y, t) {
+    var amp = 0.4 + (x / window.innerWidth) * 0.6;
+    return Math.sin(x*0.008-t*1.8)*40*amp + Math.sin(x*0.014+y*0.003-t*2.4)*24*amp + Math.cos(x*0.005+y*0.006+t*0.6)*20*amp;
+  }
+
+  function drawPoly() {
+    bgTime += 0.012;
+    var sw = window.innerWidth;
+    bgCtx.clearRect(0, 0, sw, window.innerHeight);
+    var a = bgTime * 0.8;
+    var lx = Math.cos(a)*0.5, ly = Math.sin(a)*0.3, lz = 0.8;
+    var ll = Math.sqrt(lx*lx+ly*ly+lz*lz);
+    var ld = {x:lx/ll, y:ly/ll, z:lz/ll};
+    for (var _i = 0; _i < bgPoints.length; _i++) {
+      var p = bgPoints[_i];
+      p.x = p.ox+Math.sin(bgTime*p.speed*1.5+p.phase)*18+Math.cos(bgTime*p.speed+p.phase*1.3)*12;
+      p.y = p.oy+Math.cos(bgTime*p.speed*1.2+p.phase)*15+Math.sin(bgTime*p.speed*0.8+p.phase*0.9)*10;
+      p.z = heightPoly(p.x, p.y, bgTime);
+    }
+    renderBgTris(sw, ld, 225, 20, 45, 30, 65, 25, 'rgba(40,40,100,0.06)');
+    animFrameId = requestAnimationFrame(drawPoly);
+  }
+
+  function drawFlag() {
+    bgTime += 0.011;
+    var sw = window.innerWidth;
+    bgCtx.clearRect(0, 0, sw, window.innerHeight);
+    var ld = {x:-0.4, y:-0.3, z:0.86};
+    for (var _i = 0; _i < bgPoints.length; _i++) {
+      var p = bgPoints[_i];
+      var amp = 0.4+(p.ox/sw)*0.6;
+      p.x = p.ox+Math.sin(bgTime*1.6-p.ox*0.006)*12*amp;
+      p.y = p.oy+Math.sin(bgTime*1.0+p.phase)*5*amp;
+      p.z = heightFlag(p.x, p.y, bgTime);
+    }
+    renderBgTris(sw, ld, 225, 20, 45, 30, 65, 25, 'rgba(40,40,100,0.06)');
+    animFrameId = requestAnimationFrame(drawFlag);
+  }
+
+  function renderBgTris(sw, ld, bh, hr, bs, sr, bl, lr, sc) {
+    for (var _t = 0; _t < bgTriangles.length; _t++) {
+      var tri = bgTriangles[_t];
+      var pa=bgPoints[tri[0]],pb=bgPoints[tri[1]],pc=bgPoints[tri[2]];
+      if(!pa||!pb||!pc) continue;
+      var ux=pb.x-pa.x,uy=pb.y-pa.y,uz=pb.z-pa.z;
+      var vx=pc.x-pa.x,vy=pc.y-pa.y,vz=pc.z-pa.z;
+      var nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx;
+      if(nz<0){nx=-nx;ny=-ny;nz=-nz;}
+      var nl=Math.sqrt(nx*nx+ny*ny+nz*nz)||1;
+      nx/=nl;ny/=nl;nz/=nl;
+      var d=Math.max(0,Math.min(1,nx*ld.x+ny*ld.y+nz*ld.z));
+      var br2=0.15+d*0.85;
+      var cx2=(pa.x+pb.x+pc.x)/3;
+      bgCtx.fillStyle='hsl('+(bh+(cx2/sw)*hr)+','+(bs+br2*sr)+'%,'+(bl+br2*lr)+'%)';
+      bgCtx.beginPath();bgCtx.moveTo(pa.x,pa.y);bgCtx.lineTo(pb.x,pb.y);bgCtx.lineTo(pc.x,pc.y);bgCtx.closePath();bgCtx.fill();
+      bgCtx.strokeStyle=sc;bgCtx.lineWidth=0.5;bgCtx.stroke();
+    }
+  }
+
+  function setMode(mode) {
+    if (animFrameId) { cancelAnimationFrame(animFrameId); animFrameId = null; }
+    bgTime = 0;
+    if (mode === 0) {
+      meshWrap.style.opacity = '1';
+      bgCanvas.style.opacity = '0';
+    } else {
+      meshWrap.style.opacity = '0';
+      bgCanvas.style.opacity = '1';
+      resizeCanvas();
+      if (mode === 1) drawPoly();
+      else drawFlag();
+    }
+  }
+
+  document.getElementById('bgToggle').addEventListener('click', function() {
+    currentMode = (currentMode + 1) % bgModes.length;
+    setMode(currentMode);
+  });
+
+  window.addEventListener('resize', function() {
+    if (currentMode > 0) resizeCanvas();
+  });
+
+  // Init background
+  if (window.innerWidth <= 768) {
+    currentMode = 1;
+    setMode(1);
+  } else {
+    setMode(0);
+  }
+</script>

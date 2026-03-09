@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import { CALENDLY_URL, CONTACT_EMAIL } from '../../config';
 ---
 
 <SiteLayout
@@ -11,7 +12,6 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
     <h1><span style="color: #7c3aed">Explore.</span> <span style="color: #2563eb">Build.</span> <span style="color: #0d9488">Grow.</span></h1>
     <p class="subtitle">How we work with startups.</p>
 
-    <!-- Explore -->
     <div class="service">
       <p class="phase phase--explore">Explore</p>
       <h2>Product Strategy & Prototyping</h2>
@@ -24,7 +24,6 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
       </ul>
     </div>
 
-    <!-- Build -->
     <div class="service">
       <p class="phase phase--build">Build</p>
       <h2>Software Delivery</h2>
@@ -38,7 +37,6 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
       </ul>
     </div>
 
-    <!-- Grow -->
     <div class="service">
       <p class="phase phase--grow">Grow</p>
       <h2>Scale & Support</h2>
@@ -51,7 +49,6 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
       </ul>
     </div>
 
-    <!-- Leadership -->
     <div class="service">
       <p class="phase" style="color: var(--text-primary)">Lead</p>
       <h2>Fractional CTO & Technical Leadership</h2>
@@ -67,21 +64,14 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 
     <div class="cta-section">
       <p>Not sure which stage you're at? Let's figure it out together.</p>
-      <a href="https://calendly.com/freedom45" class="cta-btn" target="_blank" rel="noopener">Book a call</a>
+      <a href={CALENDLY_URL} class="cta-btn" target="_blank" rel="noopener">Book a call</a>
       <br>
-      <a href="mailto:contact@ioanmorgan.com" class="cta-email">or email contact@ioanmorgan.com</a>
+      <a href={`mailto:${CONTACT_EMAIL}`} class="cta-email">or email {CONTACT_EMAIL}</a>
     </div>
   </main>
 </SiteLayout>
 
 <style>
-  body {
-    font-family: var(--font);
-    color: var(--text-primary);
-    line-height: 1.6;
-    background: #f0f2f5;
-  }
-
   .page {
     max-width: 720px;
     margin: 0 auto;
