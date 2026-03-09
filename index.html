@@ -12,11 +12,9 @@
   <style>
     :root {
       --text-primary: #1a1a2e;
-      --text-secondary: #64748b;
+      --text-secondary: #475569;
       --accent: #2563eb;
       --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --glass: rgba(255, 255, 255, 0.72);
-      --glass-border: rgba(255, 255, 255, 0.3);
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -137,7 +135,6 @@
       scroll-behavior: smooth;
     }
 
-    /* ---- EACH SLIDE ---- */
     .slide {
       height: 100vh;
       scroll-snap-align: start;
@@ -149,7 +146,7 @@
     }
 
     .slide-content {
-      max-width: 800px;
+      max-width: 640px;
       width: 100%;
       opacity: 0;
       transform: translateY(40px);
@@ -162,11 +159,10 @@
       transform: translateY(0);
     }
 
-    /* ---- HERO SLIDE (no glass — text directly on bg) ---- */
+    /* ---- HERO SLIDE ---- */
     .slide--hero .slide-content {
       text-align: center;
-      background: none;
-      padding: 0;
+      max-width: 800px;
     }
 
     .slide--hero h1 {
@@ -199,18 +195,7 @@
       line-height: 1.7;
     }
 
-    /* ---- GLASS PANEL ---- */
-    .glass {
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 3rem;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-    }
-
-    /* ---- CONTENT SECTIONS ---- */
+    /* ---- SHARED TEXT STYLES ---- */
     .section-label {
       font-size: 0.8125rem;
       font-weight: 500;
@@ -231,64 +216,252 @@
       color: var(--text-secondary);
       line-height: 1.7;
       max-width: 480px;
+      margin: 0 auto;
     }
 
-    /* Cards */
-    .cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .card--foundry {
-      grid-column: 1 / -1;
-    }
-
-    .card {
-      padding: 1.5rem;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      transition: background 0.2s;
-    }
-
-    .card:hover {
-      background: rgba(255, 255, 255, 0.7);
-    }
-
-    .card-accent {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      margin-bottom: 1rem;
-    }
-
-    .card--foundry .card-accent { background: var(--accent); }
-    .card--studio .card-accent { background: #0d9488; }
-    .card--lab .card-accent { background: #7c3aed; }
-
-    .card h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.4rem;
-    }
-
-    .card p {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    .card .card-type {
-      margin-top: 1rem;
+    .detail-type {
+      display: inline-block;
+      margin-top: 0.5rem;
       font-size: 0.6875rem;
       color: var(--text-secondary);
       opacity: 0.5;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
-    /* Contact */
+    /* ---- FIXED TRIANGLE OVERLAY ---- */
+    .tri-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3.5rem;
+      opacity: 0;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(0);
+    }
+
+    .tri-overlay.visible {
+      opacity: 1;
+    }
+
+    .tri-overlay.exit-top {
+      transform: translateY(-50vh);
+      opacity: 0;
+    }
+
+    /* ---- ABOVE-TRIANGLE CONTENT ---- */
+    .tri-overlay__above {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      min-height: 7rem;
+      flex-shrink: 0;
+    }
+
+    /* ---- BELOW-TRIANGLE CONTENT ---- */
+    .tri-overlay__below {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      min-height: 7rem;
+      flex-shrink: 0;
+    }
+
+    /* ---- OVERLAY TEXT BLOCKS (overview, foundry, studio, lab) ---- */
+    .tri-overlay__text {
+      position: absolute;
+      inset: 0;
+      text-align: center;
+      opacity: 0;
+      transform: translateX(0);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tri-overlay__text.no-transition {
+      transition: none;
+    }
+
+    .tri-overlay__text.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .tri-overlay__text.pos-left {
+      transform: translateX(-140px);
+      opacity: 0;
+    }
+
+    .tri-overlay__text.pos-right {
+      transform: translateX(140px);
+      opacity: 0;
+    }
+
+    .tri-overlay__text.pos-top {
+      transform: translateY(-80px);
+      opacity: 0;
+    }
+
+    /* Sequenced child animations: name appears, then desc follows */
+    .tri-overlay__text .section-title,
+    .tri-overlay__text .section-label {
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tri-overlay__text .ov-desc {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+    }
+
+    .tri-overlay__text.visible .ov-desc {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---- TRIANGLE DIAGRAM ---- */
+    .tri-overlay__diagram {
+      position: relative;
+      width: 260px;
+      flex-shrink: 0;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tri-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      overflow: visible;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
+    }
+
+    .tri-label {
+      position: absolute;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      transition: color 0.4s, opacity 0.4s, font-weight 0.4s;
+      opacity: 0.5;
+    }
+
+    /* Lab = top, Foundry = bottom-left, Studio = bottom-right */
+    .tri-label--lab {
+      top: 6%;
+      left: 50%;
+      transform: translate(-50%, -120%);
+    }
+
+    .tri-label--foundry {
+      top: 82%;
+      left: 14%;
+      transform: translate(-50%, 60%);
+    }
+
+    .tri-label--studio {
+      top: 82%;
+      left: 86%;
+      transform: translate(-50%, 60%);
+    }
+
+    .fw-body, .fw-head {
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.5s;
+    }
+    .fw-body path, .fw-head path {
+      transition: fill 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      stroke: #475569;
+      stroke-width: 0.7;
+      stroke-linejoin: round;
+    }
+
+    /* Default (dimmed): lighter pastel fills */
+    .fw--foundry path { fill: #93b8f7; }
+    .fw--studio path { fill: #6ec5be; }
+    .fw--lab path { fill: #c4b0f4; }
+
+    /* Active highlights — hide vertex label, pull arrow outward, full color */
+    .tri-overlay__diagram[data-active="foundry"] .tri-label--foundry,
+    .tri-overlay__diagram[data-active="studio"] .tri-label--studio,
+    .tri-overlay__diagram[data-active="lab"] .tri-label--lab {
+      opacity: 0;
+    }
+
+    .tri-overlay__diagram[data-active="lab"] .fw--lab {
+      transform: translate(0, -12px);
+      filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.3));
+    }
+    .tri-overlay__diagram[data-active="lab"] .fw--lab path { fill: #7c3aed; }
+
+    .tri-overlay__diagram[data-active="foundry"] .fw--foundry {
+      transform: translate(-10px, 6px);
+      filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.3));
+    }
+    .tri-overlay__diagram[data-active="foundry"] .fw--foundry path { fill: #2563eb; }
+
+    .tri-overlay__diagram[data-active="studio"] .fw--studio {
+      transform: translate(10px, 6px);
+      filter: drop-shadow(0 0 8px rgba(13, 148, 136, 0.3));
+    }
+    .tri-overlay__diagram[data-active="studio"] .fw--studio path { fill: #0d9488; }
+
+    /* Overview: slightly stronger fills */
+    .tri-overlay__diagram:not([data-active]) .fw--foundry path,
+    .tri-overlay__diagram[data-active=""] .fw--foundry path { fill: #7aa8f5; }
+    .tri-overlay__diagram:not([data-active]) .fw--studio path,
+    .tri-overlay__diagram[data-active=""] .fw--studio path { fill: #4db8af; }
+    .tri-overlay__diagram:not([data-active]) .fw--lab path,
+    .tri-overlay__diagram[data-active=""] .fw--lab path { fill: #a78bfa; }
+
+    .tri-overlay__diagram:not([data-active]) .tri-label,
+    .tri-overlay__diagram[data-active=""] .tri-label {
+      opacity: 0.7;
+    }
+
+    /* Closing state: scale up the diagram, soften fills */
+    .tri-overlay__diagram[data-active="closing"] {
+      transform: scale(1.5);
+    }
+    .tri-overlay__diagram[data-active="closing"] .fw--foundry path { fill: #93b8f7; }
+    .tri-overlay__diagram[data-active="closing"] .fw--studio path { fill: #6ec5be; }
+    .tri-overlay__diagram[data-active="closing"] .fw--lab path { fill: #c4b0f4; }
+    .tri-overlay__diagram[data-active="closing"] .tri-label {
+      opacity: 0;
+    }
+
+    /* Closing text centered inside the ring */
+    .fw-center-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 160px;
+      opacity: 0;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    .tri-overlay__diagram[data-active="closing"] .fw-center-text {
+      opacity: 1;
+    }
+    .fw-center-text .section-desc {
+      font-size: 0.7rem;
+      line-height: 1.4;
+    }
+
+    /* ---- CONTACT ---- */
     .slide--contact .slide-content {
       text-align: center;
     }
@@ -319,7 +492,6 @@
       color: var(--text-secondary);
     }
 
-    /* Footer inside last slide */
     .slide-footer {
       position: absolute;
       bottom: 2rem;
@@ -398,26 +570,23 @@
 
     /* ---- RESPONSIVE ---- */
     @media (max-width: 768px) {
-      .glass {
-        padding: 1.5rem 1.25rem;
-        border-radius: 16px;
-        max-height: calc(100vh - 4rem);
-        overflow-y: auto;
-        margin-top: 2.5rem;
-      }
-      .cards { grid-template-columns: 1fr; gap: 0.75rem; }
       .slide { padding: 1.25rem; }
       .dots { display: none; }
       .bg-toggle { right: 1rem; top: 1rem; }
       .wordmark-nav { top: 1rem; left: 1rem; font-size: 1rem; }
       .section-title { font-size: clamp(1.25rem, 5vw, 1.75rem); }
       .section-desc { font-size: 0.875rem; }
-      .card h3 { font-size: 0.9375rem; }
-      .card p { font-size: 0.8125rem; }
+      .tri-overlay__diagram { width: 200px; }
+      .tri-overlay { gap: 1rem; }
+      .tri-label { font-size: 0.6875rem; }
+      .tri-overlay__text.pos-left { transform: translateX(-100px); }
+      .tri-overlay__text.pos-right { transform: translateX(100px); }
     }
 
     @media (max-width: 480px) {
-      .card { padding: 1.25rem; }
+      .tri-overlay__diagram { width: 160px; }
+      .tri-overlay__text.pos-left { transform: translateX(-70px); }
+      .tri-overlay__text.pos-right { transform: translateX(70px); }
     }
   </style>
 </head>
@@ -443,52 +612,120 @@
     <button class="dot active" data-slide="0"></button>
     <button class="dot" data-slide="1"></button>
     <button class="dot" data-slide="2"></button>
+    <button class="dot" data-slide="3"></button>
+    <button class="dot" data-slide="4"></button>
+    <button class="dot" data-slide="5"></button>
+    <button class="dot" data-slide="6"></button>
   </div>
 
-  <!-- Scrollable slides -->
-  <div class="slides" id="slides">
+  <!-- Fixed triangle overlay -->
+  <div class="tri-overlay" id="triOverlay">
 
+    <!-- ABOVE triangle -->
+    <div class="tri-overlay__above">
+      <!-- Overview text -->
+      <div class="tri-overlay__text" id="text-overview">
+        <p class="section-label">Our method</p>
+        <h2 class="section-title">Explore. Build. Grow.</h2>
+        <div class="ov-desc">
+          <p class="section-desc">A three-stage process where each stage feeds the next.</p>
+        </div>
+      </div>
+      <!-- Lab text (above triangle — top position) -->
+      <div class="tri-overlay__text" id="text-lab">
+        <h2 class="section-title" style="color: #7c3aed">The Lab</h2>
+        <div class="ov-desc">
+          <p class="section-desc">Where ideas get proven. We prototype fast — AI-first workflows, emerging tech, proof of concepts — so you can validate before committing to a deep build.</p>
+          <span class="detail-type">Explore</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flywheel: Lab=top, Foundry=bottom-left, Studio=bottom-right -->
+    <!-- Flow: Lab → Foundry → Studio → Lab (counterclockwise) -->
+    <div class="tri-overlay__diagram" id="triDiagram" data-active="">
+      <svg class="tri-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Layer 1: Arc bodies — exact 120° each, perfect circle -->
+        <g class="fw-body fw--lab">
+          <path d="M 165.0 62.5 A 75 75 0 0 0 35.1 62.5 L 56.7 75.0 A 50 50 0 0 1 143.3 75.0 Z"/>
+        </g>
+        <g class="fw-body fw--foundry">
+          <path d="M 35.1 62.5 A 75 75 0 0 0 100 175 L 100 150 A 50 50 0 0 1 56.7 75.0 Z"/>
+        </g>
+        <g class="fw-body fw--studio">
+          <path d="M 100 175 A 75 75 0 0 0 165.0 62.5 L 143.3 75.0 A 50 50 0 0 1 100 150 Z"/>
+        </g>
+        <!-- Layer 2: Arrowheads -->
+        <g class="fw-head fw--lab">
+          <path d="M 32.5 56.5 L 39.6 83.8 L 65.1 71.7 Z"/>
+        </g>
+        <g class="fw-head fw--foundry">
+          <path d="M 96.2 180.2 L 116.2 160.4 L 93.0 144.4 Z"/>
+        </g>
+        <g class="fw-head fw--studio">
+          <path d="M 171.4 63.3 L 144.2 55.8 L 141.8 83.9 Z"/>
+        </g>
+      </svg>
+      <span class="tri-label tri-label--lab">The Lab</span>
+      <span class="tri-label tri-label--foundry">The Foundry</span>
+      <span class="tri-label tri-label--studio">The Studio</span>
+      <div class="fw-center-text">
+        <p class="section-desc">The Flywheel</p>
+      </div>
+    </div>
+
+    <!-- BELOW triangle -->
+    <div class="tri-overlay__below">
+      <!-- Foundry text (below triangle — bottom-left position) -->
+      <div class="tri-overlay__text" id="text-foundry">
+        <h2 class="section-title" style="color: #2563eb">The Foundry</h2>
+        <div class="ov-desc">
+          <p class="section-desc">Where prototypes become products. We take what's proven and shape it into a launch-ready MVP.</p>
+          <span class="detail-type">Build</span>
+        </div>
+      </div>
+      <!-- Studio text (below triangle — bottom-right position) -->
+      <div class="tri-overlay__text" id="text-studio">
+        <h2 class="section-title" style="color: #0d9488">The Studio</h2>
+        <div class="ov-desc">
+          <p class="section-desc">Where products mature. We scale, refine, and support — turning MVPs into market leaders.</p>
+          <span class="detail-type">Grow</span>
+        </div>
+      </div>
+      <!-- Closing text (below triangle) -->
+      <div class="tri-overlay__text" id="text-closing">
+        <h2 class="section-title">The Flywheel</h2>
+        <div class="ov-desc">
+          <p class="section-desc">Growth reveals new opportunities. New opportunities demand exploration. Each stage feeds the next.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scrollable slides (spacers drive overlay state) -->
+  <div class="slides" id="slides">
     <!-- 1: Hero -->
     <div class="slide slide--hero" data-index="0">
       <div class="slide-content visible">
         <h1>Freedom<span>45</span></h1>
         <p class="tagline">A technology studio — from ideas to products</p>
-        <p class="summary">Technical leadership and software delivery — from strategy through to support.</p>
+        <p class="summary">From proof of concept to scale.</p>
       </div>
     </div>
-
-    <!-- 2: What we do -->
-    <div class="slide" data-index="1">
-      <div class="slide-content glass">
-        <p class="section-label">What we do</p>
-        <h2 class="section-title">Three spaces, one studio</h2>
-        <p class="section-desc">We build for clients, ship our own products, and push into new territory.</p>
-        <div class="cards">
-          <div class="card card--foundry">
-            <div class="card-accent"></div>
-            <h3>The Foundry</h3>
-            <p>We partner with startups and growth companies — from technical strategy and mentorship through to development, QA, and support across mobile, desktop, and web.</p>
-            <div class="card-type">Clients</div>
-          </div>
-          <div class="card card--studio">
-            <div class="card-accent"></div>
-            <h3>The Studio</h3>
-            <p>In-house apps built to our own standards — crafted with the same care we bring to client work.</p>
-            <div class="card-type">Products</div>
-          </div>
-          <div class="card card--lab">
-            <div class="card-accent"></div>
-            <h3>The Lab</h3>
-            <p>Where we push into new territory — AI-first workflows, multi-agent systems, and emerging tech.</p>
-            <div class="card-type">R&amp;D</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3: Contact -->
-    <div class="slide slide--contact" data-index="2">
-      <div class="slide-content glass">
+    <!-- 2: Overview -->
+    <div class="slide" data-index="1"></div>
+    <!-- 3: Lab (Explore) -->
+    <div class="slide" data-index="2"></div>
+    <!-- 4: Foundry (Build) -->
+    <div class="slide" data-index="3"></div>
+    <!-- 5: Studio (Grow) -->
+    <div class="slide" data-index="4"></div>
+    <!-- 6: Closing -->
+    <div class="slide" data-index="5"></div>
+    <!-- 7: Contact -->
+    <div class="slide slide--contact" data-index="6">
+      <div class="slide-content">
         <p class="section-label">Contact</p>
         <h2 class="section-title">Let's talk</h2>
         <p class="section-desc" style="margin: 0 auto;">Got a project in mind, or just want to say hello? We'd love to hear from you.</p>
@@ -499,16 +736,143 @@
       </div>
       <div class="slide-footer">&copy; 2026 Freedom45</div>
     </div>
-
   </div>
 
   <script>
-    // ---- Slide visibility & dots ----
+    // ---- Elements ----
     const slidesEl = document.getElementById('slides');
     const allSlides = document.querySelectorAll('.slide');
     const allDots = document.querySelectorAll('.dot');
-    const slideContents = document.querySelectorAll('.slide-content');
+    const triOverlay = document.getElementById('triOverlay');
+    const triDiagram = document.getElementById('triDiagram');
 
+    const textEls = {
+      overview: document.getElementById('text-overview'),
+      foundry: document.getElementById('text-foundry'),
+      studio: document.getElementById('text-studio'),
+      lab: document.getElementById('text-lab'),
+      closing: document.getElementById('text-closing')
+    };
+
+    // ---- State ----
+    let currentSlideIdx = 0;
+    let currentSection = null;
+    let pendingTimeouts = [];
+
+    function getActiveSlide() {
+      return Math.round(slidesEl.scrollTop / window.innerHeight);
+    }
+
+    function sectionForSlide(idx) {
+      if (idx === 1) return 'overview';
+      if (idx === 2) return 'lab';
+      if (idx === 3) return 'foundry';
+      if (idx === 4) return 'studio';
+      if (idx === 5) return 'closing';
+      return null;
+    }
+
+    // ---- Animation helpers ----
+    // Direction each section text enters/exits from:
+    //   overview: fade only
+    //   foundry: fade only (it's above triangle, first detail section)
+    //   studio: from left, exits left
+    //   lab: from right, exits right
+    function dirFor(section) {
+      if (section === 'overview') return 'pos-top';
+      if (section === 'foundry') return 'pos-left';
+      if (section === 'studio') return 'pos-right';
+      if (section === 'closing') return 'pos-left';
+      return null; // fade (lab = top)
+    }
+
+    function clearPending() {
+      pendingTimeouts.forEach(t => clearTimeout(t));
+      pendingTimeouts = [];
+    }
+
+    function hideAllContent() {
+      Object.values(textEls).forEach(el => {
+        el.classList.remove('visible', 'pos-left', 'pos-right', 'pos-top', 'no-transition');
+        el.style.opacity = '0';
+      });
+    }
+
+    function showText(section) {
+      if (!section) return;
+      const el = textEls[section];
+      if (!el) return;
+      const dir = dirFor(section);
+
+      // Position at start (no transition)
+      el.classList.add('no-transition');
+      el.classList.remove('visible', 'pos-left', 'pos-right', 'pos-top');
+      el.style.opacity = '';
+      if (dir) el.classList.add(dir);
+
+      // Force reflow
+      el.offsetHeight;
+
+      // Animate in
+      el.classList.remove('no-transition', 'pos-left', 'pos-right', 'pos-top');
+      el.classList.add('visible');
+    }
+
+    function hideText(section) {
+      if (!section) return;
+      const el = textEls[section];
+      if (!el) return;
+      const dir = dirFor(section);
+
+      el.style.opacity = '';
+      el.classList.remove('visible');
+      if (dir) el.classList.add(dir);
+    }
+
+    // ---- Main scroll update ----
+    function updateOverlay() {
+      const newIdx = getActiveSlide();
+      if (newIdx === currentSlideIdx) return;
+
+      clearPending();
+
+      const oldSection = currentSection;
+      const newSection = sectionForSlide(newIdx);
+      currentSlideIdx = newIdx;
+      currentSection = newSection;
+
+      // Triangle visibility
+      if (newIdx >= 1 && newIdx <= 5) {
+        triOverlay.classList.add('visible');
+        triOverlay.classList.remove('exit-top');
+      } else if (newIdx === 0) {
+        triOverlay.classList.remove('visible', 'exit-top');
+      } else if (newIdx === 6) {
+        triOverlay.classList.add('exit-top');
+        triOverlay.classList.remove('visible');
+      }
+
+      // Triangle active vertex
+      if (newSection === 'overview') {
+        triDiagram.setAttribute('data-active', '');
+      } else if (newSection === 'closing') {
+        triDiagram.setAttribute('data-active', 'closing');
+      } else if (newSection) {
+        triDiagram.setAttribute('data-active', newSection);
+      }
+
+      // Sequenced text transitions
+      if (oldSection !== newSection) {
+        // Hide old immediately
+        hideText(oldSection);
+
+        // Show new after a beat (let the old one clear)
+        const t = setTimeout(() => showText(newSection), 250);
+        pendingTimeouts.push(t);
+      }
+    }
+
+    // ---- Slide visibility & dots ----
     function updateVisibility() {
       const scrollTop = slidesEl.scrollTop;
       const vh = window.innerHeight;
@@ -518,23 +882,22 @@
         const offset = Math.abs(scrollTop - i * vh);
         const ratio = Math.min(offset / vh, 1);
 
-        if (ratio < 0.4) {
-          content.classList.add('visible');
-        } else {
-          content.classList.remove('visible');
+        if (content) {
+          if (ratio < 0.4) content.classList.add('visible');
+          else content.classList.remove('visible');
         }
 
-        // Update dots
         if (allDots[i]) {
           allDots[i].classList.toggle('active', ratio < 0.4);
         }
       });
+
+      updateOverlay();
     }
 
     slidesEl.addEventListener('scroll', updateVisibility);
     window.addEventListener('resize', updateVisibility);
 
-    // Dot click navigation
     allDots.forEach(dot => {
       dot.addEventListener('click', () => {
         const idx = parseInt(dot.dataset.slide);
@@ -687,6 +1050,8 @@
       updateVisibility();
     });
 
+    // ---- Init ----
+    hideAllContent();
     setMode(0);
     updateVisibility();
   </script>
