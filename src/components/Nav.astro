@@ -14,7 +14,7 @@ const isHomepage = Astro.url.pathname === '/' || Astro.url.pathname === '';
     {isHomepage ? (
       <a href="#contact" onclick="document.querySelector('.slides').scrollTo({top:6*window.innerHeight,behavior:'smooth'});return false">Contact</a>
     ) : (
-      <a href="/">Contact</a>
+      <a href="/#contact">Contact</a>
     )}
   </nav>
 </header>

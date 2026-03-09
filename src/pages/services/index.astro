@@ -1,6 +1,6 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import { CALENDLY_URL, CONTACT_EMAIL } from '../../config';
+import CTA from '../../components/CTA.astro';
 ---
 
 <SiteLayout
@@ -63,10 +63,7 @@ import { CALENDLY_URL, CONTACT_EMAIL } from '../../config';
     </div>
 
     <div class="cta-section">
-      <p>Not sure which stage you're at? Let's figure it out together.</p>
-      <a href={CALENDLY_URL} class="cta-btn" target="_blank" rel="noopener">Book a call</a>
-      <br>
-      <a href={`mailto:${CONTACT_EMAIL}`} class="cta-email">or email {CONTACT_EMAIL}</a>
+      <CTA />
     </div>
   </main>
 </SiteLayout>
@@ -134,39 +131,9 @@ import { CALENDLY_URL, CONTACT_EMAIL } from '../../config';
   .cta-section {
     margin-top: 3rem;
     padding: 2rem;
-    text-align: center;
     background: rgba(255, 255, 255, 0.5);
     border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: 12px;
-  }
-
-  .cta-section p {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.25rem;
-  }
-
-  .cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: #fff;
-    text-decoration: none;
-    padding: 0.6rem 1.25rem;
-    border-radius: 100px;
-    background: var(--accent);
-    transition: opacity 0.2s;
-  }
-
-  .cta-btn:hover { opacity: 0.85; }
-
-  .cta-email {
-    display: inline-block;
-    margin-top: 0.75rem;
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
   }
 
   @media (max-width: 768px) {

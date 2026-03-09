@@ -1,6 +1,6 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { CALENDLY_URL, CONTACT_EMAIL } from '../config';
+import CTA from '../components/CTA.astro';
 ---
 
 <SiteLayout
@@ -108,21 +108,9 @@ import { CALENDLY_URL, CONTACT_EMAIL } from '../config';
     <div class="slide" data-index="3"></div>
     <div class="slide" data-index="4"></div>
     <div class="slide" data-index="5"></div>
-    <div class="slide slide--contact" data-index="6">
+    <div class="slide slide--contact" id="contact" data-index="6">
       <div class="slide-content">
-        <h2 class="section-title">Ready to get started?</h2>
-        <p class="section-desc" style="margin: 0 auto;">Tell us what you're working on. We'll tell you if we can help, and how.</p>
-        <p class="contact-qualifier">Best fit: startups and growth-stage teams building web, mobile, desktop, or AI products.</p>
-        <div class="contact-actions">
-          <a href={CALENDLY_URL} class="contact-cta" target="_blank" rel="noopener">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
-            Book a call
-          </a>
-          <a href={`mailto:${CONTACT_EMAIL}`} class="contact-email">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            {CONTACT_EMAIL}
-          </a>
-        </div>
+        <CTA />
       </div>
       <div class="slide-footer">&copy; 2026 Freedom45</div>
     </div>
@@ -281,6 +269,11 @@ import { CALENDLY_URL, CONTACT_EMAIL } from '../config';
     // ---- Init ----
     hideAllContent();
     updateVisibility();
+
+    // Handle /#contact from external navigation
+    if (window.location.hash === '#contact') {
+      slidesEl.scrollTo({ top: 6 * window.innerHeight, behavior: 'smooth' });
+    }
   </script>
 
 </SiteLayout>
@@ -596,73 +589,6 @@ import { CALENDLY_URL, CONTACT_EMAIL } from '../config';
   /* ---- CONTACT ---- */
   .slide--contact .slide-content {
     text-align: center;
-  }
-
-  .contact-email {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    text-decoration: none;
-    padding: 0.6rem 1.25rem;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 100px;
-    background: rgba(255, 255, 255, 0.5);
-    transition: background 0.2s;
-  }
-
-  .contact-email:hover {
-    background: rgba(255, 255, 255, 0.8);
-  }
-
-  .contact-email svg {
-    width: 16px;
-    height: 16px;
-    color: var(--text-secondary);
-  }
-
-  .contact-qualifier {
-    margin-top: 1rem;
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
-    opacity: 0.7;
-  }
-
-  .contact-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .contact-actions .contact-email {
-    margin-top: 0;
-  }
-
-  .contact-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: #fff;
-    text-decoration: none;
-    padding: 0.6rem 1.25rem;
-    border-radius: 100px;
-    background: var(--accent);
-    transition: opacity 0.2s;
-  }
-
-  .contact-cta:hover { opacity: 0.85; }
-
-  .contact-cta svg {
-    width: 16px;
-    height: 16px;
   }
 
   .slide-footer {
