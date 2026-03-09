@@ -12,7 +12,7 @@
   <style>
     :root {
       --text-primary: #1a1a2e;
-      --text-secondary: #475569;
+      --text-secondary: #334155;
       --accent: #2563eb;
       --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
@@ -197,9 +197,11 @@
 
     /* ---- SHARED TEXT STYLES ---- */
     .section-label {
-      font-size: 0.8125rem;
-      font-weight: 500;
-      color: var(--text-secondary);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
       margin-bottom: 0.5rem;
     }
 
@@ -223,8 +225,7 @@
       display: inline-block;
       margin-top: 0.5rem;
       font-size: 0.6875rem;
-      color: var(--text-secondary);
-      opacity: 0.5;
+      font-weight: 600;
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
@@ -351,11 +352,13 @@
       font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.01em;
-      color: var(--text-secondary);
       white-space: nowrap;
       transition: color 0.4s, opacity 0.4s, font-weight 0.4s;
-      opacity: 0.5;
+      opacity: 0.7;
     }
+    .tri-label--foundry { color: #2563eb; }
+    .tri-label--studio { color: #0d9488; }
+    .tri-label--lab { color: #7c3aed; }
 
     /* Lab = top, Foundry = bottom-left, Studio = bottom-right */
     .tri-label--lab {
@@ -382,15 +385,15 @@
     }
     .fw-body path, .fw-head path {
       transition: fill 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      stroke: #475569;
-      stroke-width: 0.7;
+      stroke: #334155;
+      stroke-width: 1;
       stroke-linejoin: round;
     }
 
-    /* Default (dimmed): lighter pastel fills */
-    .fw--foundry path { fill: #93b8f7; }
-    .fw--studio path { fill: #6ec5be; }
-    .fw--lab path { fill: #c4b0f4; }
+    /* Default (normal state) */
+    .fw--foundry path { fill: #7aa8f5; }
+    .fw--studio path { fill: #4db8af; }
+    .fw--lab path { fill: #a78bfa; }
 
     /* Active highlights — hide vertex label, pull arrow outward, full color */
     .tri-overlay__diagram[data-active="foundry"] .tri-label--foundry,
@@ -417,26 +420,16 @@
     }
     .tri-overlay__diagram[data-active="studio"] .fw--studio path { fill: #0d9488; }
 
-    /* Overview: slightly stronger fills */
-    .tri-overlay__diagram:not([data-active]) .fw--foundry path,
-    .tri-overlay__diagram[data-active=""] .fw--foundry path { fill: #7aa8f5; }
-    .tri-overlay__diagram:not([data-active]) .fw--studio path,
-    .tri-overlay__diagram[data-active=""] .fw--studio path { fill: #4db8af; }
-    .tri-overlay__diagram:not([data-active]) .fw--lab path,
-    .tri-overlay__diagram[data-active=""] .fw--lab path { fill: #a78bfa; }
-
+    /* Overview: same as default (normal state) */
     .tri-overlay__diagram:not([data-active]) .tri-label,
     .tri-overlay__diagram[data-active=""] .tri-label {
       opacity: 0.7;
     }
 
-    /* Closing state: scale up the diagram, soften fills */
+    /* Closing state: scale up the diagram, keep normal fills */
     .tri-overlay__diagram[data-active="closing"] {
       transform: scale(1.5);
     }
-    .tri-overlay__diagram[data-active="closing"] .fw--foundry path { fill: #93b8f7; }
-    .tri-overlay__diagram[data-active="closing"] .fw--studio path { fill: #6ec5be; }
-    .tri-overlay__diagram[data-active="closing"] .fw--lab path { fill: #c4b0f4; }
     .tri-overlay__diagram[data-active="closing"] .tri-label {
       opacity: 0;
     }
@@ -459,6 +452,8 @@
     .fw-center-text .section-desc {
       font-size: 0.7rem;
       line-height: 1.4;
+      font-weight: 700;
+      color: var(--text-primary);
     }
 
     /* ---- CONTACT ---- */
@@ -539,45 +534,20 @@
 
     .bg-toggle:hover { opacity: 0.75; }
 
-    /* Scroll dots */
+    /* Scroll dots — hidden */
     .dots {
-      position: fixed;
-      right: 1.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--text-primary);
-      opacity: 0.15;
-      transition: opacity 0.3s, transform 0.3s;
-      cursor: pointer;
-      border: none;
-      padding: 0;
-    }
-
-    .dot.active {
-      opacity: 0.6;
-      transform: scale(1.4);
+      display: none;
     }
 
     /* ---- RESPONSIVE ---- */
     @media (max-width: 768px) {
-      .slide { padding: 1.25rem; }
-      .dots { display: none; }
+      .slide { padding: 1.25rem 20%; }
       .bg-toggle { right: 1rem; top: 1rem; }
       .wordmark-nav { top: 1rem; left: 1rem; font-size: 1rem; }
       .section-title { font-size: clamp(1.25rem, 5vw, 1.75rem); }
       .section-desc { font-size: 0.875rem; }
       .tri-overlay__diagram { width: 200px; }
-      .tri-overlay { gap: 1rem; }
+      .tri-overlay { gap: 1rem; padding: 0 20%; }
       .tri-label { font-size: 0.6875rem; }
       .tri-overlay__text.pos-left { transform: translateX(-100px); }
       .tri-overlay__text.pos-right { transform: translateX(100px); }
@@ -587,6 +557,21 @@
       .tri-overlay__diagram { width: 160px; }
       .tri-overlay__text.pos-left { transform: translateX(-70px); }
       .tri-overlay__text.pos-right { transform: translateX(70px); }
+      .blob--1 { width: 300px; height: 300px; }
+      .blob--2 { width: 280px; height: 280px; }
+      .blob--3 { width: 240px; height: 240px; }
+      .blob--4 { width: 220px; height: 220px; }
+      .blob--5 { width: 180px; height: 180px; }
+      .mesh-wrap { filter: blur(50px); }
+    }
+
+    @media (max-width: 768px) and (min-width: 481px) {
+      .blob--1 { width: 450px; height: 450px; }
+      .blob--2 { width: 400px; height: 400px; }
+      .blob--3 { width: 350px; height: 350px; }
+      .blob--4 { width: 320px; height: 320px; }
+      .blob--5 { width: 260px; height: 260px; }
+      .mesh-wrap { filter: blur(55px); }
     }
   </style>
 </head>
@@ -626,7 +611,7 @@
       <!-- Overview text -->
       <div class="tri-overlay__text" id="text-overview">
         <p class="section-label">Our method</p>
-        <h2 class="section-title">Explore. Build. Grow.</h2>
+        <h2 class="section-title"><span style="color: #7c3aed">Explore.</span> <span style="color: #2563eb">Build.</span> <span style="color: #0d9488">Grow.</span></h2>
         <div class="ov-desc">
           <p class="section-desc">A three-stage process where each stage feeds the next.</p>
         </div>
@@ -636,7 +621,7 @@
         <h2 class="section-title" style="color: #7c3aed">The Lab</h2>
         <div class="ov-desc">
           <p class="section-desc">Where ideas get proven. We prototype fast — AI-first workflows, emerging tech, proof of concepts — so you can validate before committing to a deep build.</p>
-          <span class="detail-type">Explore</span>
+          <span class="detail-type" style="color: #7c3aed">Explore</span>
         </div>
       </div>
     </div>
@@ -681,7 +666,7 @@
         <h2 class="section-title" style="color: #2563eb">The Foundry</h2>
         <div class="ov-desc">
           <p class="section-desc">Where prototypes become products. We take what's proven and shape it into a launch-ready MVP.</p>
-          <span class="detail-type">Build</span>
+          <span class="detail-type" style="color: #2563eb">Build</span>
         </div>
       </div>
       <!-- Studio text (below triangle — bottom-right position) -->
@@ -689,14 +674,13 @@
         <h2 class="section-title" style="color: #0d9488">The Studio</h2>
         <div class="ov-desc">
           <p class="section-desc">Where products mature. We scale, refine, and support — turning MVPs into market leaders.</p>
-          <span class="detail-type">Grow</span>
+          <span class="detail-type" style="color: #0d9488">Grow</span>
         </div>
       </div>
       <!-- Closing text (below triangle) -->
       <div class="tri-overlay__text" id="text-closing">
-        <h2 class="section-title">The Flywheel</h2>
         <div class="ov-desc">
-          <p class="section-desc">Growth reveals new opportunities. New opportunities demand exploration. Each stage feeds the next.</p>
+          <p class="section-desc"><span style="color: #7c3aed; font-weight: 700;">Explore</span> the opportunity.<br><span style="color: #2563eb; font-weight: 700;">Build</span> the product.<br><span style="color: #0d9488; font-weight: 700;">Grow</span> the business.<br><strong>Together, from day one.</strong></p>
         </div>
       </div>
     </div>
@@ -726,7 +710,6 @@
     <!-- 7: Contact -->
     <div class="slide slide--contact" data-index="6">
       <div class="slide-content">
-        <p class="section-label">Contact</p>
         <h2 class="section-title">Let's talk</h2>
         <p class="section-desc" style="margin: 0 auto;">Got a project in mind, or just want to say hello? We'd love to hear from you.</p>
         <a href="mailto:contact@ioanmorgan.com" class="contact-email">
@@ -1052,7 +1035,13 @@
 
     // ---- Init ----
     hideAllContent();
-    setMode(0);
+    // Default to triangle background on mobile
+    if (window.innerWidth <= 768) {
+      currentMode = 1;
+      setMode(1);
+    } else {
+      setMode(0);
+    }
     updateVisibility();
   </script>
 
