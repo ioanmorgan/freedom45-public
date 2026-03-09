@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — Software Delivery & Technical Leadership | Freedom45</title>
+  <meta name="description" content="Freedom45 services: product strategy, software delivery, customer support, and technical operations for startups and growth-stage teams.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%232563eb'/%3E%3Cstop offset='100%25' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='800' font-size='18' fill='white'%3E45%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text-primary: #1a1a2e;
+      --text-secondary: #334155;
+      --accent: #2563eb;
+      --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text-primary);
+      line-height: 1.6;
+      background: #f0f2f5;
+    }
+
+    /* ---- NAV ---- */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .wordmark {
+      font-size: 1.125rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .wordmark span { color: var(--accent); }
+
+    .top-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .top-nav a {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+
+    .top-nav a:hover { opacity: 1; }
+    .top-nav a.active { opacity: 1; font-weight: 600; }
+
+    /* ---- PAGE CONTENT ---- */
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 8rem 1.5rem 4rem;
+    }
+
+    .page h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+
+    .page .subtitle {
+      font-size: 1.0625rem;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+    }
+
+    /* ---- SERVICE CARDS ---- */
+    .service {
+      margin-bottom: 2.5rem;
+      padding: 1.75rem;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 12px;
+    }
+
+    .service h2 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .service .phase {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+
+    .phase--explore { color: #7c3aed; }
+    .phase--build { color: #2563eb; }
+    .phase--grow { color: #0d9488; }
+
+    .service p {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .service ul {
+      margin-top: 0.75rem;
+      padding-left: 1.25rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* ---- CTA ---- */
+    .cta-section {
+      margin-top: 3rem;
+      padding: 2rem;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 12px;
+    }
+
+    .cta-section p {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.6rem 1.25rem;
+      border-radius: 100px;
+      background: var(--accent);
+      transition: opacity 0.2s;
+    }
+
+    .cta-btn:hover { opacity: 0.85; }
+
+    .cta-email {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+    }
+
+    /* ---- FOOTER ---- */
+    .site-footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.6875rem;
+      color: var(--text-secondary);
+      opacity: 0.4;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 768px) {
+      .site-header { padding: 1rem; }
+      .wordmark { font-size: 1rem; }
+      .top-nav { gap: 1rem; }
+      .top-nav a { font-size: 0.75rem; }
+      .page { padding: 6rem 1.25rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/" class="wordmark">Freedom<span>45</span></a>
+    <nav class="top-nav">
+      <a href="/services" class="active">Services</a>
+      <a href="/#contact" onclick="window.location.href='/'">Contact</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1><span style="color: #7c3aed">Explore.</span> <span style="color: #2563eb">Build.</span> <span style="color: #0d9488">Grow.</span></h1>
+    <p class="subtitle">How we work with startups.</p>
+
+    <!-- Explore -->
+    <div class="service">
+      <p class="phase phase--explore">Explore</p>
+      <h2>Product Strategy & Prototyping</h2>
+      <p>Kill the risk early. We prototype with AI-first workflows and emerging tech to prove what works — in weeks, not quarters.</p>
+      <ul>
+        <li>Discovery workshops & opportunity mapping</li>
+        <li>Rapid prototyping & proof of concepts</li>
+        <li>Technical feasibility & architecture review</li>
+        <li>AI/ML readiness assessment</li>
+      </ul>
+    </div>
+
+    <!-- Build -->
+    <div class="service">
+      <p class="phase phase--build">Build</p>
+      <h2>Software Delivery</h2>
+      <p>You've validated the idea — now ship it. We turn prototypes into launch-ready products your first customers can use.</p>
+      <ul>
+        <li>Full-stack web, mobile & desktop development</li>
+        <li>MVP build & launch</li>
+        <li>API design & integrations</li>
+        <li>AI/ML feature development</li>
+        <li>DevOps & CI/CD setup</li>
+      </ul>
+    </div>
+
+    <!-- Grow -->
+    <div class="service">
+      <p class="phase phase--grow">Grow</p>
+      <h2>Scale & Support</h2>
+      <p>Growth needs more than code. We scale your product, support your customers, and run the technical operations — so you can focus on the business.</p>
+      <ul>
+        <li>Performance optimisation & scaling</li>
+        <li>Customer support as a service</li>
+        <li>Technical operations & monitoring</li>
+        <li>Ongoing feature development</li>
+      </ul>
+    </div>
+
+    <!-- Leadership -->
+    <div class="service">
+      <p class="phase" style="color: var(--text-primary)">Lead</p>
+      <h2>Fractional CTO & Technical Leadership</h2>
+      <p>Not ready for a full-time CTO? We embed as your technical leadership — setting strategy, mentoring your engineers, and making the architectural calls that keep your product on track.</p>
+      <ul>
+        <li>Fractional CTO / VP Engineering</li>
+        <li>Technical strategy & roadmap planning</li>
+        <li>Engineering team mentorship & coaching</li>
+        <li>Architecture reviews & tech debt management</li>
+        <li>Hiring support & team scaling</li>
+      </ul>
+    </div>
+
+    <div class="cta-section">
+      <p>Not sure which stage you're at? Let's figure it out together.</p>
+      <a href="https://calendly.com/freedom45" class="cta-btn" target="_blank" rel="noopener">Book a call</a>
+      <br>
+      <a href="mailto:contact@ioanmorgan.com" class="cta-email">or email contact@ioanmorgan.com</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">&copy; 2026 Freedom45</footer>
+
+</body>
+</html>
