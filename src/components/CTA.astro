@@ -1,0 +1,103 @@
+---
+import { CALENDLY_URL, CONTACT_EMAIL } from '../config';
+---
+
+<div class="cta-inner">
+  <h2 class="cta-title">Ready to get started?</h2>
+  <p class="cta-desc">Tell us what you're working on. We'll tell you if we can help, and how.</p>
+  <p class="cta-qualifier">Best fit: startups and growth-stage teams building web, mobile, desktop, or AI products.</p>
+  <div class="cta-actions">
+    <a href={CALENDLY_URL} class="cta-primary" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+      Book a call
+    </a>
+    <a href={`mailto:${CONTACT_EMAIL}`} class="cta-email">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      {CONTACT_EMAIL}
+    </a>
+  </div>
+</div>
+
+<style>
+  .cta-inner {
+    text-align: center;
+  }
+
+  .cta-title {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-desc {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .cta-qualifier {
+    margin-top: 1rem;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+  }
+
+  .cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.6rem 1.25rem;
+    border-radius: 100px;
+    background: var(--accent);
+    transition: opacity 0.2s;
+  }
+
+  .cta-primary:hover { opacity: 0.85; }
+
+  .cta-primary svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .cta-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.6rem 1.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.5);
+    transition: background 0.2s;
+  }
+
+  .cta-email:hover {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .cta-email svg {
+    width: 16px;
+    height: 16px;
+    color: var(--text-secondary);
+  }
+</style>

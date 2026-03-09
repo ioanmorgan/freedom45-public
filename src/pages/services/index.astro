@@ -1,0 +1,142 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import CTA from '../../components/CTA.astro';
+---
+
+<SiteLayout
+  title="Services — Software Delivery & Technical Leadership | Freedom45"
+  description="Freedom45 services: product strategy, software delivery, customer support, and technical operations for startups and growth-stage teams."
+  activePage="services"
+>
+  <main class="page">
+    <h1><span style="color: #7c3aed">Explore.</span> <span style="color: #2563eb">Build.</span> <span style="color: #0d9488">Grow.</span></h1>
+    <p class="subtitle">How we work with startups.</p>
+
+    <div class="service">
+      <p class="phase phase--explore">Explore</p>
+      <h2>Product Strategy & Prototyping</h2>
+      <p>Kill the risk early. We prototype with AI-first workflows and emerging tech to prove what works — in weeks, not quarters.</p>
+      <ul>
+        <li>Discovery workshops & opportunity mapping</li>
+        <li>Rapid prototyping & proof of concepts</li>
+        <li>Technical feasibility & architecture review</li>
+        <li>AI/ML readiness assessment</li>
+      </ul>
+    </div>
+
+    <div class="service">
+      <p class="phase phase--build">Build</p>
+      <h2>Software Delivery</h2>
+      <p>You've validated the idea — now ship it. We turn prototypes into launch-ready products your first customers can use.</p>
+      <ul>
+        <li>Full-stack web, mobile & desktop development</li>
+        <li>MVP build & launch</li>
+        <li>API design & integrations</li>
+        <li>AI/ML feature development</li>
+        <li>DevOps & CI/CD setup</li>
+      </ul>
+    </div>
+
+    <div class="service">
+      <p class="phase phase--grow">Grow</p>
+      <h2>Scale & Support</h2>
+      <p>Growth needs more than code. We scale your product, support your customers, and run the technical operations — so you can focus on the business.</p>
+      <ul>
+        <li>Performance optimisation & scaling</li>
+        <li>Customer support as a service</li>
+        <li>Technical operations & monitoring</li>
+        <li>Ongoing feature development</li>
+      </ul>
+    </div>
+
+    <div class="service">
+      <p class="phase" style="color: var(--text-primary)">Lead</p>
+      <h2>Fractional CTO & Technical Leadership</h2>
+      <p>Not ready for a full-time CTO? We embed as your technical leadership — setting strategy, mentoring your engineers, and making the architectural calls that keep your product on track.</p>
+      <ul>
+        <li>Fractional CTO / VP Engineering</li>
+        <li>Technical strategy & roadmap planning</li>
+        <li>Engineering team mentorship & coaching</li>
+        <li>Architecture reviews & tech debt management</li>
+        <li>Hiring support & team scaling</li>
+      </ul>
+    </div>
+
+    <div class="cta-section">
+      <CTA />
+    </div>
+  </main>
+</SiteLayout>
+
+<style>
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8rem 1.5rem 4rem;
+  }
+
+  .page h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+
+  .page .subtitle {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+  }
+
+  .service {
+    margin-bottom: 2.5rem;
+    padding: 1.75rem;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+  }
+
+  .service h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .service .phase {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  .phase--explore { color: #7c3aed; }
+  .phase--build { color: #2563eb; }
+  .phase--grow { color: #0d9488; }
+
+  .service p {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .service ul {
+    margin-top: 0.75rem;
+    padding-left: 1.25rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .cta-section {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .page { padding: 6rem 1.25rem 3rem; }
+  }
+</style>

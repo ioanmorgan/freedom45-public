@@ -1,0 +1,625 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import CTA from '../components/CTA.astro';
+---
+
+<SiteLayout
+  title="Freedom45 — Software Development Studio for Startups"
+  description="Freedom45 is a technology studio offering technical leadership, software delivery, and product development for startups and growth companies."
+  noFooter
+>
+
+  <div class="dots" id="dots">
+    <button class="dot active" data-slide="0"></button>
+    <button class="dot" data-slide="1"></button>
+    <button class="dot" data-slide="2"></button>
+    <button class="dot" data-slide="3"></button>
+    <button class="dot" data-slide="4"></button>
+    <button class="dot" data-slide="5"></button>
+    <button class="dot" data-slide="6"></button>
+  </div>
+
+  <!-- Fixed triangle overlay -->
+  <div class="tri-overlay" id="triOverlay">
+
+    <!-- ABOVE triangle -->
+    <div class="tri-overlay__above">
+      <div class="tri-overlay__text" id="text-overview">
+        <p class="section-label">Our method</p>
+        <h2 class="section-title"><span style="color: #7c3aed">Explore.</span> <span style="color: #2563eb">Build.</span> <span style="color: #0d9488">Grow.</span></h2>
+        <div class="ov-desc">
+          <p class="section-desc">A three-stage process where each stage feeds the next.</p>
+        </div>
+      </div>
+      <div class="tri-overlay__text" id="text-lab">
+        <h2 class="section-title" style="color: #7c3aed">The Lab</h2>
+        <div class="ov-desc">
+          <p class="section-desc">Kill the risk early. We prototype with AI-first workflows and emerging tech to prove what works — in weeks, not quarters.</p>
+          <span class="detail-type" style="color: #7c3aed">Explore</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flywheel diagram -->
+    <div class="tri-overlay__diagram" id="triDiagram" data-active="">
+      <svg class="tri-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g class="fw-body fw--lab">
+          <path d="M 165.0 62.5 A 75 75 0 0 0 35.1 62.5 L 56.7 75.0 A 50 50 0 0 1 143.3 75.0 Z"/>
+        </g>
+        <g class="fw-body fw--foundry">
+          <path d="M 35.1 62.5 A 75 75 0 0 0 100 175 L 100 150 A 50 50 0 0 1 56.7 75.0 Z"/>
+        </g>
+        <g class="fw-body fw--studio">
+          <path d="M 100 175 A 75 75 0 0 0 165.0 62.5 L 143.3 75.0 A 50 50 0 0 1 100 150 Z"/>
+        </g>
+        <g class="fw-head fw--lab">
+          <path d="M 32.5 56.5 L 39.6 83.8 L 65.1 71.7 Z"/>
+        </g>
+        <g class="fw-head fw--foundry">
+          <path d="M 96.2 180.2 L 116.2 160.4 L 93.0 144.4 Z"/>
+        </g>
+        <g class="fw-head fw--studio">
+          <path d="M 171.4 63.3 L 144.2 55.8 L 141.8 83.9 Z"/>
+        </g>
+      </svg>
+      <span class="tri-label tri-label--lab">The Lab</span>
+      <span class="tri-label tri-label--foundry">The Foundry</span>
+      <span class="tri-label tri-label--studio">The Studio</span>
+      <div class="fw-center-text">
+        <p class="section-desc">Our Flywheel</p>
+      </div>
+    </div>
+
+    <!-- BELOW triangle -->
+    <div class="tri-overlay__below">
+      <div class="tri-overlay__text" id="text-foundry">
+        <h2 class="section-title" style="color: #2563eb">The Foundry</h2>
+        <div class="ov-desc">
+          <p class="section-desc">You've validated the idea — now ship it. We turn your prototype into a product your first customers can use.</p>
+          <span class="detail-type" style="color: #2563eb">Build</span>
+        </div>
+      </div>
+      <div class="tri-overlay__text" id="text-studio">
+        <h2 class="section-title" style="color: #0d9488">The Studio</h2>
+        <div class="ov-desc">
+          <p class="section-desc">Growth needs more than code. We scale your product, support your customers, and run the technical operations — so you can focus on the business.</p>
+          <span class="detail-type" style="color: #0d9488">Grow</span>
+        </div>
+      </div>
+      <div class="tri-overlay__text" id="text-closing">
+        <div class="ov-desc">
+          <p class="section-desc"><span style="color: #7c3aed; font-weight: 700;">Explore</span> the opportunity.<br><span style="color: #2563eb; font-weight: 700;">Build</span> the product.<br><span style="color: #0d9488; font-weight: 700;">Grow</span> the business.<br><strong>Together, from day one.</strong></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scrollable slides -->
+  <div class="slides" id="slides">
+    <div class="slide slide--hero" data-index="0">
+      <div class="slide-content visible">
+        <h1>Freedom<span>45</span></h1>
+        <p class="tagline">We're the technical team your startup doesn't have yet.</p>
+      </div>
+    </div>
+    <div class="slide" data-index="1"></div>
+    <div class="slide" data-index="2"></div>
+    <div class="slide" data-index="3"></div>
+    <div class="slide" data-index="4"></div>
+    <div class="slide" data-index="5"></div>
+    <div class="slide slide--contact" id="contact" data-index="6">
+      <div class="slide-content">
+        <CTA />
+      </div>
+      <div class="slide-footer">&copy; 2026 Freedom45</div>
+    </div>
+  </div>
+
+  <script is:inline>
+    // ---- Elements ----
+    var slidesEl = document.getElementById('slides');
+    var allSlides = document.querySelectorAll('.slide');
+    var allDots = document.querySelectorAll('.dot');
+    var triOverlay = document.getElementById('triOverlay');
+    var triDiagram = document.getElementById('triDiagram');
+
+    var textEls = {
+      overview: document.getElementById('text-overview'),
+      foundry: document.getElementById('text-foundry'),
+      studio: document.getElementById('text-studio'),
+      lab: document.getElementById('text-lab'),
+      closing: document.getElementById('text-closing')
+    };
+
+    // ---- State ----
+    var currentSlideIdx = 0;
+    var currentSection = null;
+    var pendingTimeouts = [];
+
+    function getActiveSlide() {
+      return Math.round(slidesEl.scrollTop / window.innerHeight);
+    }
+
+    function sectionForSlide(idx) {
+      if (idx === 1) return 'overview';
+      if (idx === 2) return 'lab';
+      if (idx === 3) return 'foundry';
+      if (idx === 4) return 'studio';
+      if (idx === 5) return 'closing';
+      return null;
+    }
+
+    function dirFor(section) {
+      if (section === 'overview') return 'pos-top';
+      if (section === 'foundry') return 'pos-left';
+      if (section === 'studio') return 'pos-right';
+      if (section === 'closing') return 'pos-left';
+      return null;
+    }
+
+    function clearPending() {
+      pendingTimeouts.forEach(function(t) { clearTimeout(t); });
+      pendingTimeouts = [];
+    }
+
+    function hideAllContent() {
+      Object.values(textEls).forEach(function(el) {
+        el.classList.remove('visible', 'pos-left', 'pos-right', 'pos-top', 'no-transition');
+        el.style.opacity = '0';
+      });
+    }
+
+    function showText(section) {
+      if (!section) return;
+      var el = textEls[section];
+      if (!el) return;
+      var dir = dirFor(section);
+
+      el.classList.add('no-transition');
+      el.classList.remove('visible', 'pos-left', 'pos-right', 'pos-top');
+      el.style.opacity = '';
+      if (dir) el.classList.add(dir);
+
+      el.offsetHeight;
+
+      el.classList.remove('no-transition', 'pos-left', 'pos-right', 'pos-top');
+      el.classList.add('visible');
+    }
+
+    function hideText(section) {
+      if (!section) return;
+      var el = textEls[section];
+      if (!el) return;
+      var dir = dirFor(section);
+
+      el.style.opacity = '';
+      el.classList.remove('visible');
+      if (dir) el.classList.add(dir);
+    }
+
+    function updateOverlay() {
+      var newIdx = getActiveSlide();
+      if (newIdx === currentSlideIdx) return;
+
+      clearPending();
+
+      var oldSection = currentSection;
+      var newSection = sectionForSlide(newIdx);
+      currentSlideIdx = newIdx;
+      currentSection = newSection;
+
+      if (newIdx >= 1 && newIdx <= 5) {
+        triOverlay.classList.add('visible');
+        triOverlay.classList.remove('exit-top');
+      } else if (newIdx === 0) {
+        triOverlay.classList.remove('visible', 'exit-top');
+      } else if (newIdx === 6) {
+        triOverlay.classList.add('exit-top');
+        triOverlay.classList.remove('visible');
+      }
+
+      if (newSection === 'overview') {
+        triDiagram.setAttribute('data-active', '');
+      } else if (newSection === 'closing') {
+        triDiagram.setAttribute('data-active', 'closing');
+      } else if (newSection) {
+        triDiagram.setAttribute('data-active', newSection);
+      }
+
+      if (oldSection !== newSection) {
+        hideText(oldSection);
+        var t = setTimeout(function() { showText(newSection); }, 250);
+        pendingTimeouts.push(t);
+      }
+    }
+
+    function updateVisibility() {
+      var scrollTop = slidesEl.scrollTop;
+      var vh = window.innerHeight;
+
+      allSlides.forEach(function(slide, i) {
+        var content = slide.querySelector('.slide-content');
+        var offset = Math.abs(scrollTop - i * vh);
+        var ratio = Math.min(offset / vh, 1);
+
+        if (content) {
+          if (ratio < 0.4) content.classList.add('visible');
+          else content.classList.remove('visible');
+        }
+
+        if (allDots[i]) {
+          allDots[i].classList.toggle('active', ratio < 0.4);
+        }
+      });
+
+      updateOverlay();
+    }
+
+    slidesEl.addEventListener('scroll', updateVisibility);
+    window.addEventListener('resize', updateVisibility);
+
+    allDots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        var idx = parseInt(dot.dataset.slide);
+        slidesEl.scrollTo({ top: idx * window.innerHeight, behavior: 'smooth' });
+      });
+    });
+
+    // ---- Init ----
+    hideAllContent();
+    updateVisibility();
+
+    // Handle /#contact from external navigation
+    if (window.location.hash === '#contact') {
+      slidesEl.scrollTo({ top: 6 * window.innerHeight, behavior: 'smooth' });
+    }
+  </script>
+
+</SiteLayout>
+
+<style is:global>
+  body {
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  /* ---- SCROLL CONTAINER ---- */
+  .slides {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  .slide {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+  }
+
+  .slide-content {
+    max-width: 640px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .slide-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---- HERO SLIDE ---- */
+  .slide--hero .slide-content {
+    text-align: center;
+    max-width: 800px;
+  }
+
+  .slide--hero h1 {
+    font-size: clamp(2.75rem, 6vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 1.25rem;
+  }
+
+  .slide--hero h1 span {
+    background: linear-gradient(135deg, var(--accent) 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .slide--hero .tagline {
+    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  /* ---- SHARED TEXT STYLES ---- */
+  .section-label {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-desc {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .detail-type {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ---- FIXED TRIANGLE OVERLAY ---- */
+  .tri-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3.5rem;
+    opacity: 0;
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(0);
+  }
+
+  .tri-overlay.visible { opacity: 1; }
+
+  .tri-overlay.exit-top {
+    transform: translateY(-50vh);
+    opacity: 0;
+  }
+
+  .tri-overlay__above,
+  .tri-overlay__below {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    min-height: 7rem;
+    flex-shrink: 0;
+  }
+
+  .tri-overlay__text {
+    position: absolute;
+    inset: 0;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(0);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tri-overlay__text.no-transition { transition: none; }
+
+  .tri-overlay__text.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .tri-overlay__text.pos-left {
+    transform: translateX(-140px);
+    opacity: 0;
+  }
+
+  .tri-overlay__text.pos-right {
+    transform: translateX(140px);
+    opacity: 0;
+  }
+
+  .tri-overlay__text.pos-top {
+    transform: translateY(-80px);
+    opacity: 0;
+  }
+
+  .tri-overlay__text .section-title,
+  .tri-overlay__text .section-label {
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tri-overlay__text .ov-desc {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+  }
+
+  .tri-overlay__text.visible .ov-desc {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---- TRIANGLE DIAGRAM ---- */
+  .tri-overlay__diagram {
+    position: relative;
+    width: 260px;
+    flex-shrink: 0;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tri-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
+  }
+
+  .tri-label {
+    position: absolute;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    transition: color 0.7s, opacity 0.7s, font-weight 0.7s;
+    opacity: 0.7;
+  }
+  .tri-label--foundry { color: #2563eb; }
+  .tri-label--studio { color: #0d9488; }
+  .tri-label--lab { color: #7c3aed; }
+
+  .tri-label--lab {
+    top: 6%;
+    left: 50%;
+    transform: translate(-50%, -120%);
+  }
+
+  .tri-label--foundry {
+    top: 82%;
+    left: 14%;
+    transform: translate(-50%, 60%);
+  }
+
+  .tri-label--studio {
+    top: 82%;
+    left: 86%;
+    transform: translate(-50%, 60%);
+  }
+
+  .fw-body, .fw-head {
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.7s;
+  }
+  .fw-body path, .fw-head path {
+    transition: fill 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    stroke: rgba(51, 65, 85, 0.45);
+    stroke-width: 0.75;
+    stroke-linejoin: round;
+  }
+
+  .fw--foundry path { fill: #7aa8f5; }
+  .fw--studio path { fill: #4db8af; }
+  .fw--lab path { fill: #a78bfa; }
+
+  .tri-overlay__diagram[data-active="foundry"] .tri-label--foundry,
+  .tri-overlay__diagram[data-active="studio"] .tri-label--studio,
+  .tri-overlay__diagram[data-active="lab"] .tri-label--lab {
+    opacity: 0;
+  }
+
+  .tri-overlay__diagram[data-active="lab"] .fw--lab {
+    transform: translate(0, -12px);
+    filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.3));
+  }
+  .tri-overlay__diagram[data-active="lab"] .fw--lab path { fill: #7c3aed; }
+
+  .tri-overlay__diagram[data-active="foundry"] .fw--foundry {
+    transform: translate(-10px, 6px);
+    filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.3));
+  }
+  .tri-overlay__diagram[data-active="foundry"] .fw--foundry path { fill: #2563eb; }
+
+  .tri-overlay__diagram[data-active="studio"] .fw--studio {
+    transform: translate(10px, 6px);
+    filter: drop-shadow(0 0 8px rgba(13, 148, 136, 0.3));
+  }
+  .tri-overlay__diagram[data-active="studio"] .fw--studio path { fill: #0d9488; }
+
+  .tri-overlay__diagram:not([data-active]) .tri-label,
+  .tri-overlay__diagram[data-active=""] .tri-label {
+    opacity: 0.7;
+  }
+
+  .tri-overlay__diagram[data-active="closing"] {
+    transform: scale(1.5);
+  }
+  .tri-overlay__diagram[data-active="closing"] .tri-label {
+    opacity: 0;
+  }
+
+  .fw-center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 160px;
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+  .tri-overlay__diagram[data-active="closing"] .fw-center-text {
+    opacity: 1;
+  }
+  .fw-center-text .section-desc {
+    font-size: 0.7rem;
+    line-height: 1.4;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  /* ---- CONTACT ---- */
+  .slide--contact .slide-content {
+    text-align: center;
+  }
+
+  .slide-footer {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.6875rem;
+    color: var(--text-secondary);
+    opacity: 0.4;
+  }
+
+  .dots {
+    display: none;
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    .slide { padding: 1.25rem 20%; }
+    .section-title { font-size: clamp(1.25rem, 5vw, 1.75rem); }
+    .section-desc { font-size: 0.875rem; }
+    .tri-overlay__diagram { width: 200px; }
+    .tri-overlay { gap: 1rem; padding: 0 20%; }
+    .tri-label { font-size: 0.6875rem; }
+    .tri-overlay__text.pos-left { transform: translateX(-100px); }
+    .tri-overlay__text.pos-right { transform: translateX(100px); }
+  }
+
+  @media (max-width: 480px) {
+    .tri-overlay__diagram { width: 160px; }
+    .tri-overlay__text.pos-left { transform: translateX(-70px); }
+    .tri-overlay__text.pos-right { transform: translateX(70px); }
+  }
+</style>

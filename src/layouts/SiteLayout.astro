@@ -1,0 +1,31 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Background from '../components/Background.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  activePage?: string;
+  noFooter?: boolean;
+}
+
+const { title, description, activePage, noFooter = false } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <Background />
+  <Nav activePage={activePage} />
+  <div class="page-content">
+    <slot />
+    {!noFooter && <Footer />}
+  </div>
+</BaseLayout>
+
+<style>
+  .page-content {
+    position: relative;
+    z-index: 1;
+  }
+</style>
