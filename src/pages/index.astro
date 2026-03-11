@@ -266,6 +266,56 @@ import CTA from '../components/CTA.astro';
       });
     });
 
+    // ---- Controlled scrolling (one section at a time) ----
+    var isScrolling = false;
+    var scrollCooldown = 800; // ms to wait before allowing next scroll
+
+    function scrollToSlide(idx) {
+      if (idx < 0 || idx >= allSlides.length) return;
+      isScrolling = true;
+      slidesEl.scrollTo({ top: idx * window.innerHeight, behavior: 'smooth' });
+      setTimeout(function() { isScrolling = false; }, scrollCooldown);
+    }
+
+    slidesEl.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      if (isScrolling) return;
+      var current = getActiveSlide();
+      if (e.deltaY > 0) {
+        scrollToSlide(current + 1);
+      } else if (e.deltaY < 0) {
+        scrollToSlide(current - 1);
+      }
+    }, { passive: false });
+
+    // Touch handling for consistent mobile scrolling
+    var touchStartY = 0;
+    var touchHandled = false;
+
+    slidesEl.addEventListener('touchstart', function(e) {
+      touchStartY = e.touches[0].clientY;
+      touchHandled = false;
+    }, { passive: true });
+
+    slidesEl.addEventListener('touchmove', function(e) {
+      if (isScrolling || touchHandled) {
+        e.preventDefault();
+        return;
+      }
+      var deltaY = touchStartY - e.touches[0].clientY;
+      var threshold = 50;
+      if (Math.abs(deltaY) > threshold) {
+        e.preventDefault();
+        touchHandled = true;
+        var current = getActiveSlide();
+        if (deltaY > 0) {
+          scrollToSlide(current + 1);
+        } else {
+          scrollToSlide(current - 1);
+        }
+      }
+    }, { passive: false });
+
     // ---- Init ----
     hideAllContent();
     updateVisibility();
@@ -292,6 +342,7 @@ import CTA from '../components/CTA.astro';
     overflow-y: auto;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
+    overscroll-behavior-y: contain;
   }
 
   .slide {
