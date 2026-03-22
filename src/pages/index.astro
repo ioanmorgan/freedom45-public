@@ -254,6 +254,8 @@ import CTA from '../components/CTA.astro';
       setTimeout(function() { isAnimating = false; }, 700);
     }
 
+    window.goToSlide = goToSlide;
+
     // ---- Wheel input (on document so it works regardless of hover target) ----
     document.addEventListener('wheel', function(e) {
       e.preventDefault();

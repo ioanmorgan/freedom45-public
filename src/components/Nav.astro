@@ -12,7 +12,7 @@ const isHomepage = Astro.url.pathname === '/' || Astro.url.pathname === '';
   <nav class="top-nav">
     <a href="/services" class:list={[{ active: activePage === 'services' }]}>Services</a>
     {isHomepage ? (
-      <a href="#contact" onclick="document.querySelector('.slides').scrollTo({top:6*window.innerHeight,behavior:'smooth'});return false">Contact</a>
+      <a href="#contact" onclick="window.goToSlide(6);return false">Contact</a>
     ) : (
       <a href="/#contact">Contact</a>
     )}
