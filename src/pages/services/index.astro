@@ -9,8 +9,8 @@ import CTA from '../../components/CTA.astro';
   activePage="services"
 >
   <main class="page">
-    <h1><span style="color: #7c3aed">Explore.</span> <span style="color: #2563eb">Build.</span> <span style="color: #0d9488">Grow.</span></h1>
-    <p class="subtitle">How we work with startups.</p>
+    <h1><span style="color: #7c3aed">Explore.</span> <span style="color: #2563eb">Build.</span> <span style="color: #0d9488">Grow.</span> <span style="color: #16a34a">Sustain.</span></h1>
+    <p class="subtitle">How we work with startups — from first idea to long-term care.</p>
 
     <div class="service">
       <p class="phase phase--explore">Explore</p>
@@ -39,18 +39,30 @@ import CTA from '../../components/CTA.astro';
 
     <div class="service">
       <p class="phase phase--grow">Grow</p>
-      <h2>Scale & Support</h2>
-      <p>Growth needs more than code. We scale your product, support your customers, and run the technical operations — so you can focus on the business.</p>
+      <h2>Scale & Growth</h2>
+      <p>Growth needs more than code. We scale your product, sharpen performance, and build the features that take you to the next stage.</p>
       <ul>
         <li>Performance optimisation & scaling</li>
-        <li>Customer support as a service</li>
-        <li>Technical operations & monitoring</li>
         <li>Ongoing feature development</li>
+        <li>Analytics, experimentation & iteration</li>
+        <li>Infrastructure & cost optimisation</li>
       </ul>
     </div>
 
     <div class="service">
-      <p class="phase" style="color: var(--text-primary)">Lead</p>
+      <p class="phase phase--sustain">Sustain</p>
+      <h2>Aftercare, Support & Maintenance</h2>
+      <p>Launched isn't finished. We support your users, maintain the product, and keep it running long after go-live. Available as a standalone retainer, too — we'll happily look after something we didn't build.</p>
+      <ul>
+        <li>Customer support as a service</li>
+        <li>Maintenance, monitoring & security updates</li>
+        <li>Technical operations & reliability</li>
+        <li>Available as a standalone retainer</li>
+      </ul>
+    </div>
+
+    <div class="service service--across">
+      <p class="phase phase--across">Across every stage</p>
       <h2>Fractional CTO & Technical Leadership</h2>
       <p>Not ready for a full-time CTO? We embed as your technical leadership — setting strategy, mentoring your engineers, and making the architectural calls that keep your product on track.</p>
       <ul>
@@ -113,6 +125,16 @@ import CTA from '../../components/CTA.astro';
   .phase--explore { color: #7c3aed; }
   .phase--build { color: #2563eb; }
   .phase--grow { color: #0d9488; }
+  .phase--sustain { color: #16a34a; }
+  .phase--across { color: var(--text-primary); }
+
+  /* Fractional-CTO isn't a phase — it runs across all four */
+  .service--across {
+    background: transparent;
+    border-style: dashed;
+    border-color: rgba(0, 0, 0, 0.12);
+    margin-top: 3rem;
+  }
 
   .service p {
     font-size: 0.9375rem;

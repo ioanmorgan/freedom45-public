@@ -17,6 +17,8 @@ import CTA from '../components/CTA.astro';
     <button class="dot" data-slide="4"></button>
     <button class="dot" data-slide="5"></button>
     <button class="dot" data-slide="6"></button>
+    <button class="dot" data-slide="7"></button>
+    <button class="dot" data-slide="8"></button>
   </div>
 
   <!-- Fixed triangle overlay -->
@@ -26,16 +28,15 @@ import CTA from '../components/CTA.astro';
     <div class="tri-overlay__above">
       <div class="tri-overlay__text" id="text-overview">
         <p class="section-label">Our method</p>
-        <h2 class="section-title"><span style="color: #7c3aed">Explore.</span> <span style="color: #2563eb">Build.</span> <span style="color: #0d9488">Grow.</span></h2>
+        <h2 class="section-title"><span style="color: #7c3aed">Explore.</span> <span style="color: #2563eb">Build.</span> <span style="color: #0d9488">Grow.</span> <span style="color: #16a34a">Sustain.</span></h2>
         <div class="ov-desc">
-          <p class="section-desc">A three-stage process where each stage feeds the next.</p>
+          <p class="section-desc">A four-stage partnership — from first prototype to long-term care.</p>
         </div>
       </div>
       <div class="tri-overlay__text" id="text-lab">
-        <h2 class="section-title" style="color: #7c3aed">The Lab</h2>
+        <h2 class="section-title" style="color: #7c3aed">Explore</h2>
         <div class="ov-desc">
           <p class="section-desc">Kill the risk early. We prototype with AI-first workflows and emerging tech to prove what works — in weeks, not quarters.</p>
-          <span class="detail-type" style="color: #7c3aed">Explore</span>
         </div>
       </div>
     </div>
@@ -43,52 +44,43 @@ import CTA from '../components/CTA.astro';
     <!-- Flywheel diagram -->
     <div class="tri-overlay__diagram" id="triDiagram" data-active="">
       <svg class="tri-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g class="fw-body fw--lab">
-          <path d="M 165.0 62.5 A 75 75 0 0 0 35.1 62.5 L 56.7 75.0 A 50 50 0 0 1 143.3 75.0 Z"/>
-        </g>
-        <g class="fw-body fw--foundry">
-          <path d="M 35.1 62.5 A 75 75 0 0 0 100 175 L 100 150 A 50 50 0 0 1 56.7 75.0 Z"/>
-        </g>
-        <g class="fw-body fw--studio">
-          <path d="M 100 175 A 75 75 0 0 0 165.0 62.5 L 143.3 75.0 A 50 50 0 0 1 100 150 Z"/>
-        </g>
-        <g class="fw-head fw--lab">
-          <path d="M 32.5 56.5 L 39.6 83.8 L 65.1 71.7 Z"/>
-        </g>
-        <g class="fw-head fw--foundry">
-          <path d="M 96.2 180.2 L 116.2 160.4 L 93.0 144.4 Z"/>
-        </g>
-        <g class="fw-head fw--studio">
-          <path d="M 171.4 63.3 L 144.2 55.8 L 141.8 83.9 Z"/>
-        </g>
+        <circle class="arc arc--track" cx="100" cy="100" r="70" />
+        <circle class="arc arc--seg arc--lab" cx="100" cy="100" r="70" pathLength="100" />
+        <circle class="arc arc--seg arc--foundry" cx="100" cy="100" r="70" pathLength="100" />
+        <circle class="arc arc--seg arc--studio" cx="100" cy="100" r="70" pathLength="100" />
+        <circle class="arc arc--seg arc--sustain" cx="100" cy="100" r="70" pathLength="100" />
       </svg>
-      <span class="tri-label tri-label--lab">The Lab</span>
-      <span class="tri-label tri-label--foundry">The Foundry</span>
-      <span class="tri-label tri-label--studio">The Studio</span>
-      <div class="fw-center-text">
-        <p class="section-desc">Our Flywheel</p>
+      <div class="fw-center">
+        <span class="fw-verb fw-verb--lab">Explore</span>
+        <span class="fw-verb fw-verb--foundry">Build</span>
+        <span class="fw-verb fw-verb--studio">Grow</span>
+        <span class="fw-verb fw-verb--sustain">Sustain</span>
       </div>
     </div>
 
     <!-- BELOW triangle -->
     <div class="tri-overlay__below">
       <div class="tri-overlay__text" id="text-foundry">
-        <h2 class="section-title" style="color: #2563eb">The Foundry</h2>
+        <h2 class="section-title" style="color: #2563eb">Build</h2>
         <div class="ov-desc">
           <p class="section-desc">You've validated the idea — now ship it. We turn your prototype into a product your first customers can use.</p>
-          <span class="detail-type" style="color: #2563eb">Build</span>
         </div>
       </div>
       <div class="tri-overlay__text" id="text-studio">
-        <h2 class="section-title" style="color: #0d9488">The Studio</h2>
+        <h2 class="section-title" style="color: #0d9488">Grow</h2>
         <div class="ov-desc">
-          <p class="section-desc">Growth needs more than code. We scale your product, support your customers, and run the technical operations — so you can focus on the business.</p>
-          <span class="detail-type" style="color: #0d9488">Grow</span>
+          <p class="section-desc">Growth needs more than code. We scale your product, sharpen performance, and build the features that take you to the next stage.</p>
+        </div>
+      </div>
+      <div class="tri-overlay__text" id="text-sustain">
+        <h2 class="section-title" style="color: #16a34a">Sustain</h2>
+        <div class="ov-desc">
+          <p class="section-desc">Launched isn't finished. We support your users, maintain the product, and keep it running long after go-live — and we'll happily look after something we didn't build.</p>
         </div>
       </div>
       <div class="tri-overlay__text" id="text-closing">
         <div class="ov-desc">
-          <p class="section-desc"><span style="color: #7c3aed; font-weight: 700;">Explore</span> the opportunity.<br><span style="color: #2563eb; font-weight: 700;">Build</span> the product.<br><span style="color: #0d9488; font-weight: 700;">Grow</span> the business.<br><strong>Together, from day one.</strong></p>
+          <p class="section-desc"><span style="color: #7c3aed; font-weight: 700;">Explore</span> the opportunity.<br><span style="color: #2563eb; font-weight: 700;">Build</span> the product.<br><span style="color: #0d9488; font-weight: 700;">Grow</span> the business.<br><span style="color: #16a34a; font-weight: 700;">Sustain</span> it for the long haul.<br><strong>Together, from day one.</strong></p>
         </div>
       </div>
     </div>
@@ -101,15 +93,23 @@ import CTA from '../components/CTA.astro';
     <div class="slide slide--hero" data-index="0">
       <div class="slide-content visible">
         <h1>Freedom<span>45</span></h1>
-        <p class="tagline">We're the technical team your startup doesn't have yet.</p>
+        <p class="tagline">We're the senior technical team your startup doesn't have yet.</p>
+        <p class="subtag">A small, senior studio. You work directly with the people building your product, start to finish.</p>
       </div>
     </div>
-    <div class="slide" data-index="1"></div>
+    <div class="slide slide--proof" data-index="1">
+      <div class="slide-content">
+        <h2 class="proof-line">Our first project has never been our last.</h2>
+        <p class="proof-sub">Every client we've worked with has come back with their next project.</p>
+      </div>
+    </div>
     <div class="slide" data-index="2"></div>
     <div class="slide" data-index="3"></div>
     <div class="slide" data-index="4"></div>
     <div class="slide" data-index="5"></div>
-    <div class="slide slide--contact" id="contact" data-index="6">
+    <div class="slide" data-index="6"></div>
+    <div class="slide" data-index="7"></div>
+    <div class="slide slide--contact" id="contact" data-index="8">
       <div class="slide-content">
         <CTA />
       </div>
@@ -132,6 +132,7 @@ import CTA from '../components/CTA.astro';
       foundry: document.getElementById('text-foundry'),
       studio: document.getElementById('text-studio'),
       lab: document.getElementById('text-lab'),
+      sustain: document.getElementById('text-sustain'),
       closing: document.getElementById('text-closing')
     };
 
@@ -142,11 +143,12 @@ import CTA from '../components/CTA.astro';
     var isAnimating = false;
 
     function sectionForSlide(idx) {
-      if (idx === 1) return 'overview';
-      if (idx === 2) return 'lab';
-      if (idx === 3) return 'foundry';
-      if (idx === 4) return 'studio';
-      if (idx === 5) return 'closing';
+      if (idx === 2) return 'overview';
+      if (idx === 3) return 'lab';
+      if (idx === 4) return 'foundry';
+      if (idx === 5) return 'studio';
+      if (idx === 6) return 'sustain';
+      if (idx === 7) return 'closing';
       return null;
     }
 
@@ -154,6 +156,7 @@ import CTA from '../components/CTA.astro';
       if (section === 'overview') return 'pos-top';
       if (section === 'foundry') return 'pos-left';
       if (section === 'studio') return 'pos-right';
+      if (section === 'sustain') return 'pos-left';
       if (section === 'closing') return 'pos-left';
       return null;
     }
@@ -226,12 +229,12 @@ import CTA from '../components/CTA.astro';
       var newSection = sectionForSlide(idx);
       currentSection = newSection;
 
-      if (idx >= 1 && idx <= 5) {
+      if (idx >= 2 && idx <= 7) {
         triOverlay.classList.add('visible');
         triOverlay.classList.remove('exit-top');
-      } else if (idx === 0) {
+      } else if (idx === 0 || idx === 1) {
         triOverlay.classList.remove('visible', 'exit-top');
-      } else if (idx === 6) {
+      } else if (idx === 8) {
         triOverlay.classList.add('exit-top');
         triOverlay.classList.remove('visible');
       }
@@ -310,7 +313,7 @@ import CTA from '../components/CTA.astro';
     // Handle /#contact from external navigation
     if (window.location.hash === '#contact') {
       currentSlideIdx = -1; // force transition
-      goToSlide(6);
+      goToSlide(8);
     }
   </script>
 
@@ -384,6 +387,39 @@ import CTA from '../components/CTA.astro';
     color: var(--text-secondary);
     font-weight: 500;
     margin-bottom: 0.75rem;
+  }
+
+  /* ---- PROOF SLIDE (retention, between hero and method) ---- */
+  .slide--proof .slide-content {
+    text-align: center;
+    max-width: 660px;
+  }
+
+  .proof-line {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 0.85rem;
+  }
+
+  .proof-sub {
+    font-size: clamp(0.9375rem, 2vw, 1.125rem);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .slide--hero .subtag {
+    font-size: clamp(0.9375rem, 1.8vw, 1.0625rem);
+    color: var(--text-secondary);
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 540px;
+    margin: 0.25rem auto 0;
+    opacity: 0.85;
   }
 
   /* ---- SHARED TEXT STYLES ---- */
@@ -507,12 +543,12 @@ import CTA from '../components/CTA.astro';
     transform: translateY(0);
   }
 
-  /* ---- TRIANGLE DIAGRAM ---- */
+  /* ---- METHOD RING ---- */
   .tri-overlay__diagram {
     position: relative;
     width: 260px;
     flex-shrink: 0;
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tri-svg {
@@ -520,110 +556,117 @@ import CTA from '../components/CTA.astro';
     height: auto;
     display: block;
     overflow: visible;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
   }
 
+  .arc {
+    fill: none;
+    stroke-width: 12;
+    stroke-linecap: round;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: stroke 0.5s ease, opacity 0.5s ease, stroke-width 0.5s ease;
+  }
+
+  .arc--track {
+    stroke: rgba(51, 65, 85, 0.08);
+    stroke-width: 12;
+  }
+
+  .arc--seg {
+    stroke-dasharray: 22 78;
+    opacity: 0.9;
+  }
+
+  /* Muted tints by default; each segment sits at its quarter of the ring */
+  .arc--lab     { stroke: #c4b5fd; transform: rotate(230deg); }
+  .arc--foundry { stroke: #a9c6f8; transform: rotate(320deg); }
+  .arc--studio  { stroke: #93cfc9; transform: rotate(50deg); }
+  .arc--sustain { stroke: #8fd3ad; transform: rotate(140deg); }
+
+  /* ---- Labels ---- */
   .tri-label {
     position: absolute;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.01em;
     white-space: nowrap;
-    transition: color 0.7s, opacity 0.7s, font-weight 0.7s;
-    opacity: 0.7;
+    transition: opacity 0.5s ease;
+    opacity: 0.75;
   }
-  .tri-label--foundry { color: #2563eb; }
-  .tri-label--studio { color: #0d9488; }
-  .tri-label--lab { color: #7c3aed; }
+  .tri-label--lab { color: #7c3aed; top: 4%; left: 50%; transform: translate(-50%, -120%); }
+  .tri-label--foundry { color: #2563eb; top: 84%; left: 12%; transform: translate(-50%, 60%); }
+  .tri-label--studio { color: #0d9488; top: 84%; left: 88%; transform: translate(-50%, 60%); }
 
-  .tri-label--lab {
-    top: 6%;
-    left: 50%;
-    transform: translate(-50%, -120%);
+  /* ---- Active stage: brighten + thicken the live arc, dim the rest ---- */
+  .tri-overlay__diagram[data-active="lab"] .arc--lab,
+  .tri-overlay__diagram[data-active="foundry"] .arc--foundry,
+  .tri-overlay__diagram[data-active="studio"] .arc--studio,
+  .tri-overlay__diagram[data-active="sustain"] .arc--sustain {
+    stroke-width: 15;
+    opacity: 1;
   }
+  .tri-overlay__diagram[data-active="lab"] .arc--lab { stroke: #7c3aed; }
+  .tri-overlay__diagram[data-active="foundry"] .arc--foundry { stroke: #2563eb; }
+  .tri-overlay__diagram[data-active="studio"] .arc--studio { stroke: #0d9488; }
+  .tri-overlay__diagram[data-active="sustain"] .arc--sustain { stroke: #16a34a; }
 
-  .tri-label--foundry {
-    top: 82%;
-    left: 14%;
-    transform: translate(-50%, 60%);
-  }
-
-  .tri-label--studio {
-    top: 82%;
-    left: 86%;
-    transform: translate(-50%, 60%);
-  }
-
-  .fw-body, .fw-head {
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 0.7s;
-  }
-  .fw-body path, .fw-head path {
-    transition: fill 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    stroke: rgba(51, 65, 85, 0.45);
-    stroke-width: 0.75;
-    stroke-linejoin: round;
+  .tri-overlay__diagram[data-active="lab"] .arc--seg:not(.arc--lab),
+  .tri-overlay__diagram[data-active="foundry"] .arc--seg:not(.arc--foundry),
+  .tri-overlay__diagram[data-active="studio"] .arc--seg:not(.arc--studio),
+  .tri-overlay__diagram[data-active="sustain"] .arc--seg:not(.arc--sustain) {
+    opacity: 0.3;
   }
 
-  .fw--foundry path { fill: #7aa8f5; }
-  .fw--studio path { fill: #4db8af; }
-  .fw--lab path { fill: #a78bfa; }
-
+  .tri-overlay__diagram[data-active="lab"] .tri-label--lab,
   .tri-overlay__diagram[data-active="foundry"] .tri-label--foundry,
-  .tri-overlay__diagram[data-active="studio"] .tri-label--studio,
-  .tri-overlay__diagram[data-active="lab"] .tri-label--lab {
+  .tri-overlay__diagram[data-active="studio"] .tri-label--studio {
     opacity: 0;
   }
 
-  .tri-overlay__diagram[data-active="lab"] .fw--lab {
-    transform: translate(0, -12px);
-    filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.3));
-  }
-  .tri-overlay__diagram[data-active="lab"] .fw--lab path { fill: #7c3aed; }
+  /* ---- Closing: whole ring at full colour, gentle lift ---- */
+  .tri-overlay__diagram[data-active="closing"] .arc--lab { stroke: #7c3aed; }
+  .tri-overlay__diagram[data-active="closing"] .arc--foundry { stroke: #2563eb; }
+  .tri-overlay__diagram[data-active="closing"] .arc--studio { stroke: #0d9488; }
+  .tri-overlay__diagram[data-active="closing"] .arc--sustain { stroke: #16a34a; }
+  .tri-overlay__diagram[data-active="closing"] .arc--seg { opacity: 1; }
+  .tri-overlay__diagram[data-active="closing"] .tri-label { opacity: 0; }
+  .tri-overlay__diagram[data-active="closing"] { transform: scale(1.08); }
 
-  .tri-overlay__diagram[data-active="foundry"] .fw--foundry {
-    transform: translate(-10px, 6px);
-    filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.3));
+  /* ---- Centre word ---- */
+  .fw-center {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
   }
-  .tri-overlay__diagram[data-active="foundry"] .fw--foundry path { fill: #2563eb; }
-
-  .tri-overlay__diagram[data-active="studio"] .fw--studio {
-    transform: translate(10px, 6px);
-    filter: drop-shadow(0 0 8px rgba(13, 148, 136, 0.3));
-  }
-  .tri-overlay__diagram[data-active="studio"] .fw--studio path { fill: #0d9488; }
-
-  .tri-overlay__diagram:not([data-active]) .tri-label,
-  .tri-overlay__diagram[data-active=""] .tri-label {
-    opacity: 0.7;
-  }
-
-  .tri-overlay__diagram[data-active="closing"] {
-    transform: scale(1.5);
-  }
-  .tri-overlay__diagram[data-active="closing"] .tri-label {
-    opacity: 0;
-  }
-
-  .fw-center-text {
+  .fw-verb {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 150px;
     text-align: center;
-    width: 160px;
-    opacity: 0;
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
-  }
-  .tri-overlay__diagram[data-active="closing"] .fw-center-text {
-    opacity: 1;
-  }
-  .fw-center-text .section-desc {
-    font-size: 0.7rem;
-    line-height: 1.4;
+    font-size: 0.95rem;
     font-weight: 700;
-    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .fw-verb--overview {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text-secondary);
+  }
+  .fw-verb--lab { color: #7c3aed; }
+  .fw-verb--foundry { color: #2563eb; }
+  .fw-verb--studio { color: #0d9488; }
+  .fw-verb--sustain { color: #16a34a; }
+
+  .tri-overlay__diagram[data-active="lab"] .fw-verb--lab,
+  .tri-overlay__diagram[data-active="foundry"] .fw-verb--foundry,
+  .tri-overlay__diagram[data-active="studio"] .fw-verb--studio,
+  .tri-overlay__diagram[data-active="sustain"] .fw-verb--sustain {
+    opacity: 1;
   }
 
   /* ---- CONTACT ---- */
@@ -647,11 +690,11 @@ import CTA from '../components/CTA.astro';
 
   /* ---- RESPONSIVE ---- */
   @media (max-width: 768px) {
-    .slide { padding: 1.25rem 20%; }
+    .slide { padding: 1.25rem 1.5rem; }
     .section-title { font-size: clamp(1.25rem, 5vw, 1.75rem); }
     .section-desc { font-size: 0.875rem; }
     .tri-overlay__diagram { width: 200px; }
-    .tri-overlay { gap: 1rem; padding: 0 20%; }
+    .tri-overlay { gap: 1.5rem; padding: 0 1.5rem; }
     .tri-label { font-size: 0.6875rem; }
     .tri-overlay__text.pos-left { transform: translateX(-100px); }
     .tri-overlay__text.pos-right { transform: translateX(100px); }
@@ -659,7 +702,32 @@ import CTA from '../components/CTA.astro';
 
   @media (max-width: 480px) {
     .tri-overlay__diagram { width: 160px; }
+    .tri-overlay { gap: 1.25rem; }
+    .section-desc { font-size: 0.8125rem; line-height: 1.55; }
     .tri-overlay__text.pos-left { transform: translateX(-70px); }
     .tri-overlay__text.pos-right { transform: translateX(70px); }
+  }
+
+  /* Very short/narrow phones: tighten so the text never reaches the ring */
+  @media (max-width: 380px), (max-height: 640px) {
+    .tri-overlay { gap: 1rem; }
+    .tri-overlay__diagram { width: 148px; }
+    .tri-overlay__above, .tri-overlay__below { min-height: 6rem; }
+    .section-desc { font-size: 0.8rem; line-height: 1.5; }
+  }
+
+  /* Respect reduced-motion: slides/overlays change instantly, no flying-in */
+  @media (prefers-reduced-motion: reduce) {
+    .slides,
+    .slide-content,
+    .tri-overlay,
+    .tri-overlay__text,
+    .tri-overlay__text .ov-desc,
+    .tri-overlay__diagram,
+    .arc,
+    .tri-label,
+    .fw-verb {
+      transition: none !important;
+    }
   }
 </style>
