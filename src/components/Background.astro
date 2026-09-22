@@ -1,17 +1,12 @@
-<div class="bg-layer" id="bgLayer" aria-hidden="true">
-  <div class="mesh-wrap" id="bgA">
+<div class="bg-layer" aria-hidden="true">
+  <div class="mesh-wrap">
     <div class="blob blob--1"></div>
     <div class="blob blob--2"></div>
     <div class="blob blob--3"></div>
     <div class="blob blob--4"></div>
     <div class="blob blob--5"></div>
   </div>
-  <canvas id="bgCanvas" style="opacity: 0;"></canvas>
 </div>
-
-<button class="bg-toggle" id="bgToggle" type="button" aria-label="Change background style" title="Change background">
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6"/><path d="M2.5 22v-6h6"/><path d="M2.5 16A10 10 0 0 1 21.5 8"/><path d="M21.5 8A10 10 0 0 1 2.5 16"/></svg>
-</button>
 
 <style>
   .bg-layer {
@@ -26,7 +21,6 @@
     inset: -20%;
     overflow: hidden;
     filter: blur(70px);
-    transition: opacity 0.6s ease;
   }
 
   .blob { position: absolute; border-radius: 50%; }
@@ -57,14 +51,6 @@
     bottom: 6%; right: 18%;
   }
 
-  #bgCanvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    transition: opacity 0.6s ease;
-  }
-
   /* Faint dot grid — a touch of texture */
   .bg-layer::before {
     content: '';
@@ -76,7 +62,6 @@
     pointer-events: none;
   }
 
-  /* Shine: slow drift on the gradient blobs — only when motion is allowed */
   /* Five blobs, all different speeds/paths/phases → organic random drift that
      never obviously repeats. Negative delays desync them from the first frame. */
   @media (prefers-reduced-motion: no-preference) {
@@ -117,32 +102,6 @@
     66% { transform: translate(70px, -35px) scale(0.9); }
   }
 
-  .bg-toggle {
-    position: fixed;
-    bottom: 1.25rem;
-    right: 1.5rem;
-    z-index: 200;
-    width: 28px;
-    height: 28px;
-    border-radius: 6px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-secondary);
-    transition: opacity 0.2s;
-    opacity: 0.4;
-    padding: 0;
-  }
-
-  .bg-toggle:hover { opacity: 0.75; }
-
-  @media (max-width: 768px) {
-    .bg-toggle { right: 1rem; bottom: 1rem; }
-  }
-
   @media (max-width: 480px) {
     .blob--1 { width: 320px; height: 320px; }
     .blob--2 { width: 300px; height: 300px; }
@@ -152,200 +111,3 @@
     .mesh-wrap { filter: blur(55px); }
   }
 </style>
-
-<script is:inline>
-  // ---- Background: 3 modes (0 gradient / 1 poly / 2 flag), toggled + remembered.
-  //      Guardrails so it never taxes performance or SEO:
-  //      - 30fps cap (ambient motion doesn't need 60)
-  //      - device-pixel-ratio capped at 1.5 (no giant retina canvas)
-  //      - pauses entirely when the tab is hidden
-  //      - honours prefers-reduced-motion (canvas stays off unless the user
-  //        explicitly toggles it) and inits after load so LCP is untouched
-  var currentMode = 0;
-  var animFrameId = null;
-  var bgTime = 0;
-  var lastFrame = 0;
-  var FRAME_MS = 1000 / 30;
-
-  var meshWrap = document.getElementById('bgA');
-  var bgCanvas = document.getElementById('bgCanvas');
-  var bgCtx = bgCanvas.getContext('2d');
-  var bgToggle = document.getElementById('bgToggle');
-
-  var bgPoints, bgTriangles, bgCols, bgRows;
-
-  function resizeCanvas() {
-    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-    bgCanvas.width = window.innerWidth * dpr;
-    bgCanvas.height = window.innerHeight * dpr;
-    bgCanvas.style.width = window.innerWidth + 'px';
-    bgCanvas.style.height = window.innerHeight + 'px';
-    bgCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    initBgPoints();
-  }
-
-  function initBgPoints() {
-    bgPoints = [];
-    var sw = window.innerWidth;
-    var sh = window.innerHeight;
-    bgCols = Math.ceil(sw / 90) + 3;
-    bgRows = Math.ceil(sh / 78) + 3;
-    var spacingX = sw / (bgCols - 3);
-    var spacingY = sh / (bgRows - 3);
-
-    for (var row = 0; row < bgRows; row++) {
-      for (var col = 0; col < bgCols; col++) {
-        var offsetX = row % 2 === 1 ? spacingX * 0.5 : 0;
-        var jitterX = (Math.random() - 0.5) * spacingX * 0.35;
-        var jitterY = (Math.random() - 0.5) * spacingY * 0.35;
-        var ox = col * spacingX - spacingX + offsetX + jitterX;
-        var oy = row * spacingY - spacingY + jitterY;
-        bgPoints.push({ x: ox, y: oy, z: 0, ox: ox, oy: oy, phase: Math.random() * Math.PI * 2, speed: 0.3 + Math.random() * 0.4 });
-      }
-    }
-
-    bgTriangles = [];
-    for (var row = 0; row < bgRows - 1; row++) {
-      for (var col = 0; col < bgCols - 1; col++) {
-        var i = row * bgCols + col;
-        if (row % 2 === 0) {
-          bgTriangles.push([i, i+1, i+bgCols]);
-          bgTriangles.push([i+1, i+bgCols+1, i+bgCols]);
-        } else {
-          bgTriangles.push([i, i+1, i+bgCols+1]);
-          bgTriangles.push([i, i+bgCols+1, i+bgCols]);
-        }
-      }
-    }
-  }
-
-  function heightPoly(x, y, t) {
-    return Math.sin(x*0.006+t)*40 + Math.sin(y*0.008+t*0.7)*35 + Math.sin((x+y)*0.005+t*1.3)*25 + Math.sin(x*0.012-y*0.006+t*0.9)*20 + Math.cos(x*0.004+y*0.01+t*0.5)*30;
-  }
-
-  function heightFlag(x, y, t) {
-    var amp = 0.4 + (x / window.innerWidth) * 0.6;
-    return Math.sin(x*0.008-t*1.8)*40*amp + Math.sin(x*0.014+y*0.003-t*2.4)*24*amp + Math.cos(x*0.005+y*0.006+t*0.6)*20*amp;
-  }
-
-  function stepPoly() {
-    bgTime += 0.012;
-    var sw = window.innerWidth;
-    bgCtx.clearRect(0, 0, sw, window.innerHeight);
-    var a = bgTime * 0.8;
-    var lx = Math.cos(a)*0.5, ly = Math.sin(a)*0.3, lz = 0.8;
-    var ll = Math.sqrt(lx*lx+ly*ly+lz*lz);
-    var ld = { x: lx/ll, y: ly/ll, z: lz/ll };
-    for (var i = 0; i < bgPoints.length; i++) {
-      var p = bgPoints[i];
-      p.x = p.ox + Math.sin(bgTime*p.speed*1.5+p.phase)*18 + Math.cos(bgTime*p.speed+p.phase*1.3)*12;
-      p.y = p.oy + Math.cos(bgTime*p.speed*1.2+p.phase)*15 + Math.sin(bgTime*p.speed*0.8+p.phase*0.9)*10;
-      p.z = heightPoly(p.x, p.y, bgTime);
-    }
-    renderBgTris(sw, ld, 225, 20, 45, 30, 65, 25, 'rgba(40,40,100,0.06)');
-  }
-
-  function stepFlag() {
-    bgTime += 0.011;
-    var sw = window.innerWidth;
-    bgCtx.clearRect(0, 0, sw, window.innerHeight);
-    var ld = { x: -0.4, y: -0.3, z: 0.86 };
-    for (var i = 0; i < bgPoints.length; i++) {
-      var p = bgPoints[i];
-      var amp = 0.4 + (p.ox/sw)*0.6;
-      p.x = p.ox + Math.sin(bgTime*1.6 - p.ox*0.006)*12*amp;
-      p.y = p.oy + Math.sin(bgTime*1.0 + p.phase)*5*amp;
-      p.z = heightFlag(p.x, p.y, bgTime);
-    }
-    renderBgTris(sw, ld, 225, 20, 45, 30, 65, 25, 'rgba(40,40,100,0.06)');
-  }
-
-  function renderBgTris(sw, ld, bh, hr, bs, sr, bl, lr, sc) {
-    for (var _t = 0; _t < bgTriangles.length; _t++) {
-      var tri = bgTriangles[_t];
-      var pa=bgPoints[tri[0]],pb=bgPoints[tri[1]],pc=bgPoints[tri[2]];
-      if(!pa||!pb||!pc) continue;
-      var ux=pb.x-pa.x,uy=pb.y-pa.y,uz=pb.z-pa.z;
-      var vx=pc.x-pa.x,vy=pc.y-pa.y,vz=pc.z-pa.z;
-      var nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx;
-      if(nz<0){nx=-nx;ny=-ny;nz=-nz;}
-      var nl=Math.sqrt(nx*nx+ny*ny+nz*nz)||1;
-      nx/=nl;ny/=nl;nz/=nl;
-      var d=Math.max(0,Math.min(1,nx*ld.x+ny*ld.y+nz*ld.z));
-      var br2=0.15+d*0.85;
-      var cx2=(pa.x+pb.x+pc.x)/3;
-      bgCtx.fillStyle='hsl('+(bh+(cx2/sw)*hr)+','+(bs+br2*sr)+'%,'+(bl+br2*lr)+'%)';
-      bgCtx.beginPath();bgCtx.moveTo(pa.x,pa.y);bgCtx.lineTo(pb.x,pb.y);bgCtx.lineTo(pc.x,pc.y);bgCtx.closePath();bgCtx.fill();
-      bgCtx.strokeStyle=sc;bgCtx.lineWidth=0.5;bgCtx.stroke();
-    }
-  }
-
-  function loop(ts) {
-    if (currentMode === 0) { animFrameId = null; return; }
-    animFrameId = requestAnimationFrame(loop);
-    if (ts - lastFrame < FRAME_MS) return;   // 30fps cap
-    lastFrame = ts;
-    if (currentMode === 1) stepPoly();
-    else stepFlag();
-  }
-
-  function startLoop() {
-    stopLoop();
-    lastFrame = 0;
-    animFrameId = requestAnimationFrame(loop);
-  }
-
-  function stopLoop() {
-    if (animFrameId) { cancelAnimationFrame(animFrameId); animFrameId = null; }
-  }
-
-  function setMode(mode) {
-    stopLoop();
-    bgTime = 0;
-    if (mode === 0) {
-      meshWrap.style.opacity = '1';
-      bgCanvas.style.opacity = '0';
-    } else {
-      meshWrap.style.opacity = '0';
-      bgCanvas.style.opacity = '1';
-      resizeCanvas();
-      startLoop();
-    }
-  }
-
-  bgToggle.addEventListener('click', function() {
-    currentMode = (currentMode + 1) % 3;
-    try { localStorage.setItem('f45-bg', String(currentMode)); } catch (e) {}
-    setMode(currentMode);
-  });
-
-  window.addEventListener('resize', function() {
-    if (currentMode > 0) resizeCanvas();
-  });
-
-  // Pause completely when the tab isn't visible
-  document.addEventListener('visibilitychange', function() {
-    if (document.hidden) stopLoop();
-    else if (currentMode > 0) startLoop();
-  });
-
-  // Boot after load so nothing delays first paint / LCP. Default is the gradient
-  // "lava lamp" everywhere, desktop and mobile — it's CSS-only and cheap. A saved
-  // toggle choice always wins; reduced-motion users get the gradient static (the
-  // CSS handles that), and the poly/flag canvas stays a toggle-in option.
-  function boot() {
-    var saved = null;
-    try { saved = localStorage.getItem('f45-bg'); } catch (e) {}
-    var mode;
-    if (saved !== null && !isNaN(parseInt(saved, 10)) && +saved >= 0 && +saved <= 2) {
-      mode = parseInt(saved, 10);                       // explicit user choice wins
-    } else {
-      mode = 0;                                         // gradient lava lamp — default on all screens
-    }
-    currentMode = mode;
-    setMode(currentMode);
-  }
-
-  if (document.readyState === 'complete') boot();
-  else window.addEventListener('load', boot);
-</script>

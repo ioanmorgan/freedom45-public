@@ -44,13 +44,20 @@ const isHomepage = Astro.url.pathname === base || Astro.url.pathname === (noSlas
     left: 0;
     right: 0;
     top: 0;
-    height: 140px;
+    height: 98px;
     background: linear-gradient(to bottom,
       var(--bg) 0%,
       rgba(240, 242, 245, 0.82) 40%,
       rgba(240, 242, 245, 0) 100%);
     z-index: -1;
     pointer-events: none;
+    transform: scaleY(var(--nav-scrim, 0));
+    transform-origin: top;
+    transition: transform 0.18s ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-header::before { transition: none; }
   }
 
   .wordmark {
@@ -89,3 +96,27 @@ const isHomepage = Astro.url.pathname === base || Astro.url.pathname === (noSlas
     .top-nav a { font-size: 0.75rem; }
   }
 </style>
+
+<script is:inline>
+  // Fade the nav background in gently, in step with scroll position, so it
+  // develops with the page instead of snapping in at a threshold. Native-scroll
+  // pages (e.g. /services) drive it; the homepage is a slide deck whose window
+  // never scrolls, so the scrim just stays at 0 there.
+  (function () {
+    var header = document.querySelector('.site-header');
+    if (!header) return;
+    // px of scroll over which the scrim grows to full height — longer on mobile,
+    // where a quick flick otherwise expands it almost instantly
+    var DISTANCE = window.matchMedia('(max-width: 768px)').matches ? 300 : 200;
+    var ticking = false;
+    function apply() {
+      ticking = false;
+      var o = Math.min(window.scrollY / DISTANCE, 1);
+      header.style.setProperty('--nav-scrim', o.toFixed(3));
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(apply); }
+    }, { passive: true });
+    apply();
+  })();
+</script>

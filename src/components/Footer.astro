@@ -1,11 +1,21 @@
-<footer class="site-footer">&copy; 2026 Freedom45</footer>
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <p>&copy; {year} Freedom45 Labs Ltd</p>
+  <p class="legal">Registered in England &amp; Wales &middot; Company no.&nbsp;17127746</p>
+</footer>
 
 <style>
   .site-footer {
     text-align: center;
     padding: 2rem 1.5rem;
     font-size: 0.6875rem;
+    line-height: 1.7;
     color: var(--text-secondary);
-    opacity: 0.4;
+    opacity: 0.55;
   }
+  .site-footer p { margin: 0; }
+  .site-footer .legal { opacity: 0.85; max-width: 560px; margin: 0.15rem auto 0; }
 </style>
