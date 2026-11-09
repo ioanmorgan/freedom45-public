@@ -1,0 +1,290 @@
+---
+// The public-sector page, in English or Welsh. Both languages share this one
+// template so they can't drift apart. Every claim here traces to the bid library
+// (vault Freedom45/bid-library): change the copy there first, then here.
+import { CONTACT_EMAIL, COMPANY_NUMBER } from '../config';
+
+interface Props {
+  lang: 'en' | 'cy';
+}
+
+const { lang } = Astro.props;
+const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const PPON = 'PDXX-1452-MBVY';
+
+const copy = {
+  en: {
+    eyebrow: 'Public sector',
+    h1: 'Software for public bodies in Wales',
+    lead: 'Freedom45 Labs is a software studio in Swansea. We design, build, host and support websites, web and mobile apps, and data dashboards, in Welsh and English.',
+    switchText: 'Darllenwch y dudalen hon yn Gymraeg',
+    switchLang: 'cy',
+    switchHref: `${noSlash}/cy/sector-cyhoeddus`,
+    workTitle: 'The kind of work we suit',
+    work: [
+      'Bilingual websites and online forms',
+      'Small apps for staff or the public',
+      'Dashboards from data you already hold',
+      'Support for digital services you already run',
+    ],
+    howTitle: 'How we work',
+    how: [
+      {
+        h: 'Bilingual by design',
+        p: 'Our core team speak Welsh, so Welsh and English are built in from the start, not translated at the end.',
+      },
+      {
+        h: 'Accessible as standard',
+        p: 'We build to WCAG 2.2 level AA, the standard UK public sector websites are measured against.',
+        link: { text: 'Our own accessibility statement', href: `${noSlash}/accessibility` },
+      },
+      {
+        h: 'Hosted in the UK',
+        p: 'Hosting is UK-only: we use the London region of Amazon Web Services.',
+      },
+      {
+        h: 'A small team that scales',
+        p: 'A local core team who do the work themselves, with trusted contractors to scale to your needs and deadlines. You deal with one accountable lead throughout.',
+      },
+    ],
+    bgTitle: 'The experience behind us',
+    bgIntro: 'Freedom45 Labs was founded in 2026. The experience behind it goes back much further.',
+    bg: [
+      'Our founder was Head of Engineering at Elucidat, a VC-backed SaaS platform used by large organisations worldwide, having joined as its first full-time developer. Elucidat raised three funding rounds and was acquired in 2025.',
+      'Our founder is also co-founder of CogniBuild, an AI workspace for the construction industry that is being trialled by construction companies.',
+      'Earlier, as one of two contract developers, our founder built an intranet app used by major UK high-street brands.',
+    ],
+    buyTitle: 'How to buy from us',
+    buy: [
+      ['Portals', 'Registered on Sell2Wales and eTenderWales'],
+      ['PPON', PPON],
+      ['Size', 'SME'],
+      ['Company number', COMPANY_NUMBER],
+    ],
+    contactId: 'contact',
+    contactTitle: 'Get in touch',
+    contactText: 'For quotes and smaller pieces of work, email us. We are happy to write in Welsh or English.',
+  },
+  cy: {
+    eyebrow: 'Sector cyhoeddus',
+    h1: 'Meddalwedd i gyrff cyhoeddus yng Nghymru',
+    lead: 'Stiwdio feddalwedd yn Abertawe yw Freedom45 Labs. Rydym yn dylunio, adeiladu, lletya a chefnogi gwefannau, apiau gwe a symudol, a dangosfyrddau data, yn Gymraeg ac yn Saesneg.',
+    switchText: 'Read this page in English',
+    switchLang: 'en',
+    switchHref: `${noSlash}/public-sector`,
+    workTitle: "Y math o waith sy'n addas i ni",
+    work: [
+      'Gwefannau a ffurflenni ar-lein dwyieithog',
+      "Apiau bach i staff neu i'r cyhoedd",
+      'Dangosfyrddau o ddata sydd gennych eisoes',
+      "Cefnogaeth i wasanaethau digidol rydych chi'n eu rhedeg yn barod",
+    ],
+    howTitle: 'Sut rydym yn gweithio',
+    how: [
+      {
+        h: "Dwyieithog o'r dechrau",
+        p: "Mae ein tîm craidd yn siarad Cymraeg, felly mae'r Gymraeg a'r Saesneg yn rhan o'r gwaith o'r dechrau, nid yn cael eu cyfieithu ar y diwedd.",
+      },
+      {
+        h: 'Hygyrch fel safon',
+        p: "Rydym yn adeiladu i safon AA Canllawiau Hygyrchedd Cynnwys y We (WCAG) fersiwn 2.2, sef y safon y caiff gwefannau'r sector cyhoeddus yn y DU eu mesur yn ei herbyn.",
+        link: { text: 'Ein datganiad hygyrchedd ni', href: `${noSlash}/cy/hygyrchedd` },
+      },
+      {
+        h: 'Lletya yn y DU',
+        p: 'Rydym yn lletya yn y DU yn unig, yn rhanbarth Llundain Amazon Web Services.',
+      },
+      {
+        h: "Tîm bach sy'n gallu tyfu",
+        p: "Tîm craidd lleol sy'n gwneud y gwaith eu hunain, gyda chontractwyr dibynadwy i ateb eich anghenion a'ch terfynau amser. Byddwch yn delio ag un arweinydd atebol drwy gydol y gwaith.",
+      },
+    ],
+    bgTitle: "Y profiad y tu ôl i ni",
+    bgIntro: "Sefydlwyd Freedom45 Labs yn 2026, ond mae'r profiad y tu ôl iddo yn mynd yn ôl ymhellach o lawer.",
+    bg: [
+      "Bu ein sylfaenydd yn Bennaeth Peirianneg yn Elucidat, platfform SaaS a gefnogwyd gan gyfalaf menter ac a ddefnyddir gan sefydliadau mawr ledled y byd, ar ôl ymuno fel ei ddatblygwr llawn amser cyntaf. Cododd Elucidat dair rownd o fuddsoddiad, a chafodd ei brynu yn 2025.",
+      "Mae ein sylfaenydd hefyd yn gyd-sylfaenydd CogniBuild, gweithle AI ar gyfer y diwydiant adeiladu sy'n cael ei dreialu gan gwmnïau adeiladu.",
+      "Cyn hynny, fel un o ddau ddatblygwr ar gontract, adeiladodd ein sylfaenydd ap mewnrwyd a ddefnyddiwyd gan rai o frandiau mawr y stryd fawr yn y DU.",
+    ],
+    buyTitle: 'Sut i brynu gennym ni',
+    buy: [
+      ['Pyrth', 'Wedi cofrestru ar GwerthwchiGymru (Sell2Wales) ac eTenderWales'],
+      ['PPON', PPON],
+      ['Maint', 'Busnes bach a chanolig (BBaCh)'],
+      ['Rhif cwmni', COMPANY_NUMBER],
+    ],
+    contactId: 'cysylltu',
+    contactTitle: 'Cysylltwch â ni',
+    contactText: "Am ddyfynbris neu waith llai, anfonwch e-bost atom. Rydym yn hapus i ysgrifennu yn Gymraeg neu'n Saesneg.",
+  },
+}[lang];
+---
+
+<main class="page">
+  <p class="eyebrow">{copy.eyebrow}</p>
+  <h1>{copy.h1}</h1>
+  <p class="lead">{copy.lead}</p>
+  <p class="switch"><a href={copy.switchHref} lang={copy.switchLang} hreflang={copy.switchLang}>{copy.switchText}</a></p>
+
+  <section class="block" aria-labelledby="work-title">
+    <h2 id="work-title">{copy.workTitle}</h2>
+    <ul class="work">
+      {copy.work.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="how-title">
+    <h2 id="how-title">{copy.howTitle}</h2>
+    <div class="cards">
+      {copy.how.map((c) => (
+        <div class="card">
+          <h3>{c.h}</h3>
+          <p>{c.p}</p>
+          {c.link && <p class="card-link"><a href={c.link.href}>{c.link.text}</a></p>}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="bg-title">
+    <h2 id="bg-title">{copy.bgTitle}</h2>
+    <p>{copy.bgIntro}</p>
+    <ul class="bg">
+      {copy.bg.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="buy-title">
+    <h2 id="buy-title">{copy.buyTitle}</h2>
+    <dl class="facts">
+      {copy.buy.map(([k, v]) => (
+        <div>
+          <dt>{k}</dt>
+          <dd>{v}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <section class="block contact" id={copy.contactId} aria-labelledby="contact-title">
+    <h2 id="contact-title">{copy.contactTitle}</h2>
+    <p>{copy.contactText}</p>
+    <p><a class="email" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
+  </section>
+</main>
+
+<style>
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8rem 1.5rem 3rem;
+  }
+
+  .eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #1e40af;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .lead {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .switch {
+    margin-top: 1rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  a { color: #1e40af; }
+
+  .block { margin-top: 3rem; }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .block > p,
+  li {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  ul { padding-left: 1.25rem; }
+  .bg { margin-top: 0.75rem; }
+  .bg li + li { margin-top: 0.5rem; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .card p {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .card-link { margin-top: 0.5rem; font-weight: 600; }
+
+  .facts {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+  }
+
+  .facts div {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1rem;
+    font-size: 0.9375rem;
+  }
+
+  .facts dt { font-weight: 700; }
+  .facts dd { color: var(--text-secondary); }
+
+  .email {
+    display: inline-block;
+    margin-top: 0.25rem;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    .facts div { grid-template-columns: 1fr; gap: 0; }
+  }
+</style>

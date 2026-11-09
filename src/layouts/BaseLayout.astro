@@ -5,9 +5,10 @@ interface Props {
   title: string;
   description?: string;
   googleFonts?: boolean;
+  lang?: string;
 }
 
-const { title, description = '', googleFonts = true } = Astro.props;
+const { title, description = '', googleFonts = true, lang = 'en' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const canonical = pageUrl(Astro.url.pathname, Astro.site!);
 // Sandbox previews (PREVIEW_BASE) must never be indexed as copies of the real site.
@@ -15,7 +16,7 @@ const isPreview = base !== '/';
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

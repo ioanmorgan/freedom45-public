@@ -3,6 +3,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import CTA from '../components/CTA.astro';
 
 const year = new Date().getFullYear();
+const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <SiteLayout
@@ -24,13 +25,13 @@ const year = new Date().getFullYear();
   </div>
 
   <!-- Fixed triangle overlay -->
-  <div class="tri-overlay" id="triOverlay">
+  <section class="tri-overlay" id="triOverlay" aria-label="Our method">
 
     <!-- ABOVE triangle -->
     <div class="tri-overlay__above">
       <div class="tri-overlay__text" id="text-overview">
         <p class="section-label">Our method</p>
-        <h2 class="section-title"><span style="color: #7c3aed">Explore.</span> <span style="color: #2563eb">Build.</span> <span style="color: #0d9488">Grow.</span> <span style="color: #16a34a">Sustain.</span></h2>
+        <h2 class="section-title"><span style="color: #7c3aed">Explore.</span> <span style="color: #2563eb">Build.</span> <span style="color: #0f766e">Grow.</span> <span style="color: #15803d">Sustain.</span></h2>
         <div class="ov-desc">
           <p class="section-desc">A four-stage partnership — from first prototype to long-term care.</p>
         </div>
@@ -70,34 +71,35 @@ const year = new Date().getFullYear();
         </div>
       </div>
       <div class="tri-overlay__text" id="text-studio">
-        <h2 class="section-title" style="color: #0d9488">Grow</h2>
+        <h2 class="section-title" style="color: #0f766e">Grow</h2>
         <div class="ov-desc">
           <p class="section-desc">Growth needs more than code. We scale your product, sharpen performance, and build the features that take you to the next stage.</p>
         </div>
       </div>
       <div class="tri-overlay__text" id="text-sustain">
-        <h2 class="section-title" style="color: #16a34a">Sustain</h2>
+        <h2 class="section-title" style="color: #15803d">Sustain</h2>
         <div class="ov-desc">
           <p class="section-desc">Launched isn't finished. We support your users, maintain the product, and keep it running long after go-live — and we'll happily look after something we didn't build.</p>
         </div>
       </div>
       <div class="tri-overlay__text" id="text-closing">
         <div class="ov-desc">
-          <p class="section-desc"><span style="color: #7c3aed; font-weight: 700;">Explore</span> the opportunity.<br><span style="color: #2563eb; font-weight: 700;">Build</span> the product.<br><span style="color: #0d9488; font-weight: 700;">Grow</span> the business.<br><span style="color: #16a34a; font-weight: 700;">Sustain</span> it for the long haul.<br><strong>Together, from day one.</strong></p>
+          <p class="section-desc"><span style="color: #6d28d9; font-weight: 700;">Explore</span> the opportunity.<br><span style="color: #1e40af; font-weight: 700;">Build</span> the product.<br><span style="color: #115e59; font-weight: 700;">Grow</span> the business.<br><span style="color: #166534; font-weight: 700;">Sustain</span> it for the long haul.<br><strong>Together, from day one.</strong></p>
         </div>
       </div>
     </div>
 
-  </div>
+  </section>
 
   <!-- Scrollable slides -->
-  <div class="slides-viewport">
+  <main class="slides-viewport">
   <div class="slides" id="slides">
     <div class="slide slide--hero" data-index="0">
       <div class="slide-content visible">
         <h1>Freedom<span>45</span></h1>
         <p class="tagline">We're the senior technical team your startup doesn't have yet.</p>
         <p class="subtag">A small, senior studio. You work directly with the people building your product, start to finish.</p>
+        <p class="public-line">We also work with public bodies in Wales, in Welsh and English. <a href={`${noSlash}/public-sector`}>Public sector work</a></p>
       </div>
     </div>
     <div class="slide slide--proof" data-index="1">
@@ -117,12 +119,12 @@ const year = new Date().getFullYear();
         <CTA />
       </div>
       <div class="slide-footer">
-        <p>&copy; {year} Freedom45 Labs Ltd</p>
+        <p>&copy; {year} Freedom45 Labs Ltd &middot; <a href={`${noSlash}/accessibility`}>Accessibility</a></p>
         <p class="legal">Registered in England &amp; Wales &middot; Company no.&nbsp;17127746</p>
       </div>
     </div>
   </div>
-  </div>
+  </main>
 
   <script is:inline>
     // ---- Elements ----
@@ -304,6 +306,21 @@ const year = new Date().getFullYear();
       }
     });
 
+    // ---- Keyboard focus: Tab into a slide that isn't showing brings it into view ----
+    var viewportEl = document.querySelector('.slides-viewport');
+    document.addEventListener('focusin', function(e) {
+      // The browser scrolls the clipped viewport to reveal the focused element;
+      // undo that, since the slides move by transform instead.
+      viewportEl.scrollTop = 0;
+      var slide = e.target.closest && e.target.closest('.slide');
+      if (!slide) return;
+      var idx = parseInt(slide.dataset.index);
+      if (idx !== currentSlideIdx) {
+        isAnimating = false;
+        goToSlide(idx);
+      }
+    });
+
     // ---- Dot navigation ----
     allDots.forEach(function(dot) {
       dot.addEventListener('click', function() {
@@ -418,6 +435,20 @@ const year = new Date().getFullYear();
     margin: 0 auto;
   }
 
+  .slide--hero .public-line {
+    font-size: clamp(0.875rem, 1.6vw, 1rem);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 540px;
+    margin: 1.25rem auto 0;
+  }
+
+  .slide--hero .public-line a {
+    color: #1e40af;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
   .slide--hero .subtag {
     font-size: clamp(0.9375rem, 1.8vw, 1.0625rem);
     color: var(--text-secondary);
@@ -425,7 +456,6 @@ const year = new Date().getFullYear();
     line-height: 1.6;
     max-width: 540px;
     margin: 0.25rem auto 0;
-    opacity: 0.85;
   }
 
   /* ---- SHARED TEXT STYLES ---- */
@@ -664,10 +694,10 @@ const year = new Date().getFullYear();
     letter-spacing: 0.02em;
     color: var(--text-secondary);
   }
-  .fw-verb--lab { color: #7c3aed; }
-  .fw-verb--foundry { color: #2563eb; }
-  .fw-verb--studio { color: #0d9488; }
-  .fw-verb--sustain { color: #16a34a; }
+  .fw-verb--lab { color: #6d28d9; }
+  .fw-verb--foundry { color: #1e40af; }
+  .fw-verb--studio { color: #115e59; }
+  .fw-verb--sustain { color: #166534; }
   .fw-verb--closing { color: var(--text-primary); }
 
   .tri-overlay__diagram[data-active="lab"] .fw-verb--lab,
@@ -704,13 +734,12 @@ const year = new Date().getFullYear();
     max-width: 560px;
     padding: 0 1.5rem;
     text-align: center;
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     line-height: 1.7;
     color: var(--text-secondary);
-    opacity: 0.55;
   }
   .slide-footer p { margin: 0; }
-  .slide-footer .legal { opacity: 0.85; }
+  .slide-footer a { color: inherit; }
 
   .dots {
     display: none;

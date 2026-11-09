@@ -1,9 +1,10 @@
 ---
 interface Props {
   activePage?: string;
+  lang?: 'en' | 'cy';
 }
 
-const { activePage = '' } = Astro.props;
+const { activePage = '', lang = 'en' } = Astro.props;
 // Base-aware links so the site works at '/' (production) and under a
 // sandbox subpath like '/freedom45-social-proof/' without breaking nav.
 const base = import.meta.env.BASE_URL;          // '/', or '/demo/'
@@ -13,14 +14,22 @@ const isHomepage = Astro.url.pathname === base || Astro.url.pathname === (noSlas
 
 <header class="site-header">
   <a href={base} class="wordmark">Freedom<span>45</span></a>
-  <nav class="top-nav">
-    <a href={`${noSlash}/services`} class:list={[{ active: activePage === 'services' }]}>Services</a>
+  {lang === 'cy' ? (
+  <nav class="top-nav" aria-label="Prif">
+    <a href={`${noSlash}/cy/sector-cyhoeddus`} class:list={[{ active: activePage === 'public-sector' }]} aria-current={activePage === 'public-sector' ? 'page' : undefined}>Sector cyhoeddus</a>
+    <a href={`${noSlash}/cy/sector-cyhoeddus#cysylltu`}>Cysylltu</a>
+  </nav>
+  ) : (
+  <nav class="top-nav" aria-label="Main">
+    <a href={`${noSlash}/services`} class:list={[{ active: activePage === 'services' }]} aria-current={activePage === 'services' ? 'page' : undefined}>Services</a>
+    <a href={`${noSlash}/public-sector`} class:list={[{ active: activePage === 'public-sector' }]} aria-current={activePage === 'public-sector' ? 'page' : undefined}>Public sector</a>
     {isHomepage ? (
       <a href="#contact" onclick="window.goToSlide(8);return false">Contact</a>
     ) : (
       <a href={`${noSlash}/#contact`}>Contact</a>
     )}
   </nav>
+  )}
 </header>
 
 <style>
@@ -82,7 +91,7 @@ const isHomepage = Astro.url.pathname === base || Astro.url.pathname === (noSlas
     color: var(--text-secondary);
     text-decoration: none;
     letter-spacing: 0.02em;
-    opacity: 0.6;
+    opacity: 0.85;
     transition: opacity 0.2s;
   }
 

@@ -10,9 +10,12 @@ interface Props {
   description?: string;
   activePage?: string;
   noFooter?: boolean;
+  lang?: 'en' | 'cy';
+  // The same page in the other language, e.g. { lang: 'cy', path: '/cy/sector-cyhoeddus' }
+  alternate?: { lang: 'en' | 'cy'; path: string };
 }
 
-const { title, description, activePage, noFooter = false } = Astro.props;
+const { title, description, activePage, noFooter = false, lang = 'en', alternate } = Astro.props;
 
 const site = Astro.site!.href.replace(/\/$/, '');
 const url = pageUrl(Astro.url.pathname, Astro.site!);
@@ -49,7 +52,7 @@ const schema = {
 };
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} lang={lang}>
   <Fragment slot="head">
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE_NAME} />
@@ -60,7 +63,13 @@ const schema = {
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Freedom45 - software development studio for startups" />
-    <meta property="og:locale" content="en_GB" />
+    <meta property="og:locale" content={lang === 'cy' ? 'cy_GB' : 'en_GB'} />
+    {alternate && (
+      <>
+        <link rel="alternate" hreflang={lang} href={url} />
+        <link rel="alternate" hreflang={alternate.lang} href={pageUrl(alternate.path, Astro.site!)} />
+      </>
+    )}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     {description && <meta name="twitter:description" content={description} />}
@@ -68,10 +77,10 @@ const schema = {
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   </Fragment>
   <Background />
-  <Nav activePage={activePage} />
+  <Nav activePage={activePage} lang={lang} />
   <div class="page-content">
     <slot />
-    {!noFooter && <Footer />}
+    {!noFooter && <Footer lang={lang} />}
   </div>
 </BaseLayout>
 

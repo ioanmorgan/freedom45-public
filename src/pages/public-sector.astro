@@ -1,0 +1,13 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PublicSector from '../components/PublicSector.astro';
+---
+
+<SiteLayout
+  title="Software for Public Bodies in Wales | Freedom45 Labs"
+  description="Freedom45 Labs is a Swansea software studio building bilingual, accessible websites, apps and data dashboards for public bodies in Wales. UK-only hosting, built to WCAG 2.2 AA."
+  activePage="public-sector"
+  alternate={{ lang: 'cy', path: '/cy/sector-cyhoeddus' }}
+>
+  <PublicSector lang="en" />
+</SiteLayout>

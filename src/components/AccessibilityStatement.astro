@@ -1,0 +1,139 @@
+---
+// Accessibility statement, in English or Welsh, following the shape of the
+// GOV.UK sample statement. Keep the known issues honest: re-test and update
+// the list and the dates whenever the site changes.
+import { CONTACT_EMAIL } from '../config';
+
+interface Props {
+  lang: 'en' | 'cy';
+}
+
+const { lang } = Astro.props;
+const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const copy = {
+  en: {
+    h1: 'Accessibility statement',
+    switchText: 'Darllenwch y datganiad hwn yn Gymraeg',
+    switchLang: 'cy',
+    switchHref: `${noSlash}/cy/hygyrchedd`,
+    intro: 'This statement covers freedom45.co.uk, the website of Freedom45 Labs Ltd. We want as many people as possible to be able to use it. You should be able to:',
+    can: [
+      'zoom in up to 400% without text spilling off the screen',
+      'use every page with a keyboard alone, with the focus always visible',
+      'listen to most of the website using a screen reader',
+      'turn off the moving background and slide animations by setting "reduce motion" in your device settings',
+    ],
+    howTitle: 'How accessible this website is',
+    how: 'We know some parts of this website are not fully accessible:',
+    issues: [
+      'The home page moves one full-screen slide at a time when you scroll or swipe, rather than scrolling like a normal page. With a keyboard, the arrow and Page Up / Page Down keys move between slides, and the Tab key reaches every link. The same information is on our Services page, which scrolls normally.',
+      'On a very short screen (for example a phone held sideways, or a browser zoomed in a long way), the home page slides can cut off some of their text. The other pages are not affected.',
+    ],
+    reportTitle: 'Feedback and reporting problems',
+    report: 'If you find a problem we have not listed, or you need something on this website in a different format, email us. We will reply in Welsh or English.',
+    techTitle: 'Technical information',
+    tech: [
+      'Freedom45 Labs is a private company, so the Public Sector Bodies Accessibility Regulations 2018 do not apply to this website. We hold it to the same standard we build to for public sector clients: the Web Content Accessibility Guidelines (WCAG) version 2.2, level AA.',
+      'This website is partially compliant with WCAG 2.2 level AA, because of the home page issues listed above.',
+    ],
+    testTitle: 'How we tested this website',
+    test: 'We tested every page on 9 November 2026 with automated checks (axe-core) at desktop and phone sizes, and by hand: keyboard-only use, zoom and reflow at 320 pixels wide, colour contrast, and reduced motion. We have not yet had the site tested by disabled users or with a range of screen readers.',
+    prepTitle: 'Preparation of this statement',
+    prep: 'This statement was prepared on 9 November 2026. It was last reviewed on 9 November 2026.',
+  },
+  cy: {
+    h1: 'Datganiad hygyrchedd',
+    switchText: 'Read this statement in English',
+    switchLang: 'en',
+    switchHref: `${noSlash}/accessibility`,
+    intro: "Mae'r datganiad hwn yn ymwneud â freedom45.co.uk, gwefan Freedom45 Labs Ltd. Rydym am i gynifer o bobl â phosibl allu ei defnyddio. Dylech allu:",
+    can: [
+      "chwyddo hyd at 400% heb i'r testun lifo oddi ar y sgrin",
+      "defnyddio pob tudalen gyda bysellfwrdd yn unig, gyda'r ffocws yn weladwy bob amser",
+      "gwrando ar y rhan fwyaf o'r wefan gan ddefnyddio darllenydd sgrin",
+      'diffodd y cefndir symudol ac animeiddiadau\'r sleidiau drwy ddewis "lleihau symudiad" yng ngosodiadau eich dyfais',
+    ],
+    howTitle: "Pa mor hygyrch yw'r wefan hon",
+    how: "Rydym yn gwybod nad yw rhai rhannau o'r wefan hon yn gwbl hygyrch:",
+    issues: [
+      "Mae'r dudalen hafan yn symud un sleid sgrin lawn ar y tro pan fyddwch yn sgrolio neu'n llusgo, yn hytrach na sgrolio fel tudalen arferol. Gyda bysellfwrdd, mae'r bysellau saeth a Page Up / Page Down yn symud rhwng y sleidiau, ac mae'r fysell Tab yn cyrraedd pob dolen. Mae'r un wybodaeth ar ein tudalen Gwasanaethau (yn Saesneg), sy'n sgrolio'n arferol.",
+      "Ar sgrin fer iawn (er enghraifft ffôn ar ei ochr, neu borwr wedi'i chwyddo'n fawr), gall sleidiau'r dudalen hafan dorri rhywfaint o'u testun i ffwrdd. Nid yw hyn yn effeithio ar y tudalennau eraill.",
+    ],
+    reportTitle: 'Adborth a rhoi gwybod am broblemau',
+    report: "Os byddwch yn dod o hyd i broblem nad ydym wedi'i rhestru, neu os oes arnoch angen rhywbeth ar y wefan hon mewn fformat gwahanol, anfonwch e-bost atom. Byddwn yn ateb yn Gymraeg neu'n Saesneg.",
+    techTitle: 'Gwybodaeth dechnegol',
+    tech: [
+      "Cwmni preifat yw Freedom45 Labs, felly nid yw Rheoliadau Hygyrchedd Cyrff y Sector Cyhoeddus 2018 yn berthnasol i'r wefan hon. Rydym yn ei dal i'r un safon ag yr ydym yn adeiladu iddi ar gyfer cleientiaid yn y sector cyhoeddus: Canllawiau Hygyrchedd Cynnwys y We (WCAG) fersiwn 2.2, safon AA.",
+      "Mae'r wefan hon yn cydymffurfio'n rhannol â safon AA WCAG 2.2, oherwydd y problemau ar y dudalen hafan a restrir uchod.",
+    ],
+    testTitle: "Sut y profwyd y wefan hon",
+    test: "Profwyd pob tudalen ar 9 Tachwedd 2026 gyda gwiriadau awtomatig (axe-core) ar faint bwrdd gwaith a ffôn, ac â llaw: defnyddio bysellfwrdd yn unig, chwyddo ac ail-lifo ar 320 picsel o led, cyferbyniad lliw, a lleihau symudiad. Nid ydym eto wedi cael pobl anabl i brofi'r wefan, nac wedi'i phrofi gydag ystod o ddarllenwyr sgrin.",
+    prepTitle: "Paratoi'r datganiad hwn",
+    prep: 'Paratowyd y datganiad hwn ar 9 Tachwedd 2026. Fe\'i hadolygwyd ddiwethaf ar 9 Tachwedd 2026.',
+  },
+}[lang];
+---
+
+<main class="page">
+  <h1>{copy.h1}</h1>
+  <p class="switch"><a href={copy.switchHref} lang={copy.switchLang} hreflang={copy.switchLang}>{copy.switchText}</a></p>
+
+  <p>{copy.intro}</p>
+  <ul>
+    {copy.can.map((item) => <li>{item}</li>)}
+  </ul>
+
+  <h2>{copy.howTitle}</h2>
+  <p>{copy.how}</p>
+  <ul>
+    {copy.issues.map((item) => <li>{item}</li>)}
+  </ul>
+
+  <h2>{copy.reportTitle}</h2>
+  <p>{copy.report}</p>
+  <p><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
+
+  <h2>{copy.techTitle}</h2>
+  {copy.tech.map((item) => <p>{item}</p>)}
+
+  <h2>{copy.testTitle}</h2>
+  <p>{copy.test}</p>
+
+  <h2>{copy.prepTitle}</h2>
+  <p>{copy.prep}</p>
+</main>
+
+<style>
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8rem 1.5rem 3rem;
+  }
+
+  h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 2.25rem 0 0.5rem;
+  }
+
+  p, li {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  p + p { margin-top: 0.75rem; }
+  ul { padding-left: 1.25rem; margin-top: 0.5rem; }
+  li + li { margin-top: 0.35rem; }
+
+  .switch { margin-bottom: 1.5rem; font-weight: 600; }
+  a { color: #1e40af; }
+</style>
