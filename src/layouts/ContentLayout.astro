@@ -92,6 +92,15 @@ const { title, description, activePage, wide = false, noCta = false } = Astro.pr
   }
   .cp .step-n::before { content: counter(step); }
   .cp .step h3 { font-size: 1.125rem; }
+  /* The four stages keep the colours they had on the old Services page */
+  .cp .stage--explore { color: #7c3aed; }
+  .cp .stage--build { color: #2563eb; }
+  .cp .stage--grow { color: #0f766e; }
+  .cp .stage--sustain { color: #15803d; }
+  .cp .step-n--explore { background: #7c3aed; }
+  .cp .step-n--build { background: #2563eb; }
+  .cp .step-n--grow { background: #0f766e; }
+  .cp .step-n--sustain { background: #15803d; }
   .cp .step p { color: var(--text-secondary); font-size: 0.9375rem; }
   .cp .step ul { margin-top: 0.4rem; }
   .cp .actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
