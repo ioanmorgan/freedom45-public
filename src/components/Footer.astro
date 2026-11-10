@@ -1,25 +1,11 @@
 ---
-interface Props {
-  lang?: 'en' | 'cy';
-}
-
-const { lang = 'en' } = Astro.props;
 const year = new Date().getFullYear();
 const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <footer class="site-footer">
-  {lang === 'cy' ? (
-    <>
-      <p>&copy; {year} Freedom45 Labs Ltd &middot; <a href={`${noSlash}/cy/hygyrchedd`}>Datganiad hygyrchedd</a></p>
-      <p class="legal">Cofrestrwyd yng Nghymru a Lloegr &middot; Rhif cwmni&nbsp;17127746</p>
-    </>
-  ) : (
-    <>
-      <p>&copy; {year} Freedom45 Labs Ltd &middot; <a href={`${noSlash}/commitments`}>Our commitments</a> &middot; <a href={`${noSlash}/software-development-south-wales`}>Software development in South Wales</a> &middot; <a href={`${noSlash}/accessibility`}>Accessibility</a></p>
-      <p class="legal">Registered in England &amp; Wales &middot; Company no.&nbsp;17127746</p>
-    </>
-  )}
+  <p>&copy; {year} Freedom45 Labs Ltd &middot; <a href={`${noSlash}/commitments`}>Our commitments</a> &middot; <a href={`${noSlash}/software-development-south-wales`}>Software development in South Wales</a> &middot; <a href={`${noSlash}/accessibility`}>Accessibility</a></p>
+  <p class="legal">Registered in England &amp; Wales &middot; Company no.&nbsp;17127746</p>
 </footer>
 
 <style>

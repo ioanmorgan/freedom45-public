@@ -1,10 +1,9 @@
 ---
 interface Props {
   activePage?: string;
-  lang?: 'en' | 'cy';
 }
 
-const { activePage = '', lang = 'en' } = Astro.props;
+const { activePage = '' } = Astro.props;
 // Base-aware links so the site works at '/' (production) and under a
 // sandbox subpath like '/freedom45-social-proof/' without breaking nav.
 const base = import.meta.env.BASE_URL;          // '/', or '/demo/'
@@ -13,12 +12,6 @@ const noSlash = base.replace(/\/$/, '');        // '',  or '/demo'
 
 <header class="site-header">
   <a href={base} class="wordmark">Freedom<span>45</span></a>
-  {lang === 'cy' ? (
-  <nav class="top-nav" aria-label="Prif">
-    <a href={`${noSlash}/cy/sector-cyhoeddus`} class:list={[{ active: activePage === 'public-sector' }]} aria-current={activePage === 'public-sector' ? 'page' : undefined}>Sector cyhoeddus</a>
-    <a href={`${noSlash}/cy/sector-cyhoeddus#cysylltu`}>Cysylltu</a>
-  </nav>
-  ) : (
   <nav class="top-nav" aria-label="Main">
     <a href={`${noSlash}/services`} class:list={[{ active: activePage === 'services' }]} aria-current={activePage === 'services' ? 'page' : undefined}>Services</a>
     <a href={`${noSlash}/how-we-work`} class:list={[{ active: activePage === 'how-we-work' }]} aria-current={activePage === 'how-we-work' ? 'page' : undefined}>How we work</a>
@@ -26,7 +19,6 @@ const noSlash = base.replace(/\/$/, '');        // '',  or '/demo'
     <a href={`${noSlash}/public-sector`} class:list={[{ active: activePage === 'public-sector' }]} aria-current={activePage === 'public-sector' ? 'page' : undefined}>Public sector</a>
     <a href="#contact">Contact</a>
   </nav>
-  )}
 </header>
 
 <style>

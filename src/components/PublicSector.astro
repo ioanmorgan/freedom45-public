@@ -1,14 +1,8 @@
 ---
-// The public-sector page, in English or Welsh. Both languages share this one
-// template so they can't drift apart. Every claim here traces to the bid library
+// The public-sector page. Every claim here traces to the bid library
 // (vault Freedom45/bid-library): change the copy there first, then here.
 import { CONTACT_EMAIL, COMPANY_NUMBER } from '../config';
 
-interface Props {
-  lang: 'en' | 'cy';
-}
-
-const { lang } = Astro.props;
 const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
 const PPON = 'PDXX-1452-MBVY';
 
@@ -17,9 +11,6 @@ const copy = {
     eyebrow: 'Public sector',
     h1: 'Software for public bodies in Wales and the South West',
     lead: 'Freedom45 Labs is a software studio based in the Swansea Valley, working across Wales, the South West and further afield. We design, build, host and support bespoke applications, including websites, mobile apps and desktop apps.',
-    switchText: 'Darllenwch y dudalen hon yn Gymraeg',
-    switchLang: 'cy',
-    switchHref: `${noSlash}/cy/sector-cyhoeddus`,
     workTitle: 'The kind of work we suit',
     work: [
       'Websites and online forms, in Welsh and English where you need them',
@@ -61,62 +52,13 @@ const copy = {
     contactTitle: 'Get in touch',
     contactText: 'Projects of all sizes are welcome, and our low overheads keep our prices down. Email us for a quote, in Welsh or English.',
   },
-  cy: {
-    eyebrow: 'Sector cyhoeddus',
-    h1: 'Meddalwedd i gyrff cyhoeddus yng Nghymru a De-orllewin Lloegr',
-    lead: "Stiwdio feddalwedd yng Nghwm Tawe yw Freedom45 Labs, sy'n gweithio ledled Cymru, De-orllewin Lloegr a thu hwnt. Rydym yn dylunio, adeiladu, lletya a chefnogi rhaglenni pwrpasol, gan gynnwys gwefannau, apiau symudol ac apiau bwrdd gwaith.",
-    switchText: 'Read this page in English',
-    switchLang: 'en',
-    switchHref: `${noSlash}/public-sector`,
-    workTitle: "Y math o waith sy'n addas i ni",
-    work: [
-      'Gwefannau a ffurflenni ar-lein, yn Gymraeg ac yn Saesneg lle mae angen',
-      "Apiau i staff neu i'r cyhoedd, ar y we, ar ffôn symudol neu ar gyfrifiadur",
-      'Dangosfyrddau o ddata sydd gennych eisoes',
-      "Cefnogaeth i wasanaethau digidol rydych chi'n eu rhedeg yn barod",
-    ],
-    howTitle: 'Sut rydym yn gweithio',
-    how: [
-      {
-        h: "Cymraeg a Saesneg lle mae eu hangen",
-        p: "Lle mae gwasanaeth angen y ddwy iaith, rydym yn adeiladu'r Gymraeg a'r Saesneg i mewn o'r dechrau, yn hytrach na chyfieithu ar y diwedd.",
-      },
-      {
-        h: 'Hygyrch fel safon',
-        p: "Mae popeth a adeiladwn yn bodloni'r safon hygyrchedd y mae'n rhaid i gyrff cyhoeddus ei chyrraedd (WCAG 2.2 AA) ac, yng Nghymru, Safonau'r Gymraeg.",
-        link: { text: 'Ein datganiad hygyrchedd ni', href: `${noSlash}/cy/hygyrchedd` },
-      },
-      {
-        h: 'Un arweinydd atebol',
-        p: "Yr un bobl sy'n cynllunio'ch prosiect sy'n ei adeiladu, gyda chontractwyr dibynadwy pan fo'ch terfynau amser yn galw am fwy o ddwylo. Byddwch yn delio ag un arweinydd atebol drwy gydol y gwaith.",
-      },
-    ],
-    bgTitle: "Y profiad y tu ôl i ni",
-    bgIntro: "Sefydlwyd Freedom45 Labs yn 2026, ond mae'r profiad y tu ôl iddo yn mynd yn ôl ymhellach o lawer.",
-    bg: [
-      "Bu ein sylfaenydd yn Bennaeth Peirianneg yn Elucidat, platfform SaaS a gefnogwyd gan gyfalaf menter ac a ddefnyddir gan sefydliadau mawr ledled y byd, ar ôl ymuno fel ei ddatblygwr llawn amser cyntaf. Cododd Elucidat dair rownd o fuddsoddiad, a chafodd ei brynu yn 2025.",
-      "Mae ein sylfaenydd hefyd yn gyd-sylfaenydd CogniBuild, gweithle AI ar gyfer y diwydiant adeiladu sy'n cael ei dreialu gan gwmnïau adeiladu.",
-      "Cyn hynny, fel un o ddau ddatblygwr ar gontract, adeiladodd ein sylfaenydd ap mewnrwyd a ddefnyddiwyd gan rai o frandiau mawr y stryd fawr yn y DU.",
-    ],
-    buyTitle: 'Sut i brynu gennym ni',
-    buy: [
-      ['Pyrth', 'Wedi cofrestru ar GwerthwchiGymru (Sell2Wales) ac eTenderWales'],
-      ['PPON', PPON],
-      ['Maint', 'Busnes bach a chanolig (BBaCh)'],
-      ['Rhif cwmni', COMPANY_NUMBER],
-    ],
-    contactId: 'cysylltu',
-    contactTitle: 'Cysylltwch â ni',
-    contactText: "Mae croeso i brosiectau o bob maint, ac mae ein costau cyffredinol isel yn cadw ein prisiau i lawr. Anfonwch e-bost atom am ddyfynbris, yn Gymraeg neu'n Saesneg.",
-  },
-}[lang];
+}.en;
 ---
 
 <main class="page">
   <p class="eyebrow">{copy.eyebrow}</p>
   <h1>{copy.h1}</h1>
   <p class="lead">{copy.lead}</p>
-  <p class="switch"><a href={copy.switchHref} lang={copy.switchLang} hreflang={copy.switchLang}>{copy.switchText}</a></p>
 
   <section class="block" aria-labelledby="work-title">
     <h2 id="work-title">{copy.workTitle}</h2>

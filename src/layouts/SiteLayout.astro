@@ -11,7 +11,7 @@ interface Props {
   activePage?: string;
   noFooter?: boolean;
   lang?: 'en' | 'cy';
-  // The same page in the other language, e.g. { lang: 'cy', path: '/cy/sector-cyhoeddus' }
+  // The same page in another language, for hreflang (none at present)
   alternate?: { lang: 'en' | 'cy'; path: string };
 }
 
@@ -77,10 +77,10 @@ const schema = {
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   </Fragment>
   <Background />
-  <Nav activePage={activePage} lang={lang} />
+  <Nav activePage={activePage} />
   <div class="page-content">
     <slot />
-    {!noFooter && <Footer lang={lang} />}
+    {!noFooter && <Footer />}
   </div>
 </BaseLayout>
 
