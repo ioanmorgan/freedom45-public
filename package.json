@@ -6,9 +6,14 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check:a11y": "node scripts/a11y-check.mjs"
   },
   "dependencies": {
     "astro": "^5.5.4"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "playwright": "^1.48.2"
   }
 }
