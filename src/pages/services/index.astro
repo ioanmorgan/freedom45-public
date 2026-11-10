@@ -6,59 +6,113 @@ const u = (p: string) => `${noSlash}${p}`;
 ---
 
 <ContentLayout
-  title="Services: Prototypes, Apps, Support and Technical Leadership | Freedom45"
-  description="Freedom45 services: prototypes and MVPs in weeks, bespoke web, mobile and desktop apps, support and maintenance (including software we didn't build), bilingual Welsh and English services, and fractional CTO leadership."
+  title="Services: Prototypes, Software Delivery, Support and Technical Leadership | Freedom45"
+  description="Freedom45 services: product strategy and prototyping, software delivery, scale and growth, aftercare and support, and fractional CTO leadership, for startups, growing businesses and public bodies."
   activePage="services"
 >
   <header>
-    <p class="eyebrow">Services</p>
-    <h1>From first idea to <span class="g">long-term care.</span></h1>
-    <p class="lead">We design, build, host and support bespoke software for startups, growing businesses and public bodies. Start wherever you are.</p>
+    <h1><span class="stage--explore">Explore.</span> <span class="stage--build">Build.</span> <span class="stage--grow">Grow.</span> <span class="stage--sustain">Sustain.</span></h1>
+    <p class="lead">How we work with you, from first idea to long-term care.</p>
   </header>
 
-  <section>
-    <div class="cards cards--2">
-      <div class="card">
-        <h3>Prototypes and MVPs</h3>
-        <p>A working prototype in weeks, in front of real users, so you know what's worth building before you spend on it.</p>
-        <p class="more"><a href={u('/services/prototypes')}>Prototypes and MVPs →</a></p>
-      </div>
-      <div class="card">
-        <h3>Web, mobile and desktop apps</h3>
-        <p>Bespoke products and services people can rely on, accessible from day one, hosted by us or on your own hosting.</p>
-        <p class="more"><a href={u('/services/web-and-mobile-apps')}>Web and mobile apps →</a></p>
-      </div>
-      <div class="card">
-        <h3>Support and maintenance</h3>
-        <p>Fixes, updates, monitoring and the next features, including for software we didn't build.</p>
-        <p class="more"><a href={u('/services/support-and-maintenance')}>Support and maintenance →</a></p>
-      </div>
-      <div class="card">
-        <h3>Bilingual Welsh and English services</h3>
-        <p>Both languages built in from the start, to the Welsh Language Standards where they apply.</p>
-        <p class="more"><a href={u('/services/bilingual-software')}>Bilingual software →</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Technical leadership, without a full-time CTO</h2>
-    <p>Not ready to hire a CTO? We can act as your technical lead: setting the technical direction, making the architecture calls, reviewing code and helping you hire when it's time.</p>
-    <ul style="margin-top:0.75rem">
-      <li>Fractional CTO or head of engineering</li>
-      <li>Technical strategy and roadmap</li>
-      <li>Architecture and code reviews, and managing technical debt</li>
-      <li>Mentoring developers and help with hiring</li>
+  <section class="service">
+    <p class="phase stage--explore">Explore</p>
+    <h2><a href={u('/services/prototypes')}>Product strategy and prototyping</a></h2>
+    <p>Kill the risk early. We prototype with AI-first workflows and emerging tech to prove what works, in weeks, not months.</p>
+    <ul>
+      <li>Discovery workshops and opportunity mapping</li>
+      <li>Rapid prototyping and proofs of concept</li>
+      <li>Technical feasibility and architecture review</li>
+      <li>AI readiness assessment</li>
     </ul>
   </section>
 
-  <section>
-    <h2>Where to next</h2>
-    <p class="related">
-      <a href={u('/how-we-work')}>How we work</a>
-      <a href={u('/projects')}>Projects</a>
-      <a href={u('/public-sector')}>Public sector</a>
-      <a href={u('/software-development-south-wales')}>Software development in South Wales</a>
-    </p>
+  <section class="service">
+    <p class="phase stage--build">Build</p>
+    <h2><a href={u('/services/web-and-mobile-apps')}>Software delivery</a></h2>
+    <p>You've validated the idea, now ship it. We turn prototypes into launch-ready products your first customers can use.</p>
+    <ul>
+      <li>Full-stack web, mobile and desktop development</li>
+      <li>MVP build and launch</li>
+      <li>API design and integrations</li>
+      <li>AI feature development</li>
+      <li>DevOps and CI/CD setup</li>
+    </ul>
+  </section>
+
+  <section class="service">
+    <p class="phase stage--grow">Grow</p>
+    <h2>Scale and growth</h2>
+    <p>Growth needs more than code. We scale your product, sharpen performance, and build the features that take you to the next stage.</p>
+    <ul>
+      <li>Performance optimisation and scaling</li>
+      <li>Ongoing feature development</li>
+      <li>Analytics, experimentation and iteration</li>
+      <li>Infrastructure and cost optimisation</li>
+    </ul>
+  </section>
+
+  <section class="service">
+    <p class="phase stage--sustain">Sustain</p>
+    <h2><a href={u('/services/support-and-maintenance')}>Aftercare, support and maintenance</a></h2>
+    <p>Launched isn't finished. We support your users, maintain the product, and keep it running long after go-live. It's available as a standalone retainer too, and we'll happily look after something we didn't build.</p>
+    <ul>
+      <li>Customer support as a service</li>
+      <li>Maintenance, monitoring and security updates</li>
+      <li>Technical operations and reliability</li>
+      <li>Available as a standalone retainer</li>
+    </ul>
+  </section>
+
+  <section class="service service--across service--first-across">
+    <p class="phase">Across every stage</p>
+    <h2>Fractional CTO and technical leadership</h2>
+    <p>Not ready for a full-time CTO? We embed as your technical leadership: setting strategy, mentoring your engineers, and making the architectural calls that keep your product on track.</p>
+    <ul>
+      <li>Fractional CTO or VP Engineering</li>
+      <li>Technical strategy and roadmap planning</li>
+      <li>Engineering team mentorship and coaching</li>
+      <li>Architecture reviews and tech debt management</li>
+      <li>Hiring support and team scaling</li>
+    </ul>
+  </section>
+
+  <section class="service service--across">
+    <p class="phase">Across every stage</p>
+    <h2><a href={u('/services/bilingual-software')}>Bilingual Welsh and English</a></h2>
+    <p>Where a service needs both languages, we build Welsh and English in from the start, not translate at the end.</p>
   </section>
 </ContentLayout>
+
+<style>
+  .service {
+    margin-top: 1.5rem;
+    padding: 1.75rem;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 14px;
+  }
+  header + .service { margin-top: 2.5rem; }
+  .service h2 { font-size: 1.125rem; margin-bottom: 0.35rem; }
+  .service h2 a { color: var(--text-primary); text-decoration: none; }
+  .service h2 a:hover { text-decoration: underline; }
+  .service h2 a::after { content: ' →'; color: #1d4ed8; }
+  .phase {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.6rem;
+    color: var(--text-primary);
+  }
+  .service > p:not(.phase) { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7; }
+  .service ul { margin-top: 0.75rem; }
+  .service li { font-size: 0.875rem; }
+  /* Not a stage: these run alongside all four */
+  .service--across {
+    background: transparent;
+    border-style: dashed;
+    border-color: rgba(0, 0, 0, 0.15);
+  }
+  .service--first-across { margin-top: 3rem; }
+</style>

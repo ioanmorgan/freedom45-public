@@ -13,10 +13,11 @@ const copy = {
     lead: 'Freedom45 Labs is a software studio based in the Swansea Valley, working across Wales, the South West and further afield. We design, build, host and support bespoke applications, including websites, mobile apps and desktop apps.',
     workTitle: 'The kind of work we suit',
     work: [
-      'Websites and online forms, in Welsh and English where you need them',
+      'Websites and digital services, in Welsh and English where you need them',
       'Apps for staff or the public, on the web, mobile or desktop',
-      'Dashboards from data you already hold',
-      'Support for digital services you already run',
+      'Dashboards and reporting from data you already hold',
+      'Support and improvements for digital services you already run',
+      'Technical advice and consultancy: discovery, feasibility, and code or architecture reviews',
     ],
     howTitle: 'How we work',
     how: [
@@ -26,7 +27,7 @@ const copy = {
       },
       {
         h: 'Accessible as standard',
-        p: 'Everything we build meets the accessibility standard public bodies are held to (WCAG 2.2 AA) and, in Wales, the Welsh Language Standards.',
+        p: 'We design and build to WCAG 2.2 AA, the accessibility standard public bodies are held to, and to the Welsh Language Standards where they apply. If an accessibility audit (available as an extra) finds anything in our work that falls short, we put it right at no extra cost.',
         link: { text: 'Our own accessibility statement', href: `${noSlash}/accessibility` },
       },
       {
@@ -34,13 +35,14 @@ const copy = {
         p: 'The people who scope your project also build it, with trusted contractors when your deadlines need more hands. You deal with one accountable lead throughout.',
       },
     ],
-    bgTitle: 'The experience behind us',
-    bgIntro: 'Freedom45 Labs was founded in 2026. The experience behind it goes back much further.',
+    bgTitle: "Who you'll be working with",
+    bgIntro: 'Freedom45 Labs was founded in 2026, but the people behind it have been building software for years.',
     bg: [
-      'Our founder was Head of Engineering at Elucidat, a VC-backed SaaS platform used by large organisations worldwide, having joined as its first full-time developer. Elucidat raised three funding rounds and was acquired in 2025.',
-      'Our founder is also co-founder of CogniBuild, an AI workspace for the construction industry that is being trialled by construction companies.',
-      'Earlier, as one of two contract developers, our founder built an intranet app used by major UK high-street brands.',
+      'One of our founders joined Elucidat, a VC-backed SaaS platform used by large organisations worldwide, as its first full-time developer and became its Head of Engineering, through three funding rounds and its acquisition in 2025.',
+      'They also co-founded CogniBuild, an AI workspace for the construction industry, now being trialled by construction companies.',
+      'Before that, as one of two contract developers, they built an intranet app used by staff across major UK high-street brands.',
     ],
+    bgLink: { text: 'See our projects', href: `${noSlash}/projects` },
     buyTitle: 'How to buy from us',
     buy: [
       ['Portals', 'Registered on Sell2Wales and eTenderWales'],
@@ -86,6 +88,7 @@ const copy = {
     <ul class="bg">
       {copy.bg.map((item) => <li>{item}</li>)}
     </ul>
+    <p class="card-link"><a href={copy.bgLink.href}>{copy.bgLink.text}</a></p>
   </section>
 
   <section class="block" aria-labelledby="buy-title">
@@ -167,7 +170,8 @@ const copy = {
 
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    /* Three cards: three across, or one column on a phone - never 2 + 1 */
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
 
@@ -216,6 +220,10 @@ const copy = {
     margin-top: 0.25rem;
     font-weight: 600;
     font-size: 1rem;
+  }
+
+  @media (max-width: 700px) {
+    .cards { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 480px) {

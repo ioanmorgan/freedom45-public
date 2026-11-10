@@ -28,10 +28,10 @@ const u = (p: string) => `${noSlash}${p}`;
   <section>
     <h2>What we can do for you</h2>
     <div class="cards cards--2">
-      <div class="card"><h3>Prototypes and MVPs</h3><p>Test an idea with real users in weeks.</p><p class="more"><a href={u('/services/prototypes')}>Prototypes →</a></p></div>
-      <div class="card"><h3>Web, mobile and desktop apps</h3><p>Bespoke software, accessible from day one.</p><p class="more"><a href={u('/services/web-and-mobile-apps')}>Apps →</a></p></div>
-      <div class="card"><h3>Support and maintenance</h3><p>Including software someone else built.</p><p class="more"><a href={u('/services/support-and-maintenance')}>Support →</a></p></div>
-      <div class="card"><h3>Public sector</h3><p>On Sell2Wales and eTenderWales, to WCAG 2.2 AA and the Welsh Language Standards.</p><p class="more"><a href={u('/public-sector')}>Public sector →</a></p></div>
+      <a class="card card--link" href={u('/services/prototypes')}><h3>Prototypes and MVPs</h3><p>Test an idea with real users in weeks.</p><span class="go" aria-hidden="true">→</span></a>
+      <a class="card card--link" href={u('/services/web-and-mobile-apps')}><h3>Web, mobile and desktop apps</h3><p>Bespoke software, accessible from day one.</p><span class="go" aria-hidden="true">→</span></a>
+      <a class="card card--link" href={u('/services/support-and-maintenance')}><h3>Support and maintenance</h3><p>Including software someone else built.</p><span class="go" aria-hidden="true">→</span></a>
+      <a class="card card--link" href={u('/public-sector')}><h3>Public sector</h3><p>On Sell2Wales and eTenderWales, built to WCAG 2.2 AA and the Welsh Language Standards.</p><span class="go" aria-hidden="true">→</span></a>
     </div>
   </section>
 
