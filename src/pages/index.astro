@@ -20,7 +20,8 @@ const u = (p: string) => `${noSlash}${p}`;
     </p>
   </header>
 
-  <section aria-label="Who we work with">
+  <section aria-labelledby="who-title">
+    <h2 id="who-title" class="visually-hidden">Who we work with</h2>
     <div class="cards cards--2">
       <a class="card card--link" href={u('/services')}>
         <span class="tag">For startups</span>
@@ -71,10 +72,9 @@ const u = (p: string) => `${noSlash}${p}`;
       <h2>What we stand by</h2>
       <a href={u('/commitments')}>Our commitments →</a>
     </div>
-    <div class="cards cards--2">
+    <div class="cards">
       <div class="card"><h3>Straight with you</h3><p>Plain English, no lock-in, and AI that a person always checks.</p></div>
       <div class="card"><h3>Built for everyone</h3><p>Everybody should be able to use what we build. WCAG 2.2 AA is where we start.</p></div>
-      <div class="card"><h3>Fair work</h3><p>Fair pay for the people we work with, and local talent wherever we can.</p></div>
       <div class="card"><h3>Tech for good</h3><p>Lower rates for charities, tech-for-good projects and early-stage founders.</p></div>
     </div>
   </section>
