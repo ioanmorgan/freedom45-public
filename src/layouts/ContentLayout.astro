@@ -101,7 +101,50 @@ const { title, description, activePage, wide = false, noCta = false } = Astro.pr
     background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(0, 0, 0, 0.12);
   }
   .cp .btn--primary { background: #1d4ed8; border-color: #1d4ed8; color: #fff; }
-  .cp .related { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; font-weight: 600; font-size: 0.9375rem; }
+  /* "Where to next": chips rather than a row of small text links */
+  .cp .related { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .cp .related a {
+    display: inline-block; padding: 0.55rem 1.1rem; border-radius: 100px; font-weight: 600;
+    font-size: 0.9375rem; text-decoration: none; color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.7); border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .cp .related a:hover { border-color: #1d4ed8; background: #fff; }
+
+  /* A whole card as one link: bigger target, no separate link line */
+  .cp a.card--link {
+    display: block; position: relative; text-decoration: none; color: inherit;
+    padding-right: 3rem; transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  }
+  .cp a.card--link:hover { transform: translateY(-2px); border-color: rgba(29, 78, 216, 0.4); box-shadow: 0 8px 24px rgba(26, 26, 46, 0.08); }
+  .cp a.card--link .go {
+    position: absolute; right: 1.2rem; bottom: 1.1rem; font-size: 1.25rem; font-weight: 700; color: #1d4ed8;
+    transition: transform 0.15s;
+  }
+  .cp a.card--link:hover .go { transform: translateX(3px); }
+  @media (prefers-reduced-motion: reduce) {
+    .cp a.card--link, .cp a.card--link .go { transition: none; }
+    .cp a.card--link:hover, .cp a.card--link:hover .go { transform: none; }
+  }
+
+  /* Section heading with its "see more" link on the same line */
+  .cp .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .cp .section-head h2 { margin-bottom: 0; }
+  .cp .section-head a { font-weight: 700; font-size: 0.9375rem; white-space: nowrap; }
+
+  /* The one big message on the page */
+  .cp .feature {
+    padding: clamp(2rem, 5vw, 3rem); border-radius: 20px; color: #fff;
+    background: linear-gradient(135deg, #1d4ed8, #6d28d9);
+  }
+  .cp .feature h2 { color: #fff; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.75rem; }
+  .cp .feature > p { color: rgba(255, 255, 255, 0.92); font-size: 1.0625rem; max-width: 52ch; }
+  .cp .feature .feature-kicker {
+    font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    color: #fff; margin-bottom: 0.5rem;
+  }
+  .cp .feature .actions { margin-top: 1.25rem; }
+  .cp .btn--light { background: #fff; border-color: #fff; color: #1e1b4b; }
   .cp-cta {
     margin-top: 4rem; padding: 2rem; background: rgba(255, 255, 255, 0.55);
     border: 1px solid rgba(0, 0, 0, 0.06); border-radius: 14px;

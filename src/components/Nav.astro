@@ -50,12 +50,13 @@ const noSlash = base.replace(/\/$/, '');        // '',  or '/demo'
     left: 0;
     right: 0;
     top: 0;
-    /* Taller than the header whatever its height (it wraps to two rows on a
-       phone), solid behind the links and fading out only below them. */
-    height: calc(100% + 1.5rem);
+    /* The original soft fade, sized to wherever the links end (--nav-end, set
+       below): one row on desktop gives the same ~98px fade as before; when
+       the links wrap on a small screen, the fade grows to sit behind them. */
+    height: calc(var(--nav-end, 70px) + 28px);
     background: linear-gradient(to bottom,
       var(--bg) 0%,
-      var(--bg) calc(100% - 1.5rem),
+      rgba(240, 242, 245, 0.95) var(--nav-end, 40px),
       rgba(240, 242, 245, 0) 100%);
     z-index: -1;
     pointer-events: none;
@@ -111,6 +112,11 @@ const noSlash = base.replace(/\/$/, '');        // '',  or '/demo'
     .top-nav { width: 100%; gap: 0.25rem 0.85rem; flex-wrap: wrap; }
     .top-nav a { white-space: nowrap; padding: 0.25rem 0; font-size: 0.75rem; letter-spacing: 0; }
   }
+
+  @media (max-width: 380px) {
+    .site-header { padding-left: 0.85rem; padding-right: 0.85rem; }
+    .top-nav { column-gap: 0.6rem; }
+  }
 </style>
 
 <script is:inline>
@@ -120,9 +126,23 @@ const noSlash = base.replace(/\/$/, '');        // '',  or '/demo'
   (function () {
     var header = document.querySelector('.site-header');
     if (!header) return;
-    // Fully grown by the time content has scrolled up to the header's bottom
-    // edge, so text never shows through behind the links.
-    var DISTANCE = Math.max(header.offsetHeight, 60);
+    // px of scroll over which the scrim grows to full height - longer on mobile,
+    // where a quick flick otherwise expands it almost instantly
+    var DISTANCE = window.matchMedia('(max-width: 768px)').matches ? 300 : 200;
+    // Where the last row of links ends, so the fade always covers them
+    function measure() {
+      var links = header.querySelectorAll('.top-nav a');
+      var end = 0;
+      for (var i = 0; i < links.length; i++) {
+        end = Math.max(end, links[i].getBoundingClientRect().bottom - header.getBoundingClientRect().top);
+      }
+      header.style.setProperty('--nav-end', Math.round(end) + 'px');
+    }
+    measure();
+    // The web font can wrap the links onto another row once it loads
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    window.addEventListener('load', measure);
+    window.addEventListener('resize', measure, { passive: true });
     var ticking = false;
     function apply() {
       ticking = false;
