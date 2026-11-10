@@ -1,0 +1,49 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const u = (p: string) => `${noSlash}${p}`;
+---
+
+<ContentLayout
+  title="Bespoke Web, Mobile and Desktop App Development | Freedom45"
+  description="Freedom45 designs, builds, hosts and supports bespoke web apps, mobile apps and desktop apps, accessible to WCAG 2.2 AA, for startups, growing businesses and public bodies."
+  activePage="services"
+>
+  <header>
+    <p class="eyebrow">Web, mobile and desktop apps</p>
+    <h1>Software people can <span class="g">rely on.</span></h1>
+    <p class="lead">We design, build, host and support bespoke applications: websites and web apps, mobile apps and desktop apps. Built to last, accessible from day one, and yours to keep.</p>
+  </header>
+
+  <section>
+    <h2>What we build</h2>
+    <div class="cards">
+      <div class="card"><h3>Web apps and websites</h3><p>Customer-facing products, online services and forms, dashboards and internal tools.</p></div>
+      <div class="card"><h3>Mobile apps</h3><p>Apps for staff or the public, on phones and tablets.</p></div>
+      <div class="card"><h3>Desktop apps</h3><p>Software that runs on your team's computers, when the browser isn't the right place.</p></div>
+      <div class="card"><h3>AI features</h3><p>Practical AI where it earns its place, from search and summaries to automating repetitive work.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How we build it</h2>
+    <ul>
+      <li><b>Accessible as standard.</b> WCAG 2.2 AA on everything, so everybody can use it.</li>
+      <li><b>Hosting your way.</b> We host and monitor it, or it runs on your own hosting. Your choice.</li>
+      <li><b>No lock-in.</b> The code and data are yours. If you ever move on, everything goes with you.</li>
+      <li><b>Progress you can see.</b> Something you can open and try, early and often.</li>
+      <li><b>Integrations.</b> APIs, payments, sign-in and the systems you already run.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Where to next</h2>
+    <p class="related">
+      <a href={u('/services/prototypes')}>Start with a prototype</a>
+      <a href={u('/services/support-and-maintenance')}>Support after launch</a>
+      <a href={u('/services/bilingual-software')}>Bilingual software</a>
+      <a href={u('/work')}>Our work</a>
+    </p>
+  </section>
+</ContentLayout>

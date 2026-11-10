@@ -1,791 +1,103 @@
 ---
-import SiteLayout from '../layouts/SiteLayout.astro';
-import CTA from '../components/CTA.astro';
+import ContentLayout from '../layouts/ContentLayout.astro';
 
-const year = new Date().getFullYear();
 const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const u = (p: string) => `${noSlash}${p}`;
 ---
 
-<SiteLayout
-  title="Freedom45 — Software Development Studio for Startups"
-  description="Freedom45 is a technology studio offering technical leadership, software delivery, and product development for startups and growth companies."
-  noFooter
+<ContentLayout
+  title="Freedom45 | The senior tech team you don't have yet"
+  description="Freedom45 Labs is a Swansea Valley software studio. We design, build, host and support bespoke websites, mobile apps and desktop apps for startups, growing businesses and public bodies."
+  wide
 >
+  <header>
+    <h1>The senior tech team you <span class="g">don't have yet.</span></h1>
+    <p class="lead">We design, build, host and support bespoke software, including websites, mobile apps and desktop apps. You work directly with the people building it, from first prototype to long after launch.</p>
+  </header>
 
-  <div class="dots" id="dots">
-    <button class="dot active" data-slide="0"></button>
-    <button class="dot" data-slide="1"></button>
-    <button class="dot" data-slide="2"></button>
-    <button class="dot" data-slide="3"></button>
-    <button class="dot" data-slide="4"></button>
-    <button class="dot" data-slide="5"></button>
-    <button class="dot" data-slide="6"></button>
-    <button class="dot" data-slide="7"></button>
-    <button class="dot" data-slide="8"></button>
-  </div>
-
-  <!-- Fixed triangle overlay -->
-  <section class="tri-overlay" id="triOverlay" aria-label="Our method">
-
-    <!-- ABOVE triangle -->
-    <div class="tri-overlay__above">
-      <div class="tri-overlay__text" id="text-overview">
-        <p class="section-label">Our method</p>
-        <h2 class="section-title"><span style="color: #7c3aed">Explore.</span> <span style="color: #2563eb">Build.</span> <span style="color: #0f766e">Grow.</span> <span style="color: #15803d">Sustain.</span></h2>
-        <div class="ov-desc">
-          <p class="section-desc">A four-stage partnership — from first prototype to long-term care.</p>
-        </div>
+  <section aria-label="Who we work with">
+    <div class="cards cards--2">
+      <div class="card">
+        <span class="tag">Startups and growing businesses</span>
+        <h3>Prove it, ship it, keep it running</h3>
+        <p>A working prototype in weeks, then a product your customers can rely on, without hiring a CTO first.</p>
+        <p class="more"><a href={u('/services')}>What we do for startups →</a></p>
       </div>
-      <div class="tri-overlay__text" id="text-lab">
-        <h2 class="section-title" style="color: #7c3aed">Explore</h2>
-        <div class="ov-desc">
-          <p class="section-desc">Kill the risk early. We prototype with AI-first workflows and emerging tech to prove what works — in weeks, not quarters.</p>
-        </div>
+      <div class="card">
+        <span class="tag tag--alt">Public bodies</span>
+        <h3>Local, accessible, easy to buy</h3>
+        <p>A Swansea Valley SME working across Wales, the South West and further afield. Built to WCAG 2.2 AA and, in Wales, the Welsh Language Standards. On Sell2Wales and eTenderWales, and small jobs are welcome.</p>
+        <p class="more"><a href={u('/public-sector')}>Public sector work →</a></p>
       </div>
     </div>
-
-    <!-- Flywheel diagram -->
-    <div class="tri-overlay__diagram" id="triDiagram" data-active="">
-      <svg class="tri-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle class="arc arc--track" cx="100" cy="100" r="70" />
-        <circle class="arc arc--seg arc--lab" cx="100" cy="100" r="70" pathLength="100" />
-        <circle class="arc arc--seg arc--foundry" cx="100" cy="100" r="70" pathLength="100" />
-        <circle class="arc arc--seg arc--studio" cx="100" cy="100" r="70" pathLength="100" />
-        <circle class="arc arc--seg arc--sustain" cx="100" cy="100" r="70" pathLength="100" />
-      </svg>
-      <div class="fw-center">
-        <span class="fw-verb fw-verb--lab">Explore</span>
-        <span class="fw-verb fw-verb--foundry">Build</span>
-        <span class="fw-verb fw-verb--studio">Grow</span>
-        <span class="fw-verb fw-verb--sustain">Sustain</span>
-        <span class="fw-verb fw-verb--closing">Partnership</span>
-      </div>
-    </div>
-
-    <!-- BELOW triangle -->
-    <div class="tri-overlay__below">
-      <div class="tri-overlay__text" id="text-foundry">
-        <h2 class="section-title" style="color: #2563eb">Build</h2>
-        <div class="ov-desc">
-          <p class="section-desc">You've validated the idea — now ship it. We turn your prototype into a product your first customers can use.</p>
-        </div>
-      </div>
-      <div class="tri-overlay__text" id="text-studio">
-        <h2 class="section-title" style="color: #0f766e">Grow</h2>
-        <div class="ov-desc">
-          <p class="section-desc">Growth needs more than code. We scale your product, sharpen performance, and build the features that take you to the next stage.</p>
-        </div>
-      </div>
-      <div class="tri-overlay__text" id="text-sustain">
-        <h2 class="section-title" style="color: #15803d">Sustain</h2>
-        <div class="ov-desc">
-          <p class="section-desc">Launched isn't finished. We support your users, maintain the product, and keep it running long after go-live — and we'll happily look after something we didn't build.</p>
-        </div>
-      </div>
-      <div class="tri-overlay__text" id="text-closing">
-        <div class="ov-desc">
-          <p class="section-desc"><span style="color: #6d28d9; font-weight: 700;">Explore</span> the opportunity.<br><span style="color: #1e40af; font-weight: 700;">Build</span> the product.<br><span style="color: #115e59; font-weight: 700;">Grow</span> the business.<br><span style="color: #166534; font-weight: 700;">Sustain</span> it for the long haul.<br><strong>Together, from day one.</strong></p>
-        </div>
-      </div>
-    </div>
-
   </section>
 
-  <!-- Scrollable slides -->
-  <main class="slides-viewport">
-  <div class="slides" id="slides">
-    <div class="slide slide--hero" data-index="0">
-      <div class="slide-content visible">
-        <h1>Freedom<span>45</span></h1>
-        <p class="tagline">We're the senior technical team your startup doesn't have yet.</p>
-        <p class="subtag">A small, senior studio. You work directly with the people building your product, start to finish.</p>
-        <p class="public-line">We also work with public bodies across Wales and the South West. <a href={`${noSlash}/public-sector`}>Public sector work</a></p>
+  <section>
+    <h2>What people come to us with</h2>
+    <div class="cards">
+      <div class="card"><h3>"We have an idea to test."</h3><p>A working prototype in weeks, in front of real users, before the big spend.</p><p class="more"><a href={u('/services/prototypes')}>Prototypes →</a></p></div>
+      <div class="card"><h3>"We need it built properly."</h3><p>A product or service people can rely on, accessible from day one, hosted and monitored.</p><p class="more"><a href={u('/services/web-and-mobile-apps')}>Web and mobile apps →</a></p></div>
+      <div class="card"><h3>"It's starting to creak."</h3><p>An honest code review, then the performance work and features it needs next.</p><p class="more"><a href={u('/services/support-and-maintenance')}>Support →</a></p></div>
+      <div class="card"><h3>"Nobody's looking after it."</h3><p>Support and upkeep after go-live, including systems we didn't build.</p><p class="more"><a href={u('/services/support-and-maintenance')}>Support →</a></p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why people trust us with it</h2>
+    <div class="cards">
+      <div class="card"><h3>Senior people do the work</h3><p>The people you talk to are the people building it.</p></div>
+      <div class="card"><h3>Accessible as standard</h3><p>WCAG 2.2 AA on everything, not an extra.</p></div>
+      <div class="card"><h3>Weeks, not months</h3><p>Something real to try early, then steady progress you can see.</p></div>
+      <div class="card"><h3>Yours, your choice</h3><p>We host it, or it runs on your own hosting. Either way the code and data are yours, and you're never locked in.</p></div>
+      <div class="card"><h3>Projects of all sizes</h3><p>Our low overheads keep our prices down.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="band">
+      <p class="eyebrow">Tech for good</p>
+      <h2>Software that makes a difference to people's lives.</h2>
+      <p>We like work that helps people: public services, charities and community groups, and products everybody can use. Charities and other tech-for-good projects get a discount on our usual rates.</p>
+      <p style="margin-top:0.6rem"><span class="todo">[One real example from Ioan's list: who it helped, and how]</span></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What we stand by</h2>
+    <div class="cards cards--2">
+      <div class="card"><span class="tag">Our clients</span><h3>Straight with you</h3><p>No jargon, no lock-in, and AI used responsibly, with a person checking everything.</p></div>
+      <div class="card"><span class="tag">The people who use it</span><h3>Built for everyone</h3><p>We care that everybody can use what we build. WCAG 2.2 AA is our minimum.</p></div>
+      <div class="card"><span class="tag tag--alt">The people we work with</span><h3>Fair work</h3><p>Contractors and suppliers treated and paid fairly, and local talent wherever we can.</p></div>
+      <div class="card"><span class="tag tag--alt">Community and planet</span><h3>Doing some good</h3><p>Discounts for tech-for-good projects and early-stage founders, and a small carbon footprint.</p></div>
+    </div>
+    <p style="margin-top:1rem"><a href={u('/commitments')}><b>Our commitments in full →</b></a></p>
+  </section>
+
+  <section>
+    <h2>Work we've done</h2>
+    <div class="cards cards--2">
+      <div>
+        <p class="colhead">Freedom45</p>
+        <div class="stack">
+          <div class="card"><span class="tag">Code review</span><h3>A procurement-tech startup</h3><p>An independent review of the platform's code ahead of its next build phase.</p></div>
+          <div class="card"><span class="tag">Client</span><h3>A construction-tech startup our founder co-founded</h3><p>CogniBuild, an AI workspace for construction teams, being trialled by construction companies. <span class="todo">[What Freedom45 did for it]</span></p></div>
+        </div>
+      </div>
+      <div>
+        <p class="colhead">Before Freedom45, our founders...</p>
+        <div class="stack">
+          <div class="card"><span class="tag tag--alt">Scale-up</span><h3>Elucidat</h3><p>First full-time developer, then Head of Engineering, at a VC-backed SaaS platform. Three funding rounds, acquired in 2025.</p></div>
+          <div class="card"><span class="tag tag--alt">Retail</span><h3>An intranet app for UK high-street brands</h3><p>Built as one of two contract developers, used by staff across several major high-street brands.</p></div>
+        </div>
       </div>
     </div>
-    <div class="slide slide--proof" data-index="1">
-      <div class="slide-content">
-        <h2 class="proof-line">Our first project has never been our last.</h2>
-        <p class="proof-sub">Every client we've worked with has come back with their next project.</p>
-      </div>
+    <p style="margin-top:1rem"><a href={u('/work')}><b>More about our work →</b></a></p>
+  </section>
+
+  <section>
+    <div class="band" style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+      <p style="font-weight:600;color:var(--text-primary)">A working prototype in weeks, not months. Here's how we get there.</p>
+      <a href={u('/how-we-work')}><b>How we work →</b></a>
     </div>
-    <div class="slide" data-index="2"></div>
-    <div class="slide" data-index="3"></div>
-    <div class="slide" data-index="4"></div>
-    <div class="slide" data-index="5"></div>
-    <div class="slide" data-index="6"></div>
-    <div class="slide" data-index="7"></div>
-    <div class="slide slide--contact" id="contact" data-index="8">
-      <div class="slide-content">
-        <CTA />
-      </div>
-      <div class="slide-footer">
-        <p>&copy; {year} Freedom45 Labs Ltd &middot; <a href={`${noSlash}/accessibility`}>Accessibility</a></p>
-        <p class="legal">Registered in England &amp; Wales &middot; Company no.&nbsp;17127746</p>
-      </div>
-    </div>
-  </div>
-  </main>
-
-  <script is:inline>
-    // ---- Elements ----
-    var slidesEl = document.getElementById('slides');
-    var allSlides = document.querySelectorAll('.slide');
-    var allDots = document.querySelectorAll('.dot');
-    var triOverlay = document.getElementById('triOverlay');
-    var triDiagram = document.getElementById('triDiagram');
-    var totalSlides = allSlides.length;
-
-    var textEls = {
-      overview: document.getElementById('text-overview'),
-      foundry: document.getElementById('text-foundry'),
-      studio: document.getElementById('text-studio'),
-      lab: document.getElementById('text-lab'),
-      sustain: document.getElementById('text-sustain'),
-      closing: document.getElementById('text-closing')
-    };
-
-    // ---- State ----
-    var currentSlideIdx = 0;
-    var currentSection = null;
-    var pendingTimeouts = [];
-    var isAnimating = false;
-
-    function sectionForSlide(idx) {
-      if (idx === 2) return 'overview';
-      if (idx === 3) return 'lab';
-      if (idx === 4) return 'foundry';
-      if (idx === 5) return 'studio';
-      if (idx === 6) return 'sustain';
-      if (idx === 7) return 'closing';
-      return null;
-    }
-
-    function dirFor(section) {
-      if (section === 'overview') return 'pos-top';
-      if (section === 'foundry') return 'pos-left';
-      if (section === 'studio') return 'pos-right';
-      if (section === 'sustain') return 'pos-left';
-      if (section === 'closing') return 'pos-left';
-      return null;
-    }
-
-    function clearPending() {
-      pendingTimeouts.forEach(function(t) { clearTimeout(t); });
-      pendingTimeouts = [];
-    }
-
-    function hideAllContent() {
-      Object.values(textEls).forEach(function(el) {
-        el.classList.remove('visible', 'pos-left', 'pos-right', 'pos-top', 'no-transition');
-        el.style.opacity = '0';
-      });
-    }
-
-    function showText(section) {
-      if (!section) return;
-      var el = textEls[section];
-      if (!el) return;
-      var dir = dirFor(section);
-
-      el.classList.add('no-transition');
-      el.classList.remove('visible', 'pos-left', 'pos-right', 'pos-top');
-      el.style.opacity = '';
-      if (dir) el.classList.add(dir);
-
-      el.offsetHeight;
-
-      el.classList.remove('no-transition', 'pos-left', 'pos-right', 'pos-top');
-      el.classList.add('visible');
-    }
-
-    function hideText(section) {
-      if (!section) return;
-      var el = textEls[section];
-      if (!el) return;
-      var dir = dirFor(section);
-
-      el.style.opacity = '';
-      el.classList.remove('visible');
-      if (dir) el.classList.add(dir);
-    }
-
-    function goToSlide(idx) {
-      if (idx < 0 || idx >= totalSlides || idx === currentSlideIdx || isAnimating) return;
-      isAnimating = true;
-
-      var oldIdx = currentSlideIdx;
-      currentSlideIdx = idx;
-
-      // Move slides container
-      slidesEl.style.transform = 'translateY(' + (-idx * 100) + 'vh)';
-
-      // Update slide content visibility
-      allSlides.forEach(function(slide, i) {
-        var content = slide.querySelector('.slide-content');
-        if (content) {
-          if (i === idx) content.classList.add('visible');
-          else content.classList.remove('visible');
-        }
-        if (allDots[i]) {
-          allDots[i].classList.toggle('active', i === idx);
-        }
-      });
-
-      // Update overlay
-      clearPending();
-      var oldSection = currentSection;
-      var newSection = sectionForSlide(idx);
-      currentSection = newSection;
-
-      if (idx >= 2 && idx <= 7) {
-        triOverlay.classList.add('visible');
-        triOverlay.classList.remove('exit-top');
-      } else if (idx === 0 || idx === 1) {
-        triOverlay.classList.remove('visible', 'exit-top');
-      } else if (idx === 8) {
-        triOverlay.classList.add('exit-top');
-        triOverlay.classList.remove('visible');
-      }
-
-      if (newSection === 'overview') {
-        triDiagram.setAttribute('data-active', '');
-      } else if (newSection === 'closing') {
-        triDiagram.setAttribute('data-active', 'closing');
-      } else if (newSection) {
-        triDiagram.setAttribute('data-active', newSection);
-      }
-
-      if (oldSection !== newSection) {
-        hideText(oldSection);
-        var t = setTimeout(function() { showText(newSection); }, 250);
-        pendingTimeouts.push(t);
-      }
-
-      // Unlock after transition completes
-      setTimeout(function() { isAnimating = false; }, 700);
-    }
-
-    window.goToSlide = goToSlide;
-
-    // ---- Wheel input (on document so it works regardless of hover target) ----
-    document.addEventListener('wheel', function(e) {
-      e.preventDefault();
-      if (isAnimating) return;
-      if (e.deltaY > 0) goToSlide(currentSlideIdx + 1);
-      else if (e.deltaY < 0) goToSlide(currentSlideIdx - 1);
-    }, { passive: false });
-
-    // ---- Touch input (on document for same reason) ----
-    var touchStartY = 0;
-    var touchHandled = false;
-
-    document.addEventListener('touchstart', function(e) {
-      touchStartY = e.touches[0].clientY;
-      touchHandled = false;
-    }, { passive: true });
-
-    document.addEventListener('touchmove', function(e) {
-      e.preventDefault();
-      if (isAnimating || touchHandled) return;
-      var deltaY = touchStartY - e.touches[0].clientY;
-      if (Math.abs(deltaY) > 50) {
-        touchHandled = true;
-        if (deltaY > 0) goToSlide(currentSlideIdx + 1);
-        else goToSlide(currentSlideIdx - 1);
-      }
-    }, { passive: false });
-
-    // ---- Keyboard input ----
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-        e.preventDefault();
-        goToSlide(currentSlideIdx + 1);
-      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-        e.preventDefault();
-        goToSlide(currentSlideIdx - 1);
-      }
-    });
-
-    // ---- Keyboard focus: Tab into a slide that isn't showing brings it into view ----
-    var viewportEl = document.querySelector('.slides-viewport');
-    document.addEventListener('focusin', function(e) {
-      // The browser scrolls the clipped viewport to reveal the focused element;
-      // undo that, since the slides move by transform instead.
-      viewportEl.scrollTop = 0;
-      var slide = e.target.closest && e.target.closest('.slide');
-      if (!slide) return;
-      var idx = parseInt(slide.dataset.index);
-      if (idx !== currentSlideIdx) {
-        isAnimating = false;
-        goToSlide(idx);
-      }
-    });
-
-    // ---- Dot navigation ----
-    allDots.forEach(function(dot) {
-      dot.addEventListener('click', function() {
-        goToSlide(parseInt(dot.dataset.slide));
-      });
-    });
-
-    // ---- Init ----
-    hideAllContent();
-    allSlides[0].querySelector('.slide-content').classList.add('visible');
-    allDots[0].classList.add('active');
-
-    // Handle /#contact from external navigation
-    if (window.location.hash === '#contact') {
-      currentSlideIdx = -1; // force transition
-      goToSlide(8);
-    }
-  </script>
-
-</SiteLayout>
-
-<style is:global>
-  body {
-    overflow: hidden;
-    height: 100vh;
-  }
-
-  /* ---- SCROLL CONTAINER ---- */
-  .slides-viewport {
-    position: relative;
-    z-index: 1;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  .slides {
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform;
-  }
-
-  .slide {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    position: relative;
-  }
-
-  .slide-content {
-    max-width: 640px;
-    width: 100%;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .slide-content.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ---- HERO SLIDE ---- */
-  .slide--hero .slide-content {
-    text-align: center;
-    max-width: 800px;
-  }
-
-  .slide--hero h1 {
-    font-size: clamp(2.75rem, 6vw, 4rem);
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1.05;
-    margin-bottom: 1.25rem;
-  }
-
-  .slide--hero h1 span {
-    background: linear-gradient(135deg, var(--accent) 0%, #7c3aed 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .slide--hero .tagline {
-    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
-    color: var(--text-secondary);
-    font-weight: 500;
-    margin-bottom: 0.75rem;
-  }
-
-  /* ---- PROOF SLIDE (retention, between hero and method) ---- */
-  .slide--proof .slide-content {
-    text-align: center;
-    max-width: 660px;
-  }
-
-  .proof-line {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.15;
-    color: var(--text-primary);
-    margin-bottom: 0.85rem;
-  }
-
-  .proof-sub {
-    font-size: clamp(0.9375rem, 2vw, 1.125rem);
-    color: var(--text-secondary);
-    line-height: 1.6;
-    max-width: 520px;
-    margin: 0 auto;
-  }
-
-  .slide--hero .public-line {
-    font-size: clamp(0.875rem, 1.6vw, 1rem);
-    color: var(--text-secondary);
-    line-height: 1.6;
-    max-width: 540px;
-    margin: 1.25rem auto 0;
-  }
-
-  .slide--hero .public-line a {
-    color: #1e40af;
-    font-weight: 600;
-    white-space: nowrap;
-  }
-
-  .slide--hero .subtag {
-    font-size: clamp(0.9375rem, 1.8vw, 1.0625rem);
-    color: var(--text-secondary);
-    font-weight: 400;
-    line-height: 1.6;
-    max-width: 540px;
-    margin: 0.25rem auto 0;
-  }
-
-  /* ---- SHARED TEXT STYLES ---- */
-  .section-label {
-    font-size: 0.9375rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
-  }
-
-  .section-title {
-    font-size: clamp(1.5rem, 3.5vw, 2rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-  }
-
-  .section-desc {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-
-  .detail-type {
-    display: inline-block;
-    margin-top: 0.5rem;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
-  /* ---- FIXED TRIANGLE OVERLAY ---- */
-  .tri-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 10;
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3.5rem;
-    opacity: 0;
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    transform: translateY(0);
-  }
-
-  .tri-overlay.visible { opacity: 1; }
-
-  .tri-overlay.exit-top {
-    transform: translateY(-50vh);
-    opacity: 0;
-  }
-
-  .tri-overlay__above,
-  .tri-overlay__below {
-    position: relative;
-    width: 100%;
-    max-width: 540px;
-    min-height: 7rem;
-    flex-shrink: 0;
-  }
-
-  .tri-overlay__text {
-    position: absolute;
-    inset: 0;
-    text-align: center;
-    opacity: 0;
-    transform: translateX(0);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .tri-overlay__text.no-transition { transition: none; }
-
-  .tri-overlay__text.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .tri-overlay__text.pos-left {
-    transform: translateX(-140px);
-    opacity: 0;
-  }
-
-  .tri-overlay__text.pos-right {
-    transform: translateX(140px);
-    opacity: 0;
-  }
-
-  .tri-overlay__text.pos-top {
-    transform: translateY(-80px);
-    opacity: 0;
-  }
-
-  .tri-overlay__text .section-title,
-  .tri-overlay__text .section-label {
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .tri-overlay__text .ov-desc {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
-  }
-
-  .tri-overlay__text.visible .ov-desc {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ---- METHOD RING ---- */
-  .tri-overlay__diagram {
-    position: relative;
-    width: 260px;
-    flex-shrink: 0;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .tri-svg {
-    width: 100%;
-    height: auto;
-    display: block;
-    overflow: visible;
-  }
-
-  .arc {
-    fill: none;
-    stroke-width: 12;
-    stroke-linecap: round;
-    transform-box: fill-box;
-    transform-origin: center;
-    transition: stroke 0.5s ease, opacity 0.5s ease, stroke-width 0.5s ease;
-  }
-
-  .arc--track {
-    stroke: rgba(51, 65, 85, 0.08);
-    stroke-width: 12;
-  }
-
-  .arc--seg {
-    stroke-dasharray: 22 78;
-    opacity: 0.9;
-  }
-
-  /* Muted tints by default; each segment sits at its quarter of the ring */
-  .arc--lab     { stroke: #c4b5fd; transform: rotate(230deg); }
-  .arc--foundry { stroke: #a9c6f8; transform: rotate(320deg); }
-  .arc--studio  { stroke: #93cfc9; transform: rotate(50deg); }
-  .arc--sustain { stroke: #8fd3ad; transform: rotate(140deg); }
-
-  /* ---- Labels ---- */
-  .tri-label {
-    position: absolute;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-    transition: opacity 0.5s ease;
-    opacity: 0.75;
-  }
-  .tri-label--lab { color: #7c3aed; top: 4%; left: 50%; transform: translate(-50%, -120%); }
-  .tri-label--foundry { color: #2563eb; top: 84%; left: 12%; transform: translate(-50%, 60%); }
-  .tri-label--studio { color: #0d9488; top: 84%; left: 88%; transform: translate(-50%, 60%); }
-
-  /* ---- Active stage: brighten + thicken the live arc, dim the rest ---- */
-  .tri-overlay__diagram[data-active="lab"] .arc--lab,
-  .tri-overlay__diagram[data-active="foundry"] .arc--foundry,
-  .tri-overlay__diagram[data-active="studio"] .arc--studio,
-  .tri-overlay__diagram[data-active="sustain"] .arc--sustain {
-    stroke-width: 15;
-    opacity: 1;
-  }
-  .tri-overlay__diagram[data-active="lab"] .arc--lab { stroke: #7c3aed; }
-  .tri-overlay__diagram[data-active="foundry"] .arc--foundry { stroke: #2563eb; }
-  .tri-overlay__diagram[data-active="studio"] .arc--studio { stroke: #0d9488; }
-  .tri-overlay__diagram[data-active="sustain"] .arc--sustain { stroke: #16a34a; }
-
-  .tri-overlay__diagram[data-active="lab"] .arc--seg:not(.arc--lab),
-  .tri-overlay__diagram[data-active="foundry"] .arc--seg:not(.arc--foundry),
-  .tri-overlay__diagram[data-active="studio"] .arc--seg:not(.arc--studio),
-  .tri-overlay__diagram[data-active="sustain"] .arc--seg:not(.arc--sustain) {
-    opacity: 0.3;
-  }
-
-  .tri-overlay__diagram[data-active="lab"] .tri-label--lab,
-  .tri-overlay__diagram[data-active="foundry"] .tri-label--foundry,
-  .tri-overlay__diagram[data-active="studio"] .tri-label--studio {
-    opacity: 0;
-  }
-
-  /* ---- Closing: whole ring at full colour, gentle lift ---- */
-  .tri-overlay__diagram[data-active="closing"] .arc--lab { stroke: #7c3aed; }
-  .tri-overlay__diagram[data-active="closing"] .arc--foundry { stroke: #2563eb; }
-  .tri-overlay__diagram[data-active="closing"] .arc--studio { stroke: #0d9488; }
-  .tri-overlay__diagram[data-active="closing"] .arc--sustain { stroke: #16a34a; }
-  .tri-overlay__diagram[data-active="closing"] .arc--seg { opacity: 1; }
-  .tri-overlay__diagram[data-active="closing"] .tri-label { opacity: 0; }
-  .tri-overlay__diagram[data-active="closing"] { transform: scale(1.08); }
-
-  /* ---- Centre word ---- */
-  .fw-center {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-  .fw-verb {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 150px;
-    text-align: center;
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-  .fw-verb--overview {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: var(--text-secondary);
-  }
-  .fw-verb--lab { color: #6d28d9; }
-  .fw-verb--foundry { color: #1e40af; }
-  .fw-verb--studio { color: #115e59; }
-  .fw-verb--sustain { color: #166534; }
-  .fw-verb--closing { color: var(--text-primary); }
-
-  .tri-overlay__diagram[data-active="lab"] .fw-verb--lab,
-  .tri-overlay__diagram[data-active="foundry"] .fw-verb--foundry,
-  .tri-overlay__diagram[data-active="studio"] .fw-verb--studio,
-  .tri-overlay__diagram[data-active="sustain"] .fw-verb--sustain,
-  .tri-overlay__diagram[data-active="closing"] .fw-verb--closing {
-    opacity: 1;
-  }
-
-  .fw-handshake { width: 46px; height: 46px; display: block; margin: 0 auto; }
-
-  /* Spring 'pop' as the closing mark lands on the final frame */
-  .tri-overlay__diagram[data-active="closing"] .fw-verb--closing {
-    animation: fwPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  }
-  @keyframes fwPop {
-    0%   { transform: translate(-50%, -50%) scale(0.4); }
-    55%  { transform: translate(-50%, -50%) scale(1.15); }
-    100% { transform: translate(-50%, -50%) scale(1); }
-  }
-
-  /* ---- CONTACT ---- */
-  .slide--contact .slide-content {
-    text-align: center;
-  }
-
-  .slide-footer {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 560px;
-    padding: 0 1.5rem;
-    text-align: center;
-    font-size: 0.75rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-  }
-  .slide-footer p { margin: 0; }
-  .slide-footer a { color: inherit; }
-
-  .dots {
-    display: none;
-  }
-
-  /* ---- RESPONSIVE ---- */
-  @media (max-width: 768px) {
-    .slide { padding: 1.25rem 1.5rem; }
-    .section-title { font-size: clamp(1.25rem, 5vw, 1.75rem); }
-    .section-desc { font-size: 0.875rem; }
-    .tri-overlay__diagram { width: 200px; }
-    .tri-overlay { gap: 1.5rem; padding: 0 1.5rem; }
-    .tri-label { font-size: 0.6875rem; }
-    .tri-overlay__text.pos-left { transform: translateX(-100px); }
-    .tri-overlay__text.pos-right { transform: translateX(100px); }
-  }
-
-  @media (max-width: 480px) {
-    .tri-overlay__diagram { width: 160px; }
-    .tri-overlay { gap: 1.25rem; }
-    .section-desc { font-size: 0.8125rem; line-height: 1.55; }
-    .tri-overlay__text.pos-left { transform: translateX(-70px); }
-    .tri-overlay__text.pos-right { transform: translateX(70px); }
-  }
-
-  /* Very short/narrow phones: tighten so the text never reaches the ring */
-  @media (max-width: 380px), (max-height: 640px) {
-    .tri-overlay { gap: 1rem; }
-    .tri-overlay__diagram { width: 148px; }
-    .tri-overlay__above, .tri-overlay__below { min-height: 6rem; }
-    .section-desc { font-size: 0.8rem; line-height: 1.5; }
-  }
-
-  /* Respect reduced-motion: slides/overlays change instantly, no flying-in */
-  @media (prefers-reduced-motion: reduce) {
-    .slides,
-    .slide-content,
-    .tri-overlay,
-    .tri-overlay__text,
-    .tri-overlay__text .ov-desc,
-    .tri-overlay__diagram,
-    .arc,
-    .tri-label,
-    .fw-verb {
-      transition: none !important;
-      animation: none !important;
-    }
-  }
-</style>
+  </section>
+</ContentLayout>

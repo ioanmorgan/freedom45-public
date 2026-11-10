@@ -1,0 +1,69 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+
+const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const u = (p: string) => `${noSlash}${p}`;
+---
+
+<ContentLayout
+  title="Our Work | Freedom45"
+  description="Work by Freedom45 Labs, and the experience our founders bring from before it: code reviews, a VC-backed SaaS platform and an intranet app for UK high-street brands."
+  activePage="work"
+>
+  <header>
+    <p class="eyebrow">Our work</p>
+    <h1>Work we've <span class="g">done.</span></h1>
+    <p class="lead">Freedom45 Labs was founded in 2026, so we keep two lists: the work Freedom45 has done, and the experience our founders bring from before it. We describe the work rather than name clients, until they've told us we can.</p>
+  </header>
+
+  <section>
+    <h2>Freedom45</h2>
+    <div class="stack">
+      <div class="card">
+        <span class="tag">Code review</span>
+        <h3>A procurement-tech startup</h3>
+        <p>An independent review of the platform's code ahead of its next build phase, with each finding checked and sized so the team knew what to tackle first. <span class="todo">[Confirm wording, and the result if there's a true one]</span></p>
+      </div>
+      <div class="card">
+        <span class="tag">Client</span>
+        <h3>A construction-tech startup our founder co-founded</h3>
+        <p>CogniBuild, an AI workspace for the construction industry, now being trialled by construction companies. <span class="todo">[What Freedom45 did for it]</span></p>
+      </div>
+      <div class="card">
+        <span class="tag">From the list</span>
+        <h3><span class="todo">[Sector] client</span></h3>
+        <p><span class="todo">[What we built, and the result if there's a true one]</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Before Freedom45, our founders...</h2>
+    <div class="stack">
+      <div class="card">
+        <span class="tag tag--alt">Scale-up</span>
+        <h3>Elucidat</h3>
+        <p>Joined as its first full-time developer and became Head of Engineering, at a VC-backed SaaS platform used by large organisations worldwide. Elucidat raised three funding rounds and was acquired in 2025.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--alt">Retail</span>
+        <h3>An intranet app for UK high-street brands</h3>
+        <p>Built as one of two contract developers, and used by staff across several major high-street brands.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--alt">Sole-trader work</span>
+        <h3><span class="todo">[Sector] client</span></h3>
+        <p><span class="todo">[What was built, and when]</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where to next</h2>
+    <p class="related">
+      <a href={u('/how-we-work')}>How we work</a>
+      <a href={u('/services')}>Services</a>
+      <a href={u('/commitments')}>Our commitments</a>
+    </p>
+  </section>
+</ContentLayout>

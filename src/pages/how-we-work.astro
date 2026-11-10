@@ -1,0 +1,90 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+
+const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const u = (p: string) => `${noSlash}${p}`;
+---
+
+<ContentLayout
+  title="How We Work: Weeks, Not Months | Freedom45"
+  description="How Freedom45 works with startups and public bodies: a working prototype in weeks, then build, grow and long-term support. You talk to the people building it."
+  activePage="how-we-work"
+>
+  <header>
+    <p class="eyebrow">How we work</p>
+    <h1>Weeks, <span class="g">not months.</span></h1>
+    <p class="lead">Most software doesn't fail because of the code. It fails because nobody found out early enough what its users actually needed. So we put something real in front of people fast, then build on what works.</p>
+  </header>
+
+  <section>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n" aria-hidden="true"></div>
+        <div>
+          <h3>Explore: prove it before you pay for it</h3>
+          <p>We prototype with AI-first tools to test the riskiest part of the idea first, in weeks. <span class="todo">[Typical length, a number Ioan will stand behind]</span></p>
+          <ul>
+            <li>You get a working prototype real users can try.</li>
+            <li>You decide whether to build it, change it, or stop with your budget intact.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n" aria-hidden="true"></div>
+        <div>
+          <h3>Build: ship the product</h3>
+          <p>We turn what you've proven into a product or service people can rely on, accessible from day one.</p>
+          <ul>
+            <li>You get a release you can launch, hosted by us or on your own hosting.</li>
+            <li>You see progress you can open and try, not a status report.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n" aria-hidden="true"></div>
+        <div>
+          <h3>Grow: take it to the next stage</h3>
+          <p>Performance, the next features, and the code health a growing product needs.</p>
+          <ul>
+            <li>You get a plan tied to what your users are telling you.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n" aria-hidden="true"></div>
+        <div>
+          <h3>Sustain: keep it running</h3>
+          <p>Support, fixes and upkeep long after go-live, and we'll happily look after something we didn't build.</p>
+          <ul>
+            <li>You get one team that knows your product, there when it matters.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What it's like to work with us</h2>
+    <div class="cards">
+      <div class="card"><h3>You talk to the builders</h3><p>No account managers in between. The people you speak to are the people building it.</p></div>
+      <div class="card"><h3>You see it working</h3><p>Something you can open and try, early and often. <span class="todo">[Confirm: a demo link every week?]</span></p></div>
+      <div class="card"><h3>You own it</h3><p>Your code, your data, your choice of hosting. If you ever move on, everything goes with you.</p></div>
+      <div class="card"><h3>No jargon</h3><p>Plain English in proposals, updates and invoices.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How we use AI</h2>
+    <p>We use AI a lot, because it gets you results faster: prototypes in weeks, and more of your budget spent on the parts that matter. A person oversees it and checks everything before it reaches you, and we're open about where we use it.</p>
+  </section>
+
+  <section>
+    <h2>Where to next</h2>
+    <p class="related">
+      <a href={u('/services')}>Services</a>
+      <a href={u('/work')}>Our work</a>
+      <a href={u('/commitments')}>Our commitments</a>
+      <a href={u('/public-sector')}>Public sector</a>
+    </p>
+  </section>
+</ContentLayout>

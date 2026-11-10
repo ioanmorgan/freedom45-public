@@ -1,0 +1,42 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+
+const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const u = (p: string) => `${noSlash}${p}`;
+---
+
+<ContentLayout
+  title="Software Development in Swansea and South Wales | Freedom45"
+  description="Freedom45 Labs is a software development studio in the Swansea Valley. We design, build, host and support bespoke web, mobile and desktop apps for businesses and public bodies across South Wales and beyond."
+>
+  <header>
+    <p class="eyebrow">Swansea and South Wales</p>
+    <h1>Software development, <span class="g">from the Swansea Valley.</span></h1>
+    <p class="lead">Freedom45 Labs is a software studio based in the Swansea Valley. We design, build, host and support bespoke websites, mobile apps and desktop apps for startups, local businesses and public bodies, across South Wales and well beyond it.</p>
+  </header>
+
+  <section>
+    <h2>Why a local studio</h2>
+    <ul>
+      <li><b>You can meet the people building it.</b> <span class="todo">[Confirm: happy to meet in person around South Wales?]</span></li>
+      <li><b>Senior people, without city prices.</b> Our low overheads keep our prices down, and small projects are welcome.</li>
+      <li><b>Welsh and English where you need it.</b> Bilingual services built in from the start.</li>
+      <li><b>Local talent.</b> When we bring in extra hands, we look locally first.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What we can do for you</h2>
+    <div class="cards cards--2">
+      <div class="card"><h3>Prototypes and MVPs</h3><p>Test an idea with real users in weeks.</p><p class="more"><a href={u('/services/prototypes')}>Prototypes →</a></p></div>
+      <div class="card"><h3>Web, mobile and desktop apps</h3><p>Bespoke software, accessible from day one.</p><p class="more"><a href={u('/services/web-and-mobile-apps')}>Apps →</a></p></div>
+      <div class="card"><h3>Support and maintenance</h3><p>Including software someone else built.</p><p class="more"><a href={u('/services/support-and-maintenance')}>Support →</a></p></div>
+      <div class="card"><h3>Public sector</h3><p>On Sell2Wales and eTenderWales, to WCAG 2.2 AA and the Welsh Language Standards.</p><p class="more"><a href={u('/public-sector')}>Public sector →</a></p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where we work</h2>
+    <p>Swansea, Neath Port Talbot, Carmarthenshire and the rest of South Wales, the South West of England, and anywhere in the UK where the work suits us. Most of a software project happens online, so distance rarely matters, but it's good to be close when it does.</p>
+  </section>
+</ContentLayout>

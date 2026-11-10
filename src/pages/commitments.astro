@@ -1,0 +1,62 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+
+const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const u = (p: string) => `${noSlash}${p}`;
+---
+
+<ContentLayout
+  title="Our Commitments | Freedom45"
+  description="What Freedom45 stands by: straight dealing with clients, software everybody can use, fair work for the people we work with, and doing some good for the community and the planet."
+  activePage="commitments"
+>
+  <header>
+    <p class="eyebrow">Our commitments</p>
+    <h1>What we <span class="g">stand by.</span></h1>
+    <p class="lead">Every project touches more people than the one paying for it. These are our commitments to each of them. We only promise what we actually do.</p>
+  </header>
+
+  <section>
+    <p class="colhead">Our clients</p>
+    <h2>Straight with you</h2>
+    <ul>
+      <li><b>No jargon.</b> Plain English in our proposals, updates and invoices. If we can't explain it simply, we haven't understood it yet.</li>
+      <li><b>No lock-in.</b> We host it, or it runs on your own hosting: your choice. Either way the code and data are yours, and if you ever move on, everything goes with you.</li>
+      <li><b>Responsible AI.</b> We use AI a lot, because it gets you results faster. A person oversees it and checks everything before it reaches you.</li>
+      <li><b>Projects of all sizes.</b> Small jobs are welcome, and our low overheads keep our prices down.</li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="colhead">The people who use it</p>
+    <h2>Built for everyone</h2>
+    <ul>
+      <li>We care that everybody can use what we build.</li>
+      <li>WCAG 2.2 AA is our minimum on every project, not an extra, and we go further wherever we can.</li>
+      <li>Where a service needs Welsh and English, we build both in from the start rather than translating at the end.</li>
+    </ul>
+    <p style="margin-top:0.75rem"><a href={u('/accessibility')}>Our own accessibility statement</a></p>
+  </section>
+
+  <section>
+    <p class="colhead">The people we work with</p>
+    <h2>Fair work</h2>
+    <ul>
+      <li>Contractors and suppliers are treated and paid fairly.</li>
+      <li>We bring in local talent wherever we can.</li>
+      <li><span class="todo">[Ethical employment commitments, once that policy is reviewed and signed]</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="colhead">Community and planet</p>
+    <h2>Doing some good</h2>
+    <ul>
+      <li>Charities and other tech-for-good projects get a discount on our usual rates.</li>
+      <li>Early-stage founders get startup-friendly rates.</li>
+      <li>We work to keep our carbon footprint small.</li>
+      <li><span class="todo">[Environmental commitments, once that policy is reviewed and signed]</span></li>
+    </ul>
+    <p style="margin-top:0.75rem">Ask about our rates when you get in touch.</p>
+  </section>
+</ContentLayout>

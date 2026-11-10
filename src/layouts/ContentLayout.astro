@@ -1,0 +1,106 @@
+---
+// Shared layout for the scrolling content pages (home, how we work, work,
+// commitments, services and the local page). One set of styles, so every
+// page reads the same and new pages are just markup.
+import SiteLayout from './SiteLayout.astro';
+import CTA from '../components/CTA.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  activePage?: string;
+  wide?: boolean;
+  noCta?: boolean;
+}
+
+const { title, description, activePage, wide = false, noCta = false } = Astro.props;
+---
+
+<SiteLayout title={title} description={description} activePage={activePage}>
+  <main class:list={['cp', { 'cp--wide': wide }]}>
+    <slot />
+    {!noCta && (
+      <section class="cp-cta" id="contact" aria-label="Get in touch">
+        <CTA />
+      </section>
+    )}
+  </main>
+</SiteLayout>
+
+<style is:global>
+  .cp { max-width: 760px; margin: 0 auto; padding: 8rem 1.5rem 3rem; }
+  .cp--wide { max-width: 960px; }
+  .cp a { color: #1e40af; }
+  .cp .eyebrow {
+    font-size: 0.8125rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; color: #1e40af; margin-bottom: 0.5rem;
+  }
+  .cp h1 {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -0.035em;
+    line-height: 1.1; margin-bottom: 1rem; max-width: 18ch;
+  }
+  .cp h1 .g {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .cp .lead { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.7; max-width: 60ch; }
+  .cp section { margin-top: 3.5rem; }
+  .cp h2 { font-size: clamp(1.3rem, 3vw, 1.75rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 1rem; }
+  .cp h3 { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.35rem; }
+  .cp section > p, .cp li { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7; }
+  .cp section > p + p { margin-top: 0.75rem; }
+  .cp ul { padding-left: 1.2rem; }
+  .cp li + li { margin-top: 0.35rem; }
+  .cp .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+  .cp .cards--2 { grid-template-columns: repeat(2, 1fr); }
+  .cp .card {
+    padding: 1.4rem; background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 14px;
+  }
+  .cp .card p { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.65; }
+  .cp .card ul { margin-top: 0.4rem; }
+  .cp .card .more { margin-top: 0.6rem; font-weight: 700; }
+  .cp .tag {
+    display: inline-block; font-size: 0.6875rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; padding: 0.15rem 0.55rem; border-radius: 100px; margin-bottom: 0.6rem;
+    background: #dbeafe; color: #1e40af;
+  }
+  .cp .tag--alt { background: #ede9fe; color: #5b21b6; }
+  /* Gaps only Ioan can fill. Kept visible on the preview so nothing ships with one in. */
+  .cp .todo { color: #92400e; background: #fef3c7; border-radius: 4px; padding: 0 0.25rem; }
+  .cp .band {
+    padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(37, 99, 235, 0.2);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.07), rgba(124, 58, 237, 0.08));
+  }
+  .cp .band p { color: var(--text-secondary); }
+  .cp .colhead {
+    font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--text-secondary); margin-bottom: 0.75rem;
+  }
+  .cp .stack > * + * { margin-top: 0.75rem; }
+  .cp .steps { display: grid; gap: 1.5rem; counter-reset: step; }
+  .cp .step { display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; align-items: start; }
+  .cp .step-n {
+    counter-increment: step; width: 3rem; height: 3rem; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 800; color: #fff;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+  }
+  .cp .step-n::before { content: counter(step); }
+  .cp .step h3 { font-size: 1.125rem; }
+  .cp .step p { color: var(--text-secondary); font-size: 0.9375rem; }
+  .cp .step ul { margin-top: 0.4rem; }
+  .cp .related { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; font-weight: 600; font-size: 0.9375rem; }
+  .cp-cta {
+    margin-top: 4rem; padding: 2rem; background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(0, 0, 0, 0.06); border-radius: 14px;
+  }
+  @media (max-width: 700px) {
+    .cp .cards--2 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .cp { padding: 6rem 1.25rem 3rem; }
+  }
+  @media (max-width: 560px) {
+    .cp { padding-top: 7.5rem; }
+  }
+</style>

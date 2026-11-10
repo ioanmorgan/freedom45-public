@@ -9,7 +9,6 @@ const { activePage = '', lang = 'en' } = Astro.props;
 // sandbox subpath like '/freedom45-social-proof/' without breaking nav.
 const base = import.meta.env.BASE_URL;          // '/', or '/demo/'
 const noSlash = base.replace(/\/$/, '');        // '',  or '/demo'
-const isHomepage = Astro.url.pathname === base || Astro.url.pathname === (noSlash || '/');
 ---
 
 <header class="site-header">
@@ -22,12 +21,10 @@ const isHomepage = Astro.url.pathname === base || Astro.url.pathname === (noSlas
   ) : (
   <nav class="top-nav" aria-label="Main">
     <a href={`${noSlash}/services`} class:list={[{ active: activePage === 'services' }]} aria-current={activePage === 'services' ? 'page' : undefined}>Services</a>
+    <a href={`${noSlash}/how-we-work`} class:list={[{ active: activePage === 'how-we-work' }]} aria-current={activePage === 'how-we-work' ? 'page' : undefined}>How we work</a>
+    <a href={`${noSlash}/work`} class:list={[{ active: activePage === 'work' }]} aria-current={activePage === 'work' ? 'page' : undefined}>Work</a>
     <a href={`${noSlash}/public-sector`} class:list={[{ active: activePage === 'public-sector' }]} aria-current={activePage === 'public-sector' ? 'page' : undefined}>Public sector</a>
-    {isHomepage ? (
-      <a href="#contact" onclick="window.goToSlide(8);return false">Contact</a>
-    ) : (
-      <a href={`${noSlash}/#contact`}>Contact</a>
-    )}
+    <a href="#contact">Contact</a>
   </nav>
   )}
 </header>
@@ -86,6 +83,7 @@ const isHomepage = Astro.url.pathname === base || Astro.url.pathname === (noSlas
   }
 
   .top-nav a {
+    white-space: nowrap;
     font-size: 0.8125rem;
     font-weight: 500;
     color: var(--text-secondary);
@@ -104,13 +102,19 @@ const isHomepage = Astro.url.pathname === base || Astro.url.pathname === (noSlas
     .top-nav { gap: 1rem; }
     .top-nav a { font-size: 0.75rem; }
   }
+
+  /* Five links don't fit beside the wordmark on a phone: give them their own row */
+  @media (max-width: 560px) {
+    .site-header { flex-wrap: wrap; row-gap: 0.5rem; }
+    .top-nav { width: 100%; gap: 0.25rem 1rem; flex-wrap: wrap; }
+    .top-nav a { white-space: nowrap; padding: 0.25rem 0; }
+  }
 </style>
 
 <script is:inline>
   // Fade the nav background in gently, in step with scroll position, so it
   // develops with the page instead of snapping in at a threshold. Native-scroll
-  // pages (e.g. /services) drive it; the homepage is a slide deck whose window
-  // never scrolls, so the scrim just stays at 0 there.
+  // pages drive it.
   (function () {
     var header = document.querySelector('.site-header');
     if (!header) return;

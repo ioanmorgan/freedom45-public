@@ -1,164 +1,64 @@
 ---
-import SiteLayout from '../../layouts/SiteLayout.astro';
-import CTA from '../../components/CTA.astro';
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const u = (p: string) => `${noSlash}${p}`;
 ---
 
-<SiteLayout
-  title="Services — Software Delivery & Technical Leadership | Freedom45"
-  description="Freedom45 services: product strategy, software delivery, customer support, and technical operations for startups and growth-stage teams."
+<ContentLayout
+  title="Services: Prototypes, Apps, Support and Technical Leadership | Freedom45"
+  description="Freedom45 services: prototypes and MVPs in weeks, bespoke web, mobile and desktop apps, support and maintenance (including software we didn't build), bilingual Welsh and English services, and fractional CTO leadership."
   activePage="services"
 >
-  <main class="page">
-    <h1><span style="color: #7c3aed">Explore.</span> <span style="color: #2563eb">Build.</span> <span style="color: #0f766e">Grow.</span> <span style="color: #15803d">Sustain.</span></h1>
-    <p class="subtitle">How we work with startups — from first idea to long-term care.</p>
+  <header>
+    <p class="eyebrow">Services</p>
+    <h1>From first idea to <span class="g">long-term care.</span></h1>
+    <p class="lead">We design, build, host and support bespoke software for startups, growing businesses and public bodies. Start wherever you are.</p>
+  </header>
 
-    <div class="service">
-      <p class="phase phase--explore">Explore</p>
-      <h2>Product Strategy & Prototyping</h2>
-      <p>Kill the risk early. We prototype with AI-first workflows and emerging tech to prove what works — in weeks, not quarters.</p>
-      <ul>
-        <li>Discovery workshops & opportunity mapping</li>
-        <li>Rapid prototyping & proof of concepts</li>
-        <li>Technical feasibility & architecture review</li>
-        <li>AI/ML readiness assessment</li>
-      </ul>
+  <section>
+    <div class="cards cards--2">
+      <div class="card">
+        <h3>Prototypes and MVPs</h3>
+        <p>A working prototype in weeks, in front of real users, so you know what's worth building before you spend on it.</p>
+        <p class="more"><a href={u('/services/prototypes')}>Prototypes and MVPs →</a></p>
+      </div>
+      <div class="card">
+        <h3>Web, mobile and desktop apps</h3>
+        <p>Bespoke products and services people can rely on, accessible from day one, hosted by us or on your own hosting.</p>
+        <p class="more"><a href={u('/services/web-and-mobile-apps')}>Web and mobile apps →</a></p>
+      </div>
+      <div class="card">
+        <h3>Support and maintenance</h3>
+        <p>Fixes, updates, monitoring and the next features, including for software we didn't build.</p>
+        <p class="more"><a href={u('/services/support-and-maintenance')}>Support and maintenance →</a></p>
+      </div>
+      <div class="card">
+        <h3>Bilingual Welsh and English services</h3>
+        <p>Both languages built in from the start, to the Welsh Language Standards where they apply.</p>
+        <p class="more"><a href={u('/services/bilingual-software')}>Bilingual software →</a></p>
+      </div>
     </div>
+  </section>
 
-    <div class="service">
-      <p class="phase phase--build">Build</p>
-      <h2>Software Delivery</h2>
-      <p>You've validated the idea — now ship it. We turn prototypes into launch-ready products your first customers can use.</p>
-      <ul>
-        <li>Full-stack web, mobile & desktop development</li>
-        <li>MVP build & launch</li>
-        <li>API design & integrations</li>
-        <li>AI/ML feature development</li>
-        <li>DevOps & CI/CD setup</li>
-      </ul>
-    </div>
+  <section>
+    <h2>Technical leadership, without a full-time CTO</h2>
+    <p>Not ready to hire a CTO? We can act as your technical lead: setting the technical direction, making the architecture calls, reviewing code and helping you hire when it's time.</p>
+    <ul style="margin-top:0.75rem">
+      <li>Fractional CTO or head of engineering</li>
+      <li>Technical strategy and roadmap</li>
+      <li>Architecture and code reviews, and managing technical debt</li>
+      <li>Mentoring developers and help with hiring</li>
+    </ul>
+  </section>
 
-    <div class="service">
-      <p class="phase phase--grow">Grow</p>
-      <h2>Scale & Growth</h2>
-      <p>Growth needs more than code. We scale your product, sharpen performance, and build the features that take you to the next stage.</p>
-      <ul>
-        <li>Performance optimisation & scaling</li>
-        <li>Ongoing feature development</li>
-        <li>Analytics, experimentation & iteration</li>
-        <li>Infrastructure & cost optimisation</li>
-      </ul>
-    </div>
-
-    <div class="service">
-      <p class="phase phase--sustain">Sustain</p>
-      <h2>Aftercare, Support & Maintenance</h2>
-      <p>Launched isn't finished. We support your users, maintain the product, and keep it running long after go-live. Available as a standalone retainer, too — we'll happily look after something we didn't build.</p>
-      <ul>
-        <li>Customer support as a service</li>
-        <li>Maintenance, monitoring & security updates</li>
-        <li>Technical operations & reliability</li>
-        <li>Available as a standalone retainer</li>
-      </ul>
-    </div>
-
-    <div class="service service--across">
-      <p class="phase phase--across">Across every stage</p>
-      <h2>Fractional CTO & Technical Leadership</h2>
-      <p>Not ready for a full-time CTO? We embed as your technical leadership — setting strategy, mentoring your engineers, and making the architectural calls that keep your product on track.</p>
-      <ul>
-        <li>Fractional CTO / VP Engineering</li>
-        <li>Technical strategy & roadmap planning</li>
-        <li>Engineering team mentorship & coaching</li>
-        <li>Architecture reviews & tech debt management</li>
-        <li>Hiring support & team scaling</li>
-      </ul>
-    </div>
-
-    <div class="cta-section">
-      <CTA />
-    </div>
-  </main>
-</SiteLayout>
-
-<style>
-  .page {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 8rem 1.5rem 4rem;
-  }
-
-  .page h1 {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.5rem;
-  }
-
-  .page .subtitle {
-    font-size: 1.0625rem;
-    color: var(--text-secondary);
-    margin-bottom: 3rem;
-  }
-
-  .service {
-    margin-bottom: 2.5rem;
-    padding: 1.75rem;
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 12px;
-  }
-
-  .service h2 {
-    font-size: 1.125rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-  }
-
-  .service .phase {
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.75rem;
-  }
-
-  .phase--explore { color: #7c3aed; }
-  .phase--build { color: #2563eb; }
-  .phase--grow { color: #0f766e; }
-  .phase--sustain { color: #15803d; }
-  .phase--across { color: var(--text-primary); }
-
-  /* Fractional-CTO isn't a phase — it runs across all four */
-  .service--across {
-    background: transparent;
-    border-style: dashed;
-    border-color: rgba(0, 0, 0, 0.12);
-    margin-top: 3rem;
-  }
-
-  .service p {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-
-  .service ul {
-    margin-top: 0.75rem;
-    padding-left: 1.25rem;
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.8;
-  }
-
-  .cta-section {
-    margin-top: 3rem;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 12px;
-  }
-
-  @media (max-width: 768px) {
-    .page { padding: 6rem 1.25rem 3rem; }
-  }
-</style>
+  <section>
+    <h2>Where to next</h2>
+    <p class="related">
+      <a href={u('/how-we-work')}>How we work</a>
+      <a href={u('/work')}>Our work</a>
+      <a href={u('/public-sector')}>Public sector</a>
+      <a href={u('/software-development-swansea')}>Software development in Swansea</a>
+    </p>
+  </section>
+</ContentLayout>
