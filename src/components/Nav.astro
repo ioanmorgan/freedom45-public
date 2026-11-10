@@ -22,7 +22,7 @@ const noSlash = base.replace(/\/$/, '');        // '',  or '/demo'
   <nav class="top-nav" aria-label="Main">
     <a href={`${noSlash}/services`} class:list={[{ active: activePage === 'services' }]} aria-current={activePage === 'services' ? 'page' : undefined}>Services</a>
     <a href={`${noSlash}/how-we-work`} class:list={[{ active: activePage === 'how-we-work' }]} aria-current={activePage === 'how-we-work' ? 'page' : undefined}>How we work</a>
-    <a href={`${noSlash}/work`} class:list={[{ active: activePage === 'work' }]} aria-current={activePage === 'work' ? 'page' : undefined}>Work</a>
+    <a href={`${noSlash}/projects`} class:list={[{ active: activePage === 'projects' }]} aria-current={activePage === 'projects' ? 'page' : undefined}>Projects</a>
     <a href={`${noSlash}/public-sector`} class:list={[{ active: activePage === 'public-sector' }]} aria-current={activePage === 'public-sector' ? 'page' : undefined}>Public sector</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -50,10 +50,12 @@ const noSlash = base.replace(/\/$/, '');        // '',  or '/demo'
     left: 0;
     right: 0;
     top: 0;
-    height: 98px;
+    /* Taller than the header whatever its height (it wraps to two rows on a
+       phone), solid behind the links and fading out only below them. */
+    height: calc(100% + 1.5rem);
     background: linear-gradient(to bottom,
       var(--bg) 0%,
-      rgba(240, 242, 245, 0.82) 40%,
+      var(--bg) calc(100% - 1.5rem),
       rgba(240, 242, 245, 0) 100%);
     z-index: -1;
     pointer-events: none;
@@ -106,8 +108,8 @@ const noSlash = base.replace(/\/$/, '');        // '',  or '/demo'
   /* Five links don't fit beside the wordmark on a phone: give them their own row */
   @media (max-width: 560px) {
     .site-header { flex-wrap: wrap; row-gap: 0.5rem; }
-    .top-nav { width: 100%; gap: 0.25rem 1rem; flex-wrap: wrap; }
-    .top-nav a { white-space: nowrap; padding: 0.25rem 0; }
+    .top-nav { width: 100%; gap: 0.25rem 0.85rem; flex-wrap: wrap; }
+    .top-nav a { white-space: nowrap; padding: 0.25rem 0; font-size: 0.75rem; letter-spacing: 0; }
   }
 </style>
 
@@ -118,9 +120,9 @@ const noSlash = base.replace(/\/$/, '');        // '',  or '/demo'
   (function () {
     var header = document.querySelector('.site-header');
     if (!header) return;
-    // px of scroll over which the scrim grows to full height — longer on mobile,
-    // where a quick flick otherwise expands it almost instantly
-    var DISTANCE = window.matchMedia('(max-width: 768px)').matches ? 300 : 200;
+    // Fully grown by the time content has scrolled up to the header's bottom
+    // edge, so text never shows through behind the links.
+    var DISTANCE = Math.max(header.offsetHeight, 60);
     var ticking = false;
     function apply() {
       ticking = false;
