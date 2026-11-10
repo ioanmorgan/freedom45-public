@@ -1,7 +1,8 @@
 ---
 // The public-sector page. Every claim here traces to the bid library
 // (vault Freedom45/bid-library): change the copy there first, then here.
-import { CONTACT_EMAIL, COMPANY_NUMBER } from '../config';
+import { COMPANY_NUMBER } from '../config';
+import CTA from './CTA.astro';
 
 const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
 const PPON = 'PDXX-1452-MBVY';
@@ -50,9 +51,6 @@ const copy = {
       ['Size', 'SME'],
       ['Company number', COMPANY_NUMBER],
     ],
-    contactId: 'contact',
-    contactTitle: 'Get in touch',
-    contactText: 'Projects of all sizes are welcome, and our low overheads keep our prices down. Email us for a quote, in Welsh or English.',
   },
 }.en;
 ---
@@ -103,11 +101,7 @@ const copy = {
     </dl>
   </section>
 
-  <section class="block contact" id={copy.contactId} aria-labelledby="contact-title">
-    <h2 id="contact-title">{copy.contactTitle}</h2>
-    <p>{copy.contactText}</p>
-    <p><a class="email" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
-  </section>
+  <CTA />
 </main>
 
 <style>
@@ -215,12 +209,6 @@ const copy = {
   .facts dt { font-weight: 700; }
   .facts dd { color: var(--text-secondary); }
 
-  .email {
-    display: inline-block;
-    margin-top: 0.25rem;
-    font-weight: 600;
-    font-size: 1rem;
-  }
 
   @media (max-width: 700px) {
     .cards { grid-template-columns: 1fr; }

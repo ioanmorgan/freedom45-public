@@ -2,8 +2,9 @@
 import { CALENDLY_URL, CONTACT_EMAIL } from '../config';
 ---
 
+<section class="cta-section" id="contact" aria-labelledby="cta-title">
 <div class="cta-inner">
-  <h2 class="cta-title">Ready to get started?</h2>
+  <h2 class="cta-title" id="cta-title">Ready to get started?</h2>
   <p class="cta-desc">Tell us what you're working on. We'll tell you if we can help, and how.</p>
   <p class="cta-qualifier">Best fit: startups, growing businesses and public bodies building web, mobile, desktop or AI products.</p>
   <div class="cta-actions">
@@ -17,8 +18,19 @@ import { CALENDLY_URL, CONTACT_EMAIL } from '../config';
     </a>
   </div>
 </div>
+</section>
 
 <style>
+  /* The same closing call to action on every page */
+  .cta-section {
+    max-width: 720px;
+    margin: 4rem auto 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 14px;
+  }
+
   .cta-inner {
     text-align: center;
   }

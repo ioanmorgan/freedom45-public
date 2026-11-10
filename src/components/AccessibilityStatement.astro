@@ -3,6 +3,7 @@
 // GOV.UK sample statement. Keep the known issues honest: re-test and update
 // the list and the dates whenever the site changes.
 import { CONTACT_EMAIL } from '../config';
+import CTA from './CTA.astro';
 
 const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -62,6 +63,8 @@ const copy = {
 
   <h2>{copy.prepTitle}</h2>
   <p>{copy.prep}</p>
+
+  <CTA />
 </main>
 
 <style>

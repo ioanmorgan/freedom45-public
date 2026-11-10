@@ -19,11 +19,7 @@ const { title, description, activePage, wide = false, noCta = false } = Astro.pr
 <SiteLayout title={title} description={description} activePage={activePage}>
   <main class:list={['cp', { 'cp--wide': wide }]}>
     <slot />
-    {!noCta && (
-      <section class="cp-cta" id="contact" aria-label="Get in touch">
-        <CTA />
-      </section>
-    )}
+    {!noCta && <CTA />}
   </main>
 </SiteLayout>
 
@@ -154,10 +150,6 @@ const { title, description, activePage, wide = false, noCta = false } = Astro.pr
   }
   .cp .feature .actions { margin-top: 1.25rem; }
   .cp .btn--light { background: #fff; border-color: #fff; color: #1e1b4b; }
-  .cp-cta {
-    margin-top: 4rem; padding: 2rem; background: rgba(255, 255, 255, 0.55);
-    border: 1px solid rgba(0, 0, 0, 0.06); border-radius: 14px;
-  }
   @media (max-width: 700px) {
     .cp .cards--2,
     .cp .cards:has(> :nth-child(4):last-child) { grid-template-columns: 1fr; }
