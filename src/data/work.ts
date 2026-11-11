@@ -113,8 +113,8 @@ export const WORK: Work[] = [
     title: 'An ad and marketing agency',
     body: 'Development work to keep their projects on track while their CTO was on long-term leave, plus holiday cover and other gaps.',
     sector: 'Marketing',
-    stage: 'build',
-    service: 'product-development',
+    stage: 'sustain',
+    service: 'hosting-and-support',
   },
 ];
 
