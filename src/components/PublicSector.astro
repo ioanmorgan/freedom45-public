@@ -106,7 +106,7 @@ const copy = {
 
 <style>
   .page {
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
     padding: 8rem 1.5rem 3rem;
   }
@@ -121,11 +121,12 @@ const copy = {
   }
 
   h1 {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.15;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
     margin-bottom: 1rem;
+    max-width: 18ch;
   }
 
   /* Same blue-purple highlight as the other page headings */
@@ -153,10 +154,11 @@ const copy = {
   .block { margin-top: 3rem; }
 
   h2 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.75rem;
+    font-size: clamp(1.3rem, 3vw, 1.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
   }
 
   .block > p,
@@ -224,5 +226,13 @@ const copy = {
 
   @media (max-width: 480px) {
     .facts div { grid-template-columns: 1fr; gap: 0; }
+  }
+
+  /* Same page width and phone spacing as the other pages (ContentLayout) */
+  @media (max-width: 768px) {
+    .page { padding: 6rem 1.25rem 3rem; }
+  }
+  @media (max-width: 560px) {
+    .page { padding-top: 7.5rem; }
   }
 </style>
