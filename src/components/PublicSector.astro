@@ -39,7 +39,12 @@ const copy = {
     ],
     bgTitle: "Who you'll be working with",
     bgIntro: 'Freedom45 Labs was founded in 2026, but the people behind it have been building software for years.',
-    bgLink: { text: 'See our projects', href: `${noSlash}/projects` },
+    bgWork: {
+      tag: 'Pre-launch review',
+      h: 'A procurement platform for UK councils',
+      p: 'A startup building procurement software for UK councils asked us to check their platform before launch. We reviewed its security, scalability and code quality, and handed over a prioritised risk list and a roadmap to fix it.',
+    },
+    bgLink: { text: 'See our work', href: `${noSlash}/our-work` },
     buyTitle: 'How to buy from us',
     buy: [
       ['Portals', 'Registered on Sell2Wales and eTenderWales'],
@@ -79,6 +84,11 @@ const copy = {
   <section class="block" aria-labelledby="bg-title">
     <h2 id="bg-title">{copy.bgTitle}</h2>
     <p>{copy.bgIntro}</p>
+    <div class="card bg-card">
+      <p class="tag">{copy.bgWork.tag}</p>
+      <h3>{copy.bgWork.h}</h3>
+      <p>{copy.bgWork.p}</p>
+    </div>
     <p class="card-link"><a href={copy.bgLink.href}>{copy.bgLink.text}</a></p>
   </section>
 
@@ -193,6 +203,13 @@ const copy = {
   }
 
   .card-link { margin-top: 0.5rem; font-weight: 600; }
+  .bg-card { margin-top: 1rem; }
+  /* Same tag pill as the Our work page */
+  .tag {
+    display: inline-block; font-size: 0.6875rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; padding: 0.15rem 0.55rem; border-radius: 100px; margin-bottom: 0.6rem;
+    background: #dbeafe; color: #1e40af;
+  }
 
   .facts {
     display: grid;

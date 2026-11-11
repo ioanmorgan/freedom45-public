@@ -15,7 +15,7 @@ const noSlash = base.replace(/\/$/, '');        // '',  or '/demo'
   <nav class="top-nav" aria-label="Main">
     <a href={`${noSlash}/services`} class:list={[{ active: activePage === 'services' }]} aria-current={activePage === 'services' ? 'page' : undefined}>Services</a>
     <a href={`${noSlash}/how-we-work`} class:list={[{ active: activePage === 'how-we-work' }]} aria-current={activePage === 'how-we-work' ? 'page' : undefined}>How we work</a>
-    <a href={`${noSlash}/projects`} class:list={[{ active: activePage === 'projects' }]} aria-current={activePage === 'projects' ? 'page' : undefined}>Projects</a>
+    <a href={`${noSlash}/our-work`} class:list={[{ active: activePage === 'our-work' }]} aria-current={activePage === 'our-work' ? 'page' : undefined}>Our work</a>
     <a href={`${noSlash}/public-sector`} class:list={[{ active: activePage === 'public-sector' }]} aria-current={activePage === 'public-sector' ? 'page' : undefined}>Public sector</a>
     <a href="#contact">Contact</a>
   </nav>
