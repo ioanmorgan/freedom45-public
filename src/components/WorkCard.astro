@@ -17,7 +17,7 @@ const body = compact && item.short ? item.short.body : item.body;
 ---
 
 <div class:list={['work-card', `work-card--${item.stage}`]}>
-  <a class="work-stage" href={`${noSlash}/how-we-work#${item.stage}`}>{STAGES[item.stage]}</a>
+  <a class="work-stage" href={`${noSlash}/how-we-work#${item.stage}`}>{STAGES[item.stage]} stage</a>
   <h3>{title}</h3>
   <p>{body}</p>
   <p class="work-pills">
