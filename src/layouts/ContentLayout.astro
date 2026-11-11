@@ -11,12 +11,13 @@ interface Props {
   activePage?: string;
   wide?: boolean;
   noCta?: boolean;
+  noindex?: boolean;
 }
 
-const { title, description, activePage, wide = false, noCta = false } = Astro.props;
+const { title, description, activePage, wide = false, noCta = false, noindex = false } = Astro.props;
 ---
 
-<SiteLayout title={title} description={description} activePage={activePage}>
+<SiteLayout title={title} description={description} activePage={activePage} noindex={noindex}>
   <main class:list={['cp', { 'cp--wide': wide }]}>
     <slot />
     {!noCta && <CTA />}

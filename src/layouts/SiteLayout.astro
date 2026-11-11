@@ -10,12 +10,13 @@ interface Props {
   description?: string;
   activePage?: string;
   noFooter?: boolean;
+  noindex?: boolean;
   lang?: 'en' | 'cy';
   // The same page in another language, for hreflang (none at present)
   alternate?: { lang: 'en' | 'cy'; path: string };
 }
 
-const { title, description, activePage, noFooter = false, lang = 'en', alternate } = Astro.props;
+const { title, description, activePage, noFooter = false, lang = 'en', alternate, noindex = false } = Astro.props;
 
 const site = Astro.site!.href.replace(/\/$/, '');
 const url = pageUrl(Astro.url.pathname, Astro.site!);
@@ -52,7 +53,7 @@ const schema = {
 };
 ---
 
-<BaseLayout title={title} description={description} lang={lang}>
+<BaseLayout title={title} description={description} lang={lang} noindex={noindex}>
   <Fragment slot="head">
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE_NAME} />

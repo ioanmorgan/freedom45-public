@@ -1,9 +1,10 @@
 import type { APIRoute } from 'astro';
 import { pageUrl } from '../config';
 
-// Freedom45 pages only - the standalone app pages (moodbuddy/) are Nothrix Labs, not this brand.
+// Freedom45 pages only - the standalone app pages (moodbuddy/) are Nothrix Labs, not this brand,
+// and signed policies (policies/) are for buyers given the link, not for search.
 const pages = Object.keys(import.meta.glob('./**/*.astro'))
-  .filter((p) => !p.startsWith('./moodbuddy/'))
+  .filter((p) => !p.startsWith('./moodbuddy/') && !p.startsWith('./policies/'))
   .map((p) => p.replace(/^\.\//, '/').replace(/\.astro$/, '').replace(/\/?index$/, '') || '/')
   .sort();
 
