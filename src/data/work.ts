@@ -78,8 +78,8 @@ export const WORK: Work[] = [
   {
     id: 'charity',
     by: 'founders',
-    title: 'A tech education charity',
-    body: 'Mentoring students as they became founders, helping with their proofs of concept, and helping run a hackathon to bring new students in.',
+    title: 'Mentoring student founders for a tech education charity',
+    body: 'Helping students become founders: mentoring, support with their proofs of concept, and a hackathon to bring new students in.',
     sector: 'Charity',
     stage: 'explore',
     service: 'technical-leadership',
@@ -96,8 +96,8 @@ export const WORK: Work[] = [
   {
     id: 'supermarket',
     by: 'founders',
-    title: 'A major UK supermarket',
-    body: 'Social and multimedia features for the intranet its staff use, bug fixes and scalability work, and its APIs built out ahead of a mobile app.',
+    title: 'Staff intranet for a major UK supermarket',
+    body: 'Social and multimedia features, bug fixes and scalability work, and its APIs built out ahead of a mobile app.',
     sector: 'Retail',
     stage: 'grow',
     service: 'rescue-and-modernisation',
@@ -105,8 +105,8 @@ export const WORK: Work[] = [
   {
     id: 'cafe-chain',
     by: 'founders',
-    title: 'A café chain',
-    body: 'A proof of concept to make their website stand out: a side-scrolling, game-style site where visitors could explore the brand, its venues and its menus.',
+    title: 'Game-style website for a café chain',
+    body: 'A proof of concept to make their brand stand out: a side-scrolling site where visitors could explore the chain, its venues and its menus.',
     sector: 'Hospitality',
     stage: 'explore',
     service: 'product-development',
@@ -114,7 +114,7 @@ export const WORK: Work[] = [
   {
     id: 'agency',
     by: 'founders',
-    title: 'An ad and marketing agency',
+    title: 'Development cover for a marketing agency',
     body: 'Development work to keep their projects on track while their CTO was on long-term leave, plus holiday cover and other gaps.',
     sector: 'Marketing',
     stage: 'sustain',
