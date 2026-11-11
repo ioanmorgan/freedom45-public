@@ -66,7 +66,7 @@ export const WORK: Work[] = [
     id: 'elucidat',
     by: 'founders',
     title: 'Elucidat',
-    body: 'From the early days of this VC-backed SaaS platform to Head of Engineering, through three funding rounds and its acquisition in 2025.',
+    body: 'Joined this SaaS platform in its early days, before it was VC-backed, and grew to Head of Engineering through three funding rounds and its acquisition in 2025.',
     sector: 'SaaS',
     stage: 'grow',
     service: 'technical-leadership',
