@@ -18,7 +18,7 @@ const u = (p: string) => `${noSlash}${p}`;
 
   <section>
     <div class="steps">
-      <div class="step">
+      <div class="step" id="explore">
         <div class="step-n step-n--explore" aria-hidden="true"></div>
         <div>
           <h3><span class="stage stage--explore">Explore:</span> test it before you commit</h3>
@@ -31,7 +31,7 @@ const u = (p: string) => `${noSlash}${p}`;
           </ul>
         </div>
       </div>
-      <div class="step">
+      <div class="step" id="build">
         <div class="step-n step-n--build" aria-hidden="true"></div>
         <div>
           <h3><span class="stage stage--build">Build:</span> ship the product</h3>
@@ -43,7 +43,7 @@ const u = (p: string) => `${noSlash}${p}`;
           </ul>
         </div>
       </div>
-      <div class="step">
+      <div class="step" id="grow">
         <div class="step-n step-n--grow" aria-hidden="true"></div>
         <div>
           <h3><span class="stage stage--grow">Grow:</span> take it to the next stage</h3>
@@ -56,7 +56,7 @@ const u = (p: string) => `${noSlash}${p}`;
           </ul>
         </div>
       </div>
-      <div class="step">
+      <div class="step" id="sustain">
         <div class="step-n step-n--sustain" aria-hidden="true"></div>
         <div>
           <h3><span class="stage stage--sustain">Sustain:</span> keep it running</h3>

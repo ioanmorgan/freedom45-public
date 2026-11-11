@@ -1,0 +1,68 @@
+---
+// One piece of work: a strip and label in its How we work stage colour, then
+// either who did it (homepage) or its service and sector (Our work page).
+// Stage and service link to where they're explained.
+import { STAGES, SERVICES, type Work } from '../data/work';
+
+interface Props {
+  item: Work;
+  /** Homepage: short text, and a "Freedom45" / "Our founders" pill instead of service and sector */
+  compact?: boolean;
+}
+
+const { item, compact = false } = Astro.props;
+const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const title = compact && item.short ? item.short.title : item.title;
+const body = compact && item.short ? item.short.body : item.body;
+---
+
+<div class:list={['work-card', `work-card--${item.stage}`]}>
+  <a class="work-stage" href={`${noSlash}/how-we-work#${item.stage}`}>{STAGES[item.stage]}</a>
+  <h3>{title}</h3>
+  <p>{body}</p>
+  <p class="work-pills">
+    {compact ? (
+      <span class:list={['work-pill', { 'work-pill--alt': item.by === 'founders' }]}>
+        {item.by === 'freedom45' ? 'Freedom45' : 'Our founders'}
+      </span>
+    ) : (
+      <>
+        <a class="work-pill" href={`${noSlash}/services#${item.service}`}>{SERVICES[item.service]}</a>
+        <span class="work-pill work-pill--plain">{item.sector}</span>
+      </>
+    )}
+  </p>
+</div>
+
+<style>
+  .work-card {
+    padding: 1.4rem 1.4rem 1.2rem;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-left: 5px solid var(--stage);
+    border-radius: 14px;
+  }
+  /* The four stage colours from the How we work page */
+  .work-card--explore { --stage: #7c3aed; }
+  .work-card--build { --stage: #2563eb; }
+  .work-card--grow { --stage: #0f766e; }
+  .work-card--sustain { --stage: #166534; }
+
+  .work-stage {
+    display: inline-flex; align-items: center; min-height: 24px;
+    font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--stage); text-decoration: none; margin-bottom: 0.25rem;
+  }
+  .work-stage:hover { text-decoration: underline; }
+  .work-card h3 { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.35rem; }
+  .work-card p { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.65; }
+  .work-card .work-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+  .work-pill {
+    display: inline-flex; align-items: center; min-height: 24px;
+    font-size: 0.75rem; font-weight: 700; padding: 0 0.7rem; border-radius: 100px;
+    background: #dbeafe; color: #1e40af; text-decoration: none;
+  }
+  a.work-pill:hover { background: #bfdbfe; }
+  .work-pill--alt { background: #ede9fe; color: #5b21b6; }
+  .work-pill--plain { background: rgba(0, 0, 0, 0.06); color: #475569; }
+</style>

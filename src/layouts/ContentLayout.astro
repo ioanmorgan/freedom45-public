@@ -27,6 +27,8 @@ const { title, description, activePage, wide = false, noCta = false, noindex = f
 <style is:global>
   .cp { max-width: 760px; margin: 0 auto; padding: 8rem 1.5rem 3rem; }
   .cp--wide { max-width: 960px; }
+  /* Linked-to sections land clear of the fixed nav */
+  .cp [id] { scroll-margin-top: 7rem; }
   .cp a { color: #1e40af; }
   .cp .eyebrow {
     font-size: 0.8125rem; font-weight: 700; text-transform: uppercase;

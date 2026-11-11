@@ -1,5 +1,7 @@
 ---
 import ContentLayout from '../layouts/ContentLayout.astro';
+import WorkCard from '../components/WorkCard.astro';
+import { work } from '../data/work';
 import { CALENDLY_URL } from '../config';
 
 const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -61,9 +63,7 @@ const u = (p: string) => `${noSlash}${p}`;
       <a href={u('/our-work')}>More examples →</a>
     </div>
     <div class="cards">
-      <div class="card"><span class="tag">Freedom45</span><h3>Pre-launch review</h3><p>Security, scalability and code quality for a council procurement platform: a prioritised risk list and a roadmap to fix it.</p></div>
-      <div class="card"><span class="tag tag--alt">Our founders</span><h3>Proof of concept to company</h3><p>An AI proof of concept for a client that grew into CogniBuild, a construction-tech company our founder co-founded.</p></div>
-      <div class="card"><span class="tag tag--alt">Our founders</span><h3>Elucidat</h3><p>First full-time developer, then Head of Engineering, through three funding rounds to its acquisition in 2025.</p></div>
+      {['pre-launch-review', 'poc-to-startup', 'elucidat'].map((id) => <WorkCard item={work(id)} compact />)}
     </div>
   </section>
 
