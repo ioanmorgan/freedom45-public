@@ -27,10 +27,8 @@ const copy = {
       'Freedom45 Labs is a private company, so the Public Sector Bodies Accessibility Regulations 2018 do not apply to this website. We hold it to the same standard we build to for public sector clients: the Web Content Accessibility Guidelines (WCAG) version 2.2, level AA.',
       'We believe this website is fully compliant with WCAG 2.2 level AA.',
     ],
-    testTitle: 'How we tested this website',
-    test: 'Every page is checked automatically (axe-core) at desktop size and at 320 pixels wide each time the site is published, and the site is not published if a check fails. We also test by hand: keyboard-only use, zoom and reflow at 320 pixels wide, colour contrast, and reduced motion. We have not yet had the site tested by disabled users or with a range of screen readers.',
     prepTitle: 'Preparation of this statement',
-    prep: 'This statement was prepared on 9 November 2026. It was last reviewed on 10 November 2026.',
+    prep: "This statement was prepared on 9 November 2026 and last reviewed on 10 November 2026. The site is checked automatically against WCAG 2.2 AA every time it's published, and tested by hand after any significant change.",
   },
 }.en;
 ---
@@ -58,9 +56,6 @@ const copy = {
 
   <h2>{copy.techTitle}</h2>
   {copy.tech.map((item) => <p>{item}</p>)}
-
-  <h2>{copy.testTitle}</h2>
-  <p>{copy.test}</p>
 
   <h2>{copy.prepTitle}</h2>
   <p>{copy.prep}</p>
