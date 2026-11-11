@@ -6,113 +6,75 @@ const u = (p: string) => `${noSlash}${p}`;
 ---
 
 <ContentLayout
-  title="Services: Prototypes, Software Delivery, Support and Technical Leadership | Freedom45"
-  description="Freedom45 services: product strategy and prototyping, software delivery, scale and growth, aftercare and support, and fractional CTO leadership, for startups, growing businesses and public bodies."
+  title="Services: Product Development, Rescue and Modernisation, Hosting and Support, Technical Leadership | Freedom45"
+  description="Freedom45 services: product development, rescue and modernisation of existing software, hosting and support, and technical leadership including fractional CTO, for startups, growing businesses and public bodies."
   activePage="services"
 >
   <header>
-    <h1><span class="stage--explore">Explore.</span> <span class="stage--build">Build.</span> <span class="stage--grow">Grow.</span> <span class="stage--sustain">Sustain.</span></h1>
-    <p class="lead">How we work with you, from first idea to long-term care.</p>
+    <p class="eyebrow">Services</p>
+    <h1>What we can do <span class="g">for you.</span></h1>
+    <p class="lead">Bespoke software, from a first prototype to looking after it for years. Start wherever you are.</p>
   </header>
 
   <section class="service">
-    <p class="phase stage--explore">Explore</p>
-    <h2><a href={u('/services/prototypes')}>Product strategy and prototyping</a></h2>
-    <p>Kill the risk early. We prototype with AI-first workflows and emerging tech to prove what works, in weeks, not months.</p>
+    <h2>Product development</h2>
+    <p class="punch">Get it built.</p>
     <ul>
-      <li>Discovery workshops and opportunity mapping</li>
-      <li>Rapid prototyping and proofs of concept</li>
-      <li>Technical feasibility and architecture review</li>
-      <li>AI readiness assessment</li>
+      <li><a href={u('/services/prototypes')}>Prototypes and MVPs</a></li>
+      <li><a href={u('/services/web-and-mobile-apps')}>Web, mobile and desktop apps</a></li>
+      <li>AI features</li>
+      <li><a href={u('/services/bilingual-software')}>Bilingual Welsh and English services</a></li>
     </ul>
   </section>
 
   <section class="service">
-    <p class="phase stage--build">Build</p>
-    <h2><a href={u('/services/web-and-mobile-apps')}>Software delivery</a></h2>
-    <p>You've validated the idea, now ship it. We turn prototypes into launch-ready products your first customers can use.</p>
+    <h2>Rescue and modernisation</h2>
+    <p class="punch">Get it back on track.</p>
     <ul>
-      <li>Full-stack web, mobile and desktop development</li>
-      <li>MVP build and launch</li>
-      <li>API design and integrations</li>
-      <li>AI feature development</li>
-      <li>DevOps and CI/CD setup</li>
+      <li>Code and architecture reviews</li>
+      <li>Performance and scaling</li>
+      <li><a href={u('/services/support-and-maintenance')}>Taking over software someone else built</a></li>
     </ul>
   </section>
 
   <section class="service">
-    <p class="phase stage--grow">Grow</p>
-    <h2>Scale and growth</h2>
-    <p>Growth needs more than code. We scale your product, sharpen performance, and build the features that take you to the next stage.</p>
+    <h2>Hosting and support</h2>
+    <p class="punch">Keep it running.</p>
     <ul>
-      <li>Performance optimisation and scaling</li>
-      <li>Ongoing feature development</li>
-      <li>Analytics, experimentation and iteration</li>
-      <li>Infrastructure and cost optimisation</li>
-    </ul>
-  </section>
-
-  <section class="service">
-    <p class="phase stage--sustain">Sustain</p>
-    <h2><a href={u('/services/support-and-maintenance')}>Aftercare, support and maintenance</a></h2>
-    <p>Launched isn't finished. We support your users, maintain the product, and keep it running long after go-live. It's available as a standalone retainer too, and we'll happily look after something we didn't build.</p>
-    <ul>
+      <li>Hosting and monitoring</li>
+      <li><a href={u('/services/support-and-maintenance')}>Maintenance and security updates</a></li>
       <li>Customer support as a service</li>
-      <li>Maintenance, monitoring and security updates</li>
-      <li>Technical operations and reliability</li>
-      <li>Available as a standalone retainer</li>
     </ul>
   </section>
 
-  <section class="service service--across service--first-across">
-    <p class="phase">Across every stage</p>
-    <h2>Fractional CTO and technical leadership</h2>
-    <p>Not ready for a full-time CTO? We embed as your technical leadership: setting strategy, mentoring your engineers, and making the architectural calls that keep your product on track.</p>
+  <section class="service">
+    <h2>Technical leadership</h2>
+    <p class="punch">Make the right calls.</p>
     <ul>
-      <li>Fractional CTO or VP Engineering</li>
-      <li>Technical strategy and roadmap planning</li>
-      <li>Engineering team mentorship and coaching</li>
-      <li>Architecture reviews and tech debt management</li>
-      <li>Hiring support and team scaling</li>
+      <li>Fractional CTO</li>
+      <li>Discovery and feasibility</li>
+      <li>Technical strategy and roadmaps</li>
+      <li>AI readiness</li>
+      <li>Analytics and experimentation</li>
     </ul>
-  </section>
-
-  <section class="service service--across">
-    <p class="phase">Across every stage</p>
-    <h2><a href={u('/services/bilingual-software')}>Bilingual Welsh and English</a></h2>
-    <p>Where a service needs both languages, we build Welsh and English in from the start, not translate at the end.</p>
   </section>
 </ContentLayout>
 
 <style>
   .service {
-    margin-top: 1.5rem;
     padding: 1.75rem;
     background: rgba(255, 255, 255, 0.6);
     border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: 14px;
   }
+  .service + .service { margin-top: 1.25rem; }
   header + .service { margin-top: 2.5rem; }
-  .service h2 { font-size: 1.125rem; margin-bottom: 0.35rem; }
-  .service h2 a { color: var(--text-primary); text-decoration: none; }
-  .service h2 a:hover { text-decoration: underline; }
-  .service h2 a::after { content: ' →'; color: #1d4ed8; }
-  .phase {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.6rem;
-    color: var(--text-primary);
+  .service h2 { margin-bottom: 0.2rem; }
+  .service .punch {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: #1e40af;
+    margin-bottom: 0.75rem;
   }
-  .service > p:not(.phase) { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7; }
-  .service ul { margin-top: 0.75rem; }
-  .service li { font-size: 0.875rem; }
-  /* Not a stage: these run alongside all four */
-  .service--across {
-    background: transparent;
-    border-style: dashed;
-    border-color: rgba(0, 0, 0, 0.15);
-  }
-  .service--first-across { margin-top: 3rem; }
+  .service li { font-size: 0.9375rem; }
 </style>
