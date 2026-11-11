@@ -96,7 +96,7 @@ export const WORK: Work[] = [
     body: 'Social and multimedia features for the intranet its staff use, bug fixes and scalability work, and its APIs built out ahead of a mobile app.',
     sector: 'Retail',
     stage: 'grow',
-    service: 'product-development',
+    service: 'rescue-and-modernisation',
   },
   {
     id: 'cafe-chain',
