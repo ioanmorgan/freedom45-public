@@ -1,8 +1,6 @@
 ---
 import ContentLayout from '../../layouts/ContentLayout.astro';
 
-const noSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
-const u = (p: string) => `${noSlash}${p}`;
 ---
 
 <ContentLayout
@@ -19,30 +17,33 @@ const u = (p: string) => `${noSlash}${p}`;
   <section class="service">
     <h2>Product development</h2>
     <p class="punch">Get it built.</p>
+    <p>Websites, web apps, mobile and desktop apps, from a working prototype in weeks to a product people can rely on. Where a service needs both languages, we build Welsh and English in from the start, not translate at the end.</p>
     <ul>
-      <li><a href={u('/services/prototypes')}>Prototypes and MVPs</a></li>
-      <li><a href={u('/services/web-and-mobile-apps')}>Web, mobile and desktop apps</a></li>
+      <li>Prototypes and MVPs</li>
+      <li>Web, mobile and desktop apps</li>
       <li>AI features</li>
-      <li><a href={u('/services/bilingual-software')}>Bilingual Welsh and English services</a></li>
+      <li>Bilingual Welsh and English services</li>
     </ul>
   </section>
 
   <section class="service">
     <h2>Rescue and modernisation</h2>
     <p class="punch">Get it back on track.</p>
+    <p>Taking over software someone else built? We start with an honest review of the code: what's sound, what's risky and what to fix first, in plain English. Then we take it on.</p>
     <ul>
       <li>Code and architecture reviews</li>
       <li>Performance and scaling</li>
-      <li><a href={u('/services/support-and-maintenance')}>Taking over software someone else built</a></li>
+      <li>Taking over software someone else built</li>
     </ul>
   </section>
 
   <section class="service">
     <h2>Hosting and support</h2>
     <p class="punch">Keep it running.</p>
+    <p>Launched isn't finished. We host it, keep it secure and up to date, and look after your users for as long as you want us to.</p>
     <ul>
       <li>Hosting and monitoring</li>
-      <li><a href={u('/services/support-and-maintenance')}>Maintenance and security updates</a></li>
+      <li>Maintenance and security updates</li>
       <li>Customer support as a service</li>
     </ul>
   </section>
@@ -50,6 +51,7 @@ const u = (p: string) => `${noSlash}${p}`;
   <section class="service">
     <h2>Technical leadership</h2>
     <p class="punch">Make the right calls.</p>
+    <p>Not ready to hire a CTO? We can act as your technical lead: setting the direction, making the architecture calls and reviewing the code.</p>
     <ul>
       <li>Fractional CTO</li>
       <li>Discovery and feasibility</li>
@@ -77,4 +79,5 @@ const u = (p: string) => `${noSlash}${p}`;
     margin-bottom: 0.75rem;
   }
   .service li { font-size: 0.9375rem; }
+  .service .punch + p { margin-bottom: 0.75rem; }
 </style>
