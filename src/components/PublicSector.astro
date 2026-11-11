@@ -10,7 +10,7 @@ const PPON = 'PDXX-1452-MBVY';
 const copy = {
   en: {
     eyebrow: 'Public sector',
-    h1: 'Software for public bodies in Wales and the South West',
+    h1: ['Software for ', 'public bodies', ' in Wales and the South West'],
     lead: 'Freedom45 Labs is a software studio based in the Swansea Valley, working across Wales, the South West and further afield. We design, build, host and support bespoke applications, including websites, mobile apps and desktop apps.',
     workTitle: 'The kind of work we suit',
     work: [
@@ -57,7 +57,7 @@ const copy = {
 
 <main class="page">
   <p class="eyebrow">{copy.eyebrow}</p>
-  <h1>{copy.h1}</h1>
+  <h1>{copy.h1[0]}<span class="g">{copy.h1[1]}</span>{copy.h1[2]}</h1>
   <p class="lead">{copy.lead}</p>
 
   <section class="block" aria-labelledby="work-title">
@@ -126,6 +126,14 @@ const copy = {
     letter-spacing: -0.03em;
     line-height: 1.15;
     margin-bottom: 1rem;
+  }
+
+  /* Same blue-purple highlight as the other page headings */
+  h1 .g {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .lead {
