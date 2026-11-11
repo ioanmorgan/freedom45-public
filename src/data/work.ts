@@ -47,7 +47,7 @@ export const WORK: Work[] = [
     },
     sector: 'Public sector',
     stage: 'build',
-    service: 'rescue-and-modernisation',
+    service: 'technical-leadership',
   },
   {
     id: 'poc-to-startup',
