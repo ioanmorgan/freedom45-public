@@ -95,8 +95,8 @@ export const WORK: Work[] = [
     title: 'A major UK supermarket',
     body: 'Social and multimedia features for the intranet its staff use, bug fixes and scalability work, and its APIs built out ahead of a mobile app.',
     sector: 'Retail',
-    stage: 'sustain',
-    service: 'hosting-and-support',
+    stage: 'grow',
+    service: 'product-development',
   },
   {
     id: 'cafe-chain',
@@ -111,10 +111,10 @@ export const WORK: Work[] = [
     id: 'agency',
     by: 'founders',
     title: 'An ad and marketing agency',
-    body: 'Kept their projects on track while their CTO was on long-term leave, and covered holidays and other gaps.',
+    body: 'Development work to keep their projects on track while their CTO was on long-term leave, plus holiday cover and other gaps.',
     sector: 'Marketing',
     stage: 'build',
-    service: 'technical-leadership',
+    service: 'product-development',
   },
 ];
 
