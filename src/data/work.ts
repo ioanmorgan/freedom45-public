@@ -75,7 +75,7 @@ export const WORK: Work[] = [
     id: 'council-tax-fraud',
     by: 'founders',
     title: 'Council tax fraud detection',
-    body: 'Co-founded a data analytics startup whose fraud detection tool was trialled by a Welsh city council. It flagged accounts that needed a closer look; the council wrote to them, and some paid what they owed while others updated their details.',
+    body: 'Co-founded a data analytics startup whose fraud detection tool was trialled by a Welsh city council. It combined credit reference data with public records to score each property\'s risk of fraud. The council wrote to the properties it flagged: some paid what they owed, others updated their details.',
     sector: 'Public sector',
     stage: 'explore',
     service: 'product-development',
