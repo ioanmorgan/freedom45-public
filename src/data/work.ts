@@ -59,7 +59,7 @@ export const WORK: Work[] = [
       body: 'An AI proof of concept for a client grew into CogniBuild, a construction-tech startup one of our founders co-founded.',
     },
     sector: 'Construction',
-    stage: 'explore',
+    stage: 'build',
     service: 'product-development',
   },
   {
