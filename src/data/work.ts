@@ -56,7 +56,7 @@ export const WORK: Work[] = [
     body: 'An R&D tax credit consultancy asked one of our founders for an AI proof of concept to take them into construction. It worked, and the consultancy invited them to co-found the business that grew from it: CogniBuild, an AI platform for construction, now in trials.',
     short: {
       title: 'From proof of concept to startup',
-      body: 'An AI proof of concept for a client grew into CogniBuild, a construction-tech startup one of our founders co-founded.',
+      body: 'CogniBuild, an AI platform for construction, now in trials.',
     },
     sector: 'Construction',
     stage: 'build',
