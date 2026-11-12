@@ -120,7 +120,8 @@ const noSlash = base.replace(/\/$/, '');        // '',  or '/demo'
     if (!header) return;
     // px of scroll over which the scrim grows to full height - longer on mobile,
     // where a quick flick otherwise expands it almost instantly
-    var DISTANCE = window.matchMedia('(max-width: 768px)').matches ? 300 : 200;
+    var mobile = window.matchMedia('(max-width: 768px)');
+    var distance = 200;
     // Where the last row of links ends, so the fade always covers them
     function measure() {
       var links = header.querySelectorAll('.top-nav a');
@@ -129,6 +130,22 @@ const noSlash = base.replace(/\/$/, '');        // '',  or '/demo'
         end = Math.max(end, links[i].getBoundingClientRect().bottom - header.getBoundingClientRect().top);
       }
       header.style.setProperty('--nav-end', Math.round(end) + 'px');
+      distance = 200;
+      if (mobile.matches) {
+        // On a phone the page content starts only a little below the links
+        // (much less when they wrap to a second row), so a long 300px fade
+        // let text slide under them before the scrim had grown. Finish it by
+        // the time the content reaches the bottom of the links instead.
+        var main = document.querySelector('main');
+        var gap = 300;
+        if (main) {
+          var top = main.getBoundingClientRect().top + window.scrollY
+            + parseFloat(getComputedStyle(main).paddingTop || '0');
+          gap = top - end;
+        }
+        distance = Math.max(1, Math.min(300, gap));
+      }
+      apply();
     }
     measure();
     // The web font can wrap the links onto another row once it loads
@@ -138,7 +155,7 @@ const noSlash = base.replace(/\/$/, '');        // '',  or '/demo'
     var ticking = false;
     function apply() {
       ticking = false;
-      var o = Math.min(window.scrollY / DISTANCE, 1);
+      var o = Math.min(window.scrollY / distance, 1);
       header.style.setProperty('--nav-scrim', o.toFixed(3));
     }
     window.addEventListener('scroll', function () {

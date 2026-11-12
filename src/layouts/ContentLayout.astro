@@ -91,6 +91,8 @@ const { title, description, activePage, wide = false, noCta = false, noindex = f
   }
   .cp .step-n::before { content: counter(step); }
   .cp .step h3 { font-size: 1.125rem; }
+  /* How we work's stage titles are H2s (no H1-to-H3 jump) but look like the step H3s */
+  .cp .step h2 { font-size: 1.125rem; font-weight: 700; letter-spacing: -0.01em; line-height: inherit; margin-bottom: 0.35rem; }
   /* The four stages keep the colours they had on the old Services page */
   .cp .stage--explore { color: #7c3aed; }
   .cp .stage--build { color: #2563eb; }
